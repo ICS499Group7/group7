@@ -1,4 +1,4 @@
-module com.testproject {
+module com.group7 {
 
     requires javafx.graphics;
     requires java.sql;
@@ -15,6 +15,6 @@ module com.testproject {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
 
-    opens com.testproject to javafx.fxml;
-    exports com.testproject;
+    opens com.group7 to javafx.fxml;
+    exports com.group7;
 }

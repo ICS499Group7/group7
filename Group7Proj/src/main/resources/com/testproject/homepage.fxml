@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.testproject.HomepageController">
+   <top>
+      <AnchorPane prefHeight="47.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="logOutButton" layoutX="476.0" layoutY="11.0" mnemonicParsing="false" onAction="#logOutButtonOnAction" text="Log Out" />
+            <Button fx:id="exitButton" layoutX="551.0" layoutY="11.0" mnemonicParsing="false" onAction="#exitButtonOnAction" text="Exit" />
+         </children>
+      </AnchorPane>
+   </top>
+   <center>
+      <AnchorPane prefHeight="272.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label contentDisplay="CENTER" layoutX="210.0" layoutY="51.0" prefHeight="20.0" prefWidth="180.0" text="Welcome to the Application!">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Button fx:id="userMainButton" layoutX="254.0" layoutY="80.0" mnemonicParsing="false" onAction="#userMainButtonOnAction" text="Manage Users" />
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

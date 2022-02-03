@@ -1,4 +1,4 @@
-package com.group7;
+package com.group7.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

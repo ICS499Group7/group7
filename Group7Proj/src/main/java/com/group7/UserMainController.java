@@ -40,22 +40,21 @@ public class UserMainController implements Initializable {
     @FXML
     private Button createUserButton;
 
+    @FXML
+    private Button deleteUserButton;
+
+    @FXML
+    private  Button modifyUserButton;
+
+
     private ObservableList<ObservableList> items = FXCollections.observableArrayList();
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        DatabaseConnection connectNow = new DatabaseConnection();
-        Connection connectDB = connectNow.getConnection();
-
-        Statement stmt = null;
-        ResultSet rs = null;
-        String query = "SELECT * FROM user_accounts";
+        ResultSet rs = new UserModel().getUsers();
         try {
-            stmt = connectDB.createStatement();
-            rs = stmt.executeQuery(query);
-
             for(int i=0; i<rs.getMetaData().getColumnCount(); i++) {
                 final int j = i;
                 TableColumn col = new TableColumn(rs.getMetaData().getColumnName(i+1));
@@ -111,7 +110,9 @@ public class UserMainController implements Initializable {
             e.printStackTrace();
             e.getCause();
         }
+    }
 
+    public void modifyUserButtonOnAction(ActionEvent event) {
 
     }
 

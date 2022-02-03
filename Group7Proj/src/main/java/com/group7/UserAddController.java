@@ -53,22 +53,13 @@ public class UserAddController implements Initializable {
     }
 
     public void saveUser() {
-        DatabaseConnection connectNow = new DatabaseConnection();
-        Connection connectDB = connectNow.getConnection();
+            boolean createUserQuery = new UserModel().createUser(firstName.getText(),lastName.getText(),userName.getText(),password.getText());
 
-        String createUserQuery = "INSERT INTO user_accounts (first_name,last_name,username,password) VALUES ('" + firstName.getText() + "','" + lastName.getText() + "','" + userName.getText() + "','" + password.getText() + "')";
-
-        try {
-            int queryResult = connectDB.createStatement().executeUpdate(createUserQuery);
-            if (queryResult == 1) {
+            if (createUserQuery == true) {
                 statusMessageLabel.setText("Created User Successfully");
             } else {
                 statusMessageLabel.setText("Error With DB Query");
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-            e.getCause();
-        }
 
     }
 

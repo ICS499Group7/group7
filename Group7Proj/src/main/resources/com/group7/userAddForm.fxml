@@ -34,7 +34,7 @@
             <PasswordField fx:id="passwordConfirm" layoutX="116.0" layoutY="178.0" promptText="Re-Enter Password" />
             <Label layoutX="11.0" layoutY="182.0" text="Re-Enter Password" />
             <Button fx:id="submitButton" layoutX="88.0" layoutY="259.0" mnemonicParsing="false" onAction="#submitButtonOnAction" prefHeight="25.0" prefWidth="125.0" text="Submit User" />
-            <Label fx:id="statusMessageLabel" layoutX="96.0" layoutY="229.0" prefHeight="17.0" prefWidth="110.0" text=" " textFill="RED" />
+            <Label fx:id="statusMessageLabel" layoutX="6.0" layoutY="228.0" prefHeight="17.0" prefWidth="289.0" text=" " textFill="RED" />
          </children>
       </AnchorPane>
    </center>

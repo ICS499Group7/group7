@@ -100,7 +100,6 @@ public class UserMainController implements Initializable {
         id = id.substring(1, id.length() - 1);
         System.out.println(id);
         List<String> items = Arrays.asList(id.split(",\\s*"));
-
         String deleteUserQuery = "DELETE FROM user_accounts WHERE id = " + items.get(0);
         System.out.println(deleteUserQuery);
         try {

@@ -92,6 +92,7 @@ public class UserMainController implements Initializable {
     public void createUserButtonOnAction(ActionEvent event) {
         createUserPage();
     }
+
     public void deleteUserButtonOnAction(ActionEvent event) {
 
         DatabaseConnection connectNow = new DatabaseConnection();

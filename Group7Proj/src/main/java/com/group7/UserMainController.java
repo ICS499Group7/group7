@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
@@ -23,10 +24,13 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class UserMainController implements Initializable {
-
+    private Label statusMessageLabel;
     @FXML
     private Button backButton;
 
@@ -88,6 +92,29 @@ public class UserMainController implements Initializable {
     public void createUserButtonOnAction(ActionEvent event) {
         createUserPage();
     }
+    public void deleteUserButtonOnAction(ActionEvent event) {
+
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connectDB = connectNow.getConnection();
+        String id = tableView.getItems().get(tableView.getSelectionModel().getSelectedIndex()).toString();
+        id = id.substring(1, id.length() - 1);
+        System.out.println(id);
+        List<String> items = Arrays.asList(id.split(",\\s*"));
+
+        String deleteUserQuery = "DELETE FROM user_accounts WHERE id = " + items.get(0);
+        System.out.println(deleteUserQuery);
+        try {
+            int queryResult = connectDB.createStatement().executeUpdate(deleteUserQuery);
+            if (queryResult == 1)
+                tableView.getItems().removeAll(tableView.getSelectionModel().getSelectedItem());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+
+
+    }
 
     public void homepage() {
         try {
@@ -118,6 +145,7 @@ public class UserMainController implements Initializable {
             e.getCause();
         }
     }
+
 
 }
 

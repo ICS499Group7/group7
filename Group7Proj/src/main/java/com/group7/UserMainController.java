@@ -94,7 +94,6 @@ public class UserMainController implements Initializable {
     }
 
     public void deleteUserButtonOnAction(ActionEvent event) {
-
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
         String id = tableView.getItems().get(tableView.getSelectionModel().getSelectedIndex()).toString();

@@ -48,6 +48,7 @@ public class UserMainController implements Initializable {
 
 
     private ObservableList<ObservableList> items = FXCollections.observableArrayList();
+    private UserModel user = new UserModel();
 
 
     @Override
@@ -93,19 +94,12 @@ public class UserMainController implements Initializable {
     }
 
     public void deleteUserButtonOnAction(ActionEvent event) {
-        DatabaseConnection connectNow = new DatabaseConnection();
-        Connection connectDB = connectNow.getConnection();
-        String id = tableView.getItems().get(tableView.getSelectionModel().getSelectedIndex()).toString();
-        id = id.substring(1, id.length() - 1);
-        System.out.println(id);
-        List<String> items = Arrays.asList(id.split(",\\s*"));
-        String deleteUserQuery = "DELETE FROM user_accounts WHERE id = " + items.get(0);
-        System.out.println(deleteUserQuery);
+        String items = tableView.getItems().get(tableView.getSelectionModel().getSelectedIndex()).toString();
+        items = items.substring(1, items.length() - 1);
+        List<String> id = Arrays.asList(items.split(",\\s*"));
         try {
-            int queryResult = connectDB.createStatement().executeUpdate(deleteUserQuery);
-            if (queryResult == 1)
+            if (user.deleteUser(id.get(0)))
                 tableView.getItems().removeAll(tableView.getSelectionModel().getSelectedItem());
-
         } catch (Exception e) {
             e.printStackTrace();
             e.getCause();

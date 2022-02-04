@@ -37,6 +37,16 @@ public class UserModel { //Will control getting and setting data to the SQL serv
         return rs;
     }
 
+    public boolean deleteUser(String id) throws SQLException {
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connectDB = connectNow.getConnection();
+        String deleteUserQuery = "DELETE FROM user_accounts WHERE id = " + id;
+        int result = connectDB.createStatement().executeUpdate(deleteUserQuery);
+        if(result == 1)
+            return true;
+        return false;
+    }
+
         public boolean createUser(String firstName, String lastName, String username, String password) { //returns a boolean value, adds a new user to the user_accounts
         this.firstName = firstName;
         this.lastName = lastName;

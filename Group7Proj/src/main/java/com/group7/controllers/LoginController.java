@@ -1,5 +1,6 @@
-package com.group7;
+package com.group7.controllers;
 
+import com.group7.model.LoginModel;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -70,7 +71,7 @@ public class LoginController implements Initializable {
 
     public void homepageScreen() {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("homepage.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/homepage.fxml"));
             Stage registerStage = new Stage();
             registerStage.initStyle(StageStyle.UNDECORATED);
             registerStage.setScene(new Scene(root, 600,400));

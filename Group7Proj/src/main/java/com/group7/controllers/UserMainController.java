@@ -1,5 +1,7 @@
-package com.group7;
+package com.group7.controllers;
 
+import com.group7.DatabaseConnection;
+import com.group7.model.UserModel;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -23,8 +25,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -118,7 +118,7 @@ public class UserMainController implements Initializable {
 
     public void homepage() {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("homepage.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/homepage.fxml"));
             Stage registerStage = new Stage();
             registerStage.initStyle(StageStyle.UNDECORATED);
             registerStage.setScene(new Scene(root, 600, 400));
@@ -133,7 +133,7 @@ public class UserMainController implements Initializable {
 
     public void createUserPage() {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("userAddForm.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/userAddForm.fxml"));
             Stage registerStage = new Stage();
             registerStage.initStyle(StageStyle.UNDECORATED);
             registerStage.setScene(new Scene(root, 300, 400));

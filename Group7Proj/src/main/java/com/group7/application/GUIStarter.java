@@ -1,4 +1,4 @@
-package com.group7;
+package com.group7.application;
 
 public class GUIStarter {
 

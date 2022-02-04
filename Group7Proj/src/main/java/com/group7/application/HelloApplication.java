@@ -1,4 +1,4 @@
-package com.group7;
+package com.group7.application;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -11,7 +11,7 @@ import java.io.IOException;
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/group7/hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 520, 400);
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(scene);

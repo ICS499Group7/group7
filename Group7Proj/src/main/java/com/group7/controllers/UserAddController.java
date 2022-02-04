@@ -1,5 +1,6 @@
-package com.group7;
+package com.group7.controllers;
 
+import com.group7.model.UserModel;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -13,7 +14,6 @@ import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.stage.StageStyle;
 
-import java.sql.Connection;
 import java.util.ResourceBundle;
 import java.net.URL;
 
@@ -65,7 +65,7 @@ public class UserAddController implements Initializable {
 
     public void userMainScreen() {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("userMain.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/userMain.fxml"));
             Stage registerStage = new Stage();
             registerStage.initStyle(StageStyle.UNDECORATED);
             registerStage.setScene(new Scene(root, 600, 400));

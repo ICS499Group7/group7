@@ -1,4 +1,6 @@
-package com.group7;
+package com.group7.model;
+
+import com.group7.DatabaseConnection;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

@@ -1,4 +1,4 @@
-package com.group7;
+package com.group7.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -47,7 +47,7 @@ public class HomepageController implements Initializable {
 
     public void loginScreen() {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("hello-view.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/hello-view.fxml"));
             Stage registerStage = new Stage();
             registerStage.initStyle(StageStyle.UNDECORATED);
             registerStage.setScene(new Scene(root, 520, 400));
@@ -61,7 +61,7 @@ public class HomepageController implements Initializable {
 
     public void userMainScreen() {
         try{
-            Parent root = FXMLLoader.load(getClass().getResource("userMain.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/userMain.fxml"));
             Stage registerStage = new Stage();
             registerStage.initStyle(StageStyle.UNDECORATED);
             registerStage.setScene(new Scene(root, 600, 400));

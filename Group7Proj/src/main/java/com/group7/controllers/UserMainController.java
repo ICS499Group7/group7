@@ -1,6 +1,5 @@
 package com.group7.controllers;
 
-import com.group7.DatabaseConnection;
 import com.group7.model.UserModel;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
@@ -23,7 +22,6 @@ import javafx.scene.control.TableColumn.CellDataFeatures;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.Arrays;
 import java.util.List;
@@ -94,20 +92,18 @@ public class UserMainController implements Initializable {
     }
 
     public void deleteUserButtonOnAction(ActionEvent event) {
-        String items = tableView.getItems().get(tableView.getSelectionModel().getSelectedIndex()).toString();
-        items = items.substring(1, items.length() - 1);
-        List<String> id = Arrays.asList(items.split(",\\s*"));
         try {
-            if (user.deleteUser(id.get(0)))
+            if (user.deleteUser(getSelectedUserID()))
                 tableView.getItems().removeAll(tableView.getSelectionModel().getSelectedItem());
         } catch (Exception e) {
             e.printStackTrace();
             e.getCause();
         }
     }
-
-    public void modifyUserButtonOnAction(ActionEvent event) {
-
+    @FXML
+    public void modifyUserButtonOnAction(ActionEvent event) throws IOException {
+      //  user.setId(getSelectedUserID());
+        modifyUserPage();
     }
 
     public void homepage() {
@@ -138,6 +134,40 @@ public class UserMainController implements Initializable {
             e.printStackTrace();
             e.getCause();
         }
+    }
+
+    public void modifyUserPage() {
+        try {
+            String items = tableView.getItems().get(tableView.getSelectionModel().getSelectedIndex()).toString();
+            items = items.substring(1, items.length() - 1);
+            List<String> id = Arrays.asList(items.split(",\\s*"));
+            System.out.println(id);
+
+            //This code is slightly different as I needed to get at .getController to transfer content from 1 scene to the next scene
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/group7/userModifyForm.fxml"));
+            Parent root = loader.load();
+            UserModifyController modifyController = loader.getController();
+            modifyController.showInformation(id.get(0), id.get(1), id.get(2), id.get(3), id.get(4), id.get(4));
+
+            Stage registerStage = new Stage();
+            registerStage.initStyle(StageStyle.UNDECORATED);
+            registerStage.setScene(new Scene(root, 300, 400));
+            registerStage.show();
+            Stage stage = (Stage) backButton.getScene().getWindow();
+            stage.close();
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
+
+    public String getSelectedUserID(){
+        String items = tableView.getItems().get(tableView.getSelectionModel().getSelectedIndex()).toString();
+        items = items.substring(1, items.length() - 1);
+        List<String> id = Arrays.asList(items.split(",\\s*"));
+        return id.get(0);
     }
 
 

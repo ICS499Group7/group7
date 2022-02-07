@@ -71,6 +71,7 @@ public class UserAddController implements Initializable {
             registerStage.setScene(new Scene(root, 600, 400));
             registerStage.show();
             Stage stage = (Stage) cancelButton.getScene().getWindow();
+
             stage.close();
         } catch (Exception e) {
             e.printStackTrace();

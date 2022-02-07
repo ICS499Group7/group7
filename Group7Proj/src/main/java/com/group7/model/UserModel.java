@@ -14,8 +14,6 @@ import javafx.scene.control.TableColumn;
 import javafx.util.Callback;
 
 public class UserModel { //Will control getting and setting data to the SQL server
-
-
     private String id;
     private String firstName;
     private String lastName;

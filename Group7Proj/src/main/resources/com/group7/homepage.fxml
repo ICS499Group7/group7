@@ -22,7 +22,9 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Button fx:id="userMainButton" layoutX="254.0" layoutY="80.0" mnemonicParsing="false" onAction="#userMainButtonOnAction" text="Manage Users" />
+            <Button fx:id="userMainButton" layoutX="248.0" layoutY="82.0" mnemonicParsing="false" onAction="#userMainButtonOnAction" prefHeight="25.0" prefWidth="104.0" text="Manage Users" />
+            <Button fx:id="ownerMainButton" layoutX="249.0" layoutY="118.0" mnemonicParsing="false" onAction="#ownerMainButtonOnAction" text="Manage Owners" />
+            <Button fx:id="propertyMainButton" layoutX="249.0" layoutY="152.0" mnemonicParsing="false" onAction="#propertyMainButtonOnAction" text="Manage Owners" />
          </children>
       </AnchorPane>
    </center>

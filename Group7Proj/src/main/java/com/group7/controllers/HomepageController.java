@@ -45,6 +45,18 @@ public class HomepageController implements Initializable {
         stage.close();
     }
 
+    public void ownerMainButtonOnAction(ActionEvent event) throws IOException {
+        ownerMainScreen();
+        Stage stage = (Stage) exitButton.getScene().getWindow();
+        stage.close();
+    }
+
+    public void propertyMainButtonOnAction(ActionEvent event) throws IOException {
+        propertyMainScreen();
+        Stage stage = (Stage) exitButton.getScene().getWindow();
+        stage.close();
+    }
+
     public void loginScreen() {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/com/group7/hello-view.fxml"));
@@ -62,6 +74,32 @@ public class HomepageController implements Initializable {
     public void userMainScreen() {
         try{
             Parent root = FXMLLoader.load(getClass().getResource("/com/group7/userMain.fxml"));
+            Stage registerStage = new Stage();
+            registerStage.initStyle(StageStyle.UNDECORATED);
+            registerStage.setScene(new Scene(root, 600, 400));
+            registerStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
+
+    public void ownerMainScreen() {
+        try{
+            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/ownerMain.fxml"));
+            Stage registerStage = new Stage();
+            registerStage.initStyle(StageStyle.UNDECORATED);
+            registerStage.setScene(new Scene(root, 600, 400));
+            registerStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
+
+    public void propertyMainScreen() {
+        try{
+            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/propertyMain.fxml"));
             Stage registerStage = new Stage();
             registerStage.initStyle(StageStyle.UNDECORATED);
             registerStage.setScene(new Scene(root, 600, 400));

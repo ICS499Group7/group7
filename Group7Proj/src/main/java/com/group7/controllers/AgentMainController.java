@@ -1,6 +1,6 @@
 package com.group7.controllers;
 
-import com.group7.model.UserModel;
+import com.group7.model.AgentModel;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -27,7 +27,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class UserMainController implements Initializable {
+public class AgentMainController implements Initializable {
     private Label statusMessageLabel;
     @FXML
     private Button backButton;
@@ -46,13 +46,13 @@ public class UserMainController implements Initializable {
 
 
     private ObservableList<ObservableList> items = FXCollections.observableArrayList();
-    private UserModel user = new UserModel();
+    private AgentModel user = new AgentModel();
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        ResultSet rs = new UserModel().getUsers();
+        ResultSet rs = new AgentModel().getUsers();
         try {
             for(int i=0; i<rs.getMetaData().getColumnCount(); i++) {
                 final int j = i;
@@ -123,7 +123,7 @@ public class UserMainController implements Initializable {
 
     public void createUserPage() {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/userAddForm.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/agentAddForm.fxml"));
             Stage registerStage = new Stage();
             registerStage.initStyle(StageStyle.UNDECORATED);
             registerStage.setScene(new Scene(root, 300, 400));
@@ -144,9 +144,9 @@ public class UserMainController implements Initializable {
             System.out.println(id);
 
             //This code is slightly different as I needed to get at .getController to transfer content from 1 scene to the next scene
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/group7/userModifyForm.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/group7/agentModifyForm.fxml"));
             Parent root = loader.load();
-            UserModifyController modifyController = loader.getController();
+            AgentModifyController modifyController = loader.getController();
             modifyController.showInformation(id.get(0), id.get(1), id.get(2), id.get(3), id.get(4), id.get(4));
 
             Stage registerStage = new Stage();

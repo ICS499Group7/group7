@@ -3,24 +3,17 @@ package com.group7.model;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 import com.group7.DatabaseConnection;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.scene.control.TableColumn;
-import javafx.util.Callback;
 
-public class UserModel { //Will control getting and setting data to the SQL server
+public class AgentModel { //Will control getting and setting data to the SQL server
     private String id;
     private String firstName;
     private String lastName;
     private String username;
     private String password;
 
-    public UserModel() { //empty constructor
+    public AgentModel() { //empty constructor
 
     }
 
@@ -29,7 +22,7 @@ public class UserModel { //Will control getting and setting data to the SQL serv
         Connection connectDB = connectNow.getConnection();
 
         ResultSet rs = null;
-        String query = "SELECT * FROM user_accounts";
+        String query = "SELECT * FROM agent_accounts";
         try {
             rs = connectDB.createStatement().executeQuery(query);
         } catch (SQLException e) {
@@ -43,7 +36,7 @@ public class UserModel { //Will control getting and setting data to the SQL serv
         Connection connectDB = connectNow.getConnection();
 
         ResultSet rs = null;
-        String query = "SELECT * FROM user_accounts WHERE id = " + userID;
+        String query = "SELECT * FROM agent_accounts WHERE id = " + userID;
         try {
             rs = connectDB.createStatement().executeQuery(query);
         } catch (SQLException e) {
@@ -55,7 +48,7 @@ public class UserModel { //Will control getting and setting data to the SQL serv
     public boolean deleteUser(String id) throws SQLException {
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
-        String deleteUserQuery = "DELETE FROM user_accounts WHERE id = " + id;
+        String deleteUserQuery = "DELETE FROM agent_accounts WHERE id = " + id;
 
         System.out.println(deleteUserQuery);
 
@@ -74,7 +67,7 @@ public class UserModel { //Will control getting and setting data to the SQL serv
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
 
-        String createUserQuery = "INSERT INTO user_accounts (first_name,last_name,username,password) VALUES ('"+ this.firstName +"','"+ this.lastName +"','"+ this.username +"','"+ this.password +"')";
+        String createUserQuery = "INSERT INTO agent_accounts (first_name,last_name,username,password) VALUES ('"+ this.firstName +"','"+ this.lastName +"','"+ this.username +"','"+ this.password +"')";
             System.out.println(createUserQuery);
 
         try {
@@ -101,7 +94,7 @@ public class UserModel { //Will control getting and setting data to the SQL serv
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
 
-        String createUserQuery = "UPDATE user_accounts SET first_name = '" + this.firstName + "', last_name = '" + this.lastName + "', username = '" + this.username + "', password = '" + this.password + "' WHERE id = '" + this.id + "'";
+        String createUserQuery = "UPDATE agent_accounts SET first_name = '" + this.firstName + "', last_name = '" + this.lastName + "', username = '" + this.username + "', password = '" + this.password + "' WHERE id = '" + this.id + "'";
         System.out.println(createUserQuery);
 
 

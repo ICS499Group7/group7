@@ -8,10 +8,14 @@ import java.sql.SQLException;
 
 public class OwnerModel {
     private int id;
+    private String companyName;
+    private String address;
+    private String zipcode;
     private String firstName;
     private String lastName;
-    private String username;
-    private String password;
+    private String mobilePhone;
+    private String officePhone;
+    private String email;
 
     public OwnerModel() { //empty constructor
 
@@ -32,16 +36,21 @@ public class OwnerModel {
         return rs;
     }
 
-    public boolean createOwner(String firstName, String lastName, String username, String password) { //returns a boolean value, adds a new user to the user_accounts
+    public boolean createOwner(String companyName, String address, String zipcode, String firstName, String lastName, String mobilePhone, String officePhone, String email) { //returns a boolean value, adds a new user to the user_accounts
+        this.companyName = companyName;
+        this.address = address;
+        this.zipcode = zipcode;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.username = username;
-        this.password = password;
+        this.mobilePhone = mobilePhone;
+        this.officePhone = officePhone;
+        this.email = email;
+
 
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
 
-        String createUserQuery = "INSERT INTO user_accounts (first_name,last_name,username,password) VALUES ('"+ this.firstName +"','"+ this.lastName +"','"+ this.username +"','"+ this.password +"')";
+        String createUserQuery = "INSERT INTO owner_accounts (company_name,address,zip_code,first_name,last_name,mobile_phone,office_phone,email) VALUES ('"+ this.companyName +"','"+ this.address +"','"+ this.zipcode +"','"+ this.firstName +"','"+ this.lastName +"','"+ this.mobilePhone +"','"+ this.officePhone +"','"+ this.email +"')";
 
         try {
             int queryResult = connectDB.createStatement().executeUpdate(createUserQuery); //execute the above query

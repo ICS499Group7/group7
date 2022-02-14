@@ -73,7 +73,7 @@ public class HomepageController implements Initializable {
 
     public void userMainScreen() {
         try{
-            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/userMain.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/agentMain.fxml"));
             Stage registerStage = new Stage();
             registerStage.initStyle(StageStyle.UNDECORATED);
             registerStage.setScene(new Scene(root, 600, 400));

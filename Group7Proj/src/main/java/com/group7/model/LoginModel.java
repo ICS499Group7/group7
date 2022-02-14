@@ -20,7 +20,7 @@ public class LoginModel {
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
 
-        String verifyLogin = "SELECT count(1) FROM user_accounts WHERE username = '" + username + "' AND password ='" + password + "'";
+        String verifyLogin = "SELECT count(1) FROM agent_accounts WHERE username = '" + username + "' AND password ='" + password + "'";
 
         try {
             Statement statement = connectDB.createStatement();

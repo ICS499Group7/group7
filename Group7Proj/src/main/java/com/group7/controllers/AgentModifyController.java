@@ -1,6 +1,6 @@
 package com.group7.controllers;
 
-import com.group7.model.UserModel;
+import com.group7.model.AgentModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,7 +17,7 @@ import javafx.stage.StageStyle;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class UserModifyController implements Initializable {
+public class AgentModifyController implements Initializable {
     @FXML
     private Button cancelButton;
     @FXML
@@ -66,7 +66,7 @@ public class UserModifyController implements Initializable {
     }
 
     public void saveUser() {
-            boolean modifyUserQuery = new UserModel().modifyUser(userIDModify.getText(), firstNameModify.getText(),lastNameModify.getText(),userNameModify.getText(),passwordModify.getText());
+            boolean modifyUserQuery = new AgentModel().modifyUser(userIDModify.getText(), firstNameModify.getText(),lastNameModify.getText(),userNameModify.getText(),passwordModify.getText());
 
         System.out.println("in Save User = " + modifyUserQuery);
 
@@ -80,7 +80,7 @@ public class UserModifyController implements Initializable {
 
     public void userMainScreen() {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/userMain.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/agentMain.fxml"));
             Stage registerStage = new Stage();
             registerStage.initStyle(StageStyle.UNDECORATED);
             registerStage.setScene(new Scene(root, 600, 400));

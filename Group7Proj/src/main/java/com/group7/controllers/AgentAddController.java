@@ -1,6 +1,6 @@
 package com.group7.controllers;
 
-import com.group7.model.UserModel;
+import com.group7.model.AgentModel;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -17,7 +17,7 @@ import javafx.stage.StageStyle;
 import java.util.ResourceBundle;
 import java.net.URL;
 
-public class UserAddController implements Initializable {
+public class AgentAddController implements Initializable {
     @FXML
     private Button cancelButton;
     @FXML
@@ -53,7 +53,7 @@ public class UserAddController implements Initializable {
     }
 
     public void saveUser() {
-            boolean createUserQuery = new UserModel().createUser(firstName.getText(),lastName.getText(),userName.getText(),password.getText());
+            boolean createUserQuery = new AgentModel().createUser(firstName.getText(),lastName.getText(),userName.getText(),password.getText());
 
             if (createUserQuery == true) {
                 statusMessageLabel.setText("Created User Successfully");
@@ -65,7 +65,7 @@ public class UserAddController implements Initializable {
 
     public void userMainScreen() {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/userMain.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/agentMain.fxml"));
             Stage registerStage = new Stage();
             registerStage.initStyle(StageStyle.UNDECORATED);
             registerStage.setScene(new Scene(root, 600, 400));

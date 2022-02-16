@@ -25,7 +25,7 @@ public class AgentModifyController implements Initializable {
     @FXML
     private Label statusMessageLabelModify;
     @FXML
-    private TextField userIDModify;
+    private TextField agentIDModify;
     @FXML
     private TextField firstNameModify;
     @FXML
@@ -41,9 +41,8 @@ public class AgentModifyController implements Initializable {
 
     }
 
-    public void showInformation(String id, String fName, String lName, String userName, String password, String passwordConfirm){
-
-        userIDModify.setText(id);
+    public void passAgentInfo(String id, String fName, String lName, String userName, String password, String passwordConfirm){
+        agentIDModify.setText(id);
         firstNameModify.setText(fName);
         lastNameModify.setText(lName);
         userNameModify.setText(userName);
@@ -54,23 +53,23 @@ public class AgentModifyController implements Initializable {
     public void submitButtonOnAction(ActionEvent event) throws Exception {
         if ((firstNameModify.getText().isBlank() == false) && (lastNameModify.getText().isBlank() == false) && (userNameModify.getText().isBlank() == false) &&
                 (passwordModify.getText().isBlank() == false) && (passwordConfirmModify.getText().equals(passwordModify.getText()))){
-            saveUser();
-            userMainScreen();
+            saveAgent();
+            agentMainScreen();
         } else {
             statusMessageLabelModify.setText("There was an issue with the form. Please check Entries.");
         }
     }
 
     public void cancelButtonOnAction(ActionEvent event) {
-        userMainScreen();
+        agentMainScreen();
     }
 
-    public void saveUser() {
-            boolean modifyUserQuery = new AgentModel().modifyUser(userIDModify.getText(), firstNameModify.getText(),lastNameModify.getText(),userNameModify.getText(),passwordModify.getText());
+    public void saveAgent() {
+            boolean modifyAgentQuery = new AgentModel().modifyAgent(agentIDModify.getText(), firstNameModify.getText(),lastNameModify.getText(),userNameModify.getText(),passwordModify.getText());
 
-        System.out.println("in Save User = " + modifyUserQuery);
+        System.out.println("in Save Agent = " + modifyAgentQuery);
 
-            if (modifyUserQuery == true) {
+            if (modifyAgentQuery == true) {
                // statusMessageLabel.setText("Updated User Successfully");
             } else {
               //  statusMessageLabel.setText("Error With DB Query");
@@ -78,7 +77,7 @@ public class AgentModifyController implements Initializable {
 
     }
 
-    public void userMainScreen() {
+    public void agentMainScreen() {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/com/group7/agentMain.fxml"));
             Stage registerStage = new Stage();

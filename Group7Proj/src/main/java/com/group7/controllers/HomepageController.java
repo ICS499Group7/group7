@@ -20,7 +20,7 @@ public class HomepageController implements Initializable {
     @FXML
     private Button exitButton;
     @FXML
-    private Button userMainButton;
+    private Button agentMainButton;
 
 
     @Override
@@ -39,8 +39,8 @@ public class HomepageController implements Initializable {
         stage.close();
     }
 
-    public void userMainButtonOnAction(ActionEvent event) throws IOException {
-        userMainScreen();
+    public void agentMainButtonOnAction(ActionEvent event) throws IOException {
+        agentMainScreen();
         Stage stage = (Stage) exitButton.getScene().getWindow();
         stage.close();
     }
@@ -71,7 +71,7 @@ public class HomepageController implements Initializable {
         }
     }
 
-    public void userMainScreen() {
+    public void agentMainScreen() {
         try{
             Parent root = FXMLLoader.load(getClass().getResource("/com/group7/agentMain.fxml"));
             Stage registerStage = new Stage();

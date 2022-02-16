@@ -21,7 +21,7 @@ public class AgentAddController implements Initializable {
     @FXML
     private Button cancelButton;
     @FXML
-    private Button submitButton;
+    private Button submitAgentButton;
     @FXML
     private Label statusMessageLabel;
     @FXML
@@ -39,31 +39,31 @@ public class AgentAddController implements Initializable {
 
     }
 
-    public void submitButtonOnAction(ActionEvent event) throws Exception {
+    public void submitAgentButtonOnAction(ActionEvent event) throws Exception {
         if ((firstName.getText().isBlank() == false) && (lastName.getText().isBlank() == false) && (userName.getText().isBlank() == false) && (password.getText().isBlank() == false) && (passwordConfirm.getText().equals(password.getText()))){
-            saveUser();
-            userMainScreen();
+            saveAgent();
+            agentMainScreen();
         } else {
             statusMessageLabel.setText("There was an issue with the form. Please check.");
         }
     }
 
     public void cancelButtonOnAction(ActionEvent event) {
-        userMainScreen();
+        agentMainScreen();
     }
 
-    public void saveUser() {
-            boolean createUserQuery = new AgentModel().createUser(firstName.getText(),lastName.getText(),userName.getText(),password.getText());
+    public void saveAgent() {
+            boolean addAgentQuery = new AgentModel().addAgent(firstName.getText(),lastName.getText(),userName.getText(),password.getText());
 
-            if (createUserQuery == true) {
-                statusMessageLabel.setText("Created User Successfully");
+            if (addAgentQuery == true) {
+                statusMessageLabel.setText("Created Agent Successfully");
             } else {
                 statusMessageLabel.setText("Error With DB Query");
             }
 
     }
 
-    public void userMainScreen() {
+    public void agentMainScreen() {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/com/group7/agentMain.fxml"));
             Stage registerStage = new Stage();

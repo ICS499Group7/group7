@@ -36,23 +36,23 @@ public class AgentMainController implements Initializable {
     private TableView tableView;
 
     @FXML
-    private Button createUserButton;
+    private Button createAgentButton;
 
     @FXML
-    private Button deleteUserButton;
+    private Button deleteAgentButton;
 
     @FXML
-    private  Button modifyUserButton;
+    private  Button modifyAgentButton;
 
 
     private ObservableList<ObservableList> items = FXCollections.observableArrayList();
-    private AgentModel user = new AgentModel();
+    private AgentModel agent = new AgentModel();
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        ResultSet rs = new AgentModel().getUsers();
+        ResultSet rs = new AgentModel().getAgents();
         try {
             for(int i=0; i<rs.getMetaData().getColumnCount(); i++) {
                 final int j = i;
@@ -87,13 +87,13 @@ public class AgentMainController implements Initializable {
         homepage();
     }
 
-    public void createUserButtonOnAction(ActionEvent event) {
-        createUserPage();
+    public void createAgentButtonOnAction(ActionEvent event) {
+        createAgentPage();
     }
 
-    public void deleteUserButtonOnAction(ActionEvent event) {
+    public void deleteAgentButtonOnAction(ActionEvent event) {
         try {
-            if (user.deleteUser(getSelectedUserID()))
+            if (agent.deleteAgent(getSelectedAgentID()))
                 tableView.getItems().removeAll(tableView.getSelectionModel().getSelectedItem());
         } catch (Exception e) {
             e.printStackTrace();
@@ -101,9 +101,9 @@ public class AgentMainController implements Initializable {
         }
     }
     @FXML
-    public void modifyUserButtonOnAction(ActionEvent event) throws IOException {
-      //  user.setId(getSelectedUserID());
-        modifyUserPage();
+    public void modifyAgentButtonOnAction(ActionEvent event) throws IOException {
+      //  agent.setId(getSelectedAgentID());
+        modifyAgentPage();
     }
 
     public void homepage() {
@@ -121,7 +121,7 @@ public class AgentMainController implements Initializable {
         }
     }
 
-    public void createUserPage() {
+    public void createAgentPage() {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/com/group7/agentAddForm.fxml"));
             Stage registerStage = new Stage();
@@ -136,7 +136,7 @@ public class AgentMainController implements Initializable {
         }
     }
 
-    public void modifyUserPage() {
+    public void modifyAgentPage() {
         try {
             String items = tableView.getItems().get(tableView.getSelectionModel().getSelectedIndex()).toString();
             items = items.substring(1, items.length() - 1);
@@ -147,7 +147,7 @@ public class AgentMainController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/group7/agentModifyForm.fxml"));
             Parent root = loader.load();
             AgentModifyController modifyController = loader.getController();
-            modifyController.showInformation(id.get(0), id.get(1), id.get(2), id.get(3), id.get(4), id.get(4));
+            modifyController.passAgentInfo(id.get(0), id.get(1), id.get(2), id.get(3), id.get(4), id.get(4));
 
             Stage registerStage = new Stage();
             registerStage.initStyle(StageStyle.UNDECORATED);
@@ -163,7 +163,7 @@ public class AgentMainController implements Initializable {
         }
     }
 
-    public String getSelectedUserID(){
+    public String getSelectedAgentID(){
         String items = tableView.getItems().get(tableView.getSelectionModel().getSelectedIndex()).toString();
         items = items.substring(1, items.length() - 1);
         List<String> id = Arrays.asList(items.split(",\\s*"));

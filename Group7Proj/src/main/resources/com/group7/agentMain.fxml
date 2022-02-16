@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group7.controllers.AgentMainController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group7.controllers.AgentMainController">
    <top>
       <AnchorPane prefHeight="38.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
@@ -20,9 +17,9 @@
    <right>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="createUserButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#createUserButtonOnAction" prefHeight="25.0" prefWidth="93.0" text="Create User" />
-            <Button fx:id="modifyUserButton" layoutX="14.0" layoutY="48.0" mnemonicParsing="false" onAction="#modifyUserButtonOnAction" prefHeight="25.0" prefWidth="93.0" text="Modify User" />
-            <Button fx:id="deleteUserButton" layoutX="14.0" layoutY="84.0" mnemonicParsing="false" onAction="#deleteUserButtonOnAction" prefHeight="25.0" prefWidth="93.0" text="Delete User" />
+            <Button fx:id="createUserButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#createAgentButtonOnAction" prefHeight="25.0" prefWidth="93.0" text="Add Agent" />
+            <Button fx:id="modifyUserButton" layoutX="14.0" layoutY="48.0" mnemonicParsing="false" onAction="#modifyAgentButtonOnAction" prefHeight="25.0" prefWidth="93.0" text="Modify Agent" />
+            <Button fx:id="deleteUserButton" layoutX="14.0" layoutY="84.0" mnemonicParsing="false" onAction="#deleteAgentButtonOnAction" prefHeight="25.0" prefWidth="93.0" text="Delete Agent" />
          </children>
       </AnchorPane>
    </right>

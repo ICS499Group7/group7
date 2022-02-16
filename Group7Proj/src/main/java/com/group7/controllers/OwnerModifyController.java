@@ -23,7 +23,7 @@ public class OwnerModifyController implements Initializable {
     @FXML
     private Button submitButton;
     @FXML
-    private TextField ownerIdModify;
+    private TextField ownerIDModify;
     @FXML
     private TextField companyNameModify;
     @FXML
@@ -47,9 +47,21 @@ public class OwnerModifyController implements Initializable {
 
     }
 
+    public void passOwnerInfo(String id, String cName, String addr, String zip, String fName, String lName, String mPhone, String oPhone, String em){
+        ownerIDModify.setText(id);
+        companyNameModify.setText(cName);
+        addressModify.setText(addr);
+        zipCodeModify.setText(zip);
+        firstNameModify.setText(fName);
+        lastNameModify.setText(lName);
+        mobilePhoneModify.setText(mPhone);
+        officePhoneModify.setText(oPhone);
+        emailModify.setText(em);
+    }
+
     public void showInformation(String id, String cName, String addr, String zip, String fName, String lName, String mPhone, String cPhone, String email){
 
-        ownerIdModify.setText(id);
+        ownerIDModify.setText(id);
         companyNameModify.setText(cName);
         addressModify.setText(addr);
         zipCodeModify.setText(zip);
@@ -76,7 +88,7 @@ public class OwnerModifyController implements Initializable {
     }
 
     public void saveOwner() {
-        boolean modifyUserQuery = new OwnerModel().modifyOwner(ownerIdModify.getText(), companyNameModify.getText(), addressModify.getText(), zipCodeModify.getText(),firstNameModify.getText(),lastNameModify.getText(),mobilePhoneModify.getText(),officePhoneModify.getText(), emailModify.getText());
+        boolean modifyUserQuery = new OwnerModel().modifyOwner(ownerIDModify.getText(), companyNameModify.getText(), addressModify.getText(), zipCodeModify.getText(),firstNameModify.getText(),lastNameModify.getText(),mobilePhoneModify.getText(),officePhoneModify.getText(), emailModify.getText());
 
         System.out.println("in Save User = " + modifyUserQuery);
 

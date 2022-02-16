@@ -36,6 +36,33 @@ public class OwnerModel {
         return rs;
     }
 
+    public ResultSet getOwnerDataByID(String ownerID) { //Returns a Resultset list of all agents in Agents_accounts
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connectDB = connectNow.getConnection();
+
+        ResultSet rs = null;
+        String query = "SELECT * FROM owner_accounts WHERE id = " + ownerID;
+        try {
+            rs = connectDB.createStatement().executeQuery(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rs;
+    }
+
+    public boolean deleteOwner(String id) throws SQLException {
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connectDB = connectNow.getConnection();
+        String deleteOwnerQuery = "DELETE FROM owner_accounts WHERE id = " + id;
+
+        System.out.println(deleteOwnerQuery);
+
+        int result = connectDB.createStatement().executeUpdate(deleteOwnerQuery);
+        if(result == 1)
+            return true;
+        return false;
+    }
+
     public boolean createOwner(String companyName, String address, String zipcode, String firstName, String lastName, String mobilePhone, String officePhone, String email) { //returns a boolean value, adds a new user to the user_accounts
         this.companyName = companyName;
         this.address = address;

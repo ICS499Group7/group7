@@ -21,6 +21,8 @@ import javafx.util.Callback;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
+import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class OwnerMainController implements Initializable {
@@ -30,8 +32,15 @@ public class OwnerMainController implements Initializable {
 
     @FXML
     private Button backButton;
+    @FXML
+    private Button createOwnerButton;
+    @FXML
+    private Button modifyOwnerButton;
+    @FXML
+    private Button deleteOwnerButton;
 
     private ObservableList<ObservableList> items = FXCollections.observableArrayList();
+    private OwnerModel owner = new OwnerModel();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -65,6 +74,74 @@ public class OwnerMainController implements Initializable {
 
     public void backButtonOnAction(ActionEvent event) throws IOException {
         homepage();
+    }
+
+    public void createOwnerButtonOnAction(ActionEvent event) {
+        createOwnerPage();
+    }
+
+    public void createOwnerPage() {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/ownerAddForm.fxml"));
+            Stage registerStage = new Stage();
+            registerStage.initStyle(StageStyle.UNDECORATED);
+            registerStage.setScene(new Scene(root, 300, 400));
+            registerStage.show();
+            Stage stage = (Stage) backButton.getScene().getWindow();
+            stage.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
+
+    public void deleteOwnerButtonOnAction(ActionEvent event) {
+        try {
+            if (owner.deleteOwner(getSelectedOwnerID()))
+                tableView.getItems().removeAll(tableView.getSelectionModel().getSelectedItem());
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
+    @FXML
+    public void modifyOwnerButtonOnAction(ActionEvent event) throws IOException {
+        //  agent.setId(getSelectedAgentID());
+        modifyOwnerPage();
+    }
+
+    public void modifyOwnerPage() {
+        try {
+            String items = tableView.getItems().get(tableView.getSelectionModel().getSelectedIndex()).toString();
+            items = items.substring(1, items.length() - 1);
+            List<String> id = Arrays.asList(items.split(",\\s*"));
+            System.out.println(id);
+
+            //This code is slightly different as I needed to get at .getController to transfer content from 1 scene to the next scene
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/group7/ownerModifyForm.fxml"));
+            Parent root = loader.load();
+            OwnerModifyController modifyController = loader.getController();
+            modifyController.passOwnerInfo(id.get(0), id.get(1), id.get(2), id.get(3), id.get(4), id.get(5), id.get(6), id.get(7), id.get(8));
+
+            Stage registerStage = new Stage();
+            registerStage.initStyle(StageStyle.UNDECORATED);
+            registerStage.setScene(new Scene(root, 300, 400));
+            registerStage.show();
+            Stage stage = (Stage) backButton.getScene().getWindow();
+            stage.close();
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
+
+    public String getSelectedOwnerID(){
+        String items = tableView.getItems().get(tableView.getSelectionModel().getSelectedIndex()).toString();
+        items = items.substring(1, items.length() - 1);
+        List<String> id = Arrays.asList(items.split(",\\s*"));
+        return id.get(0);
     }
 
     public void homepage() {

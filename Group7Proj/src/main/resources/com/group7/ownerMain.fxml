@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
@@ -14,9 +15,9 @@
    <right>
       <AnchorPane prefHeight="350.0" prefWidth="264.0" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="16.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="92.0" text="Create Owner" />
-            <Button layoutX="16.0" layoutY="46.0" mnemonicParsing="false" text="Modify Owner" />
-            <Button layoutX="16.0" layoutY="78.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="91.0" text="Delete Owner" />
+            <Button fx:id="createOwnerButton" layoutX="16.0" layoutY="14.0" mnemonicParsing="false" onAction="#createOwnerButtonOnAction" prefHeight="25.0" prefWidth="92.0" text="Create Owner" />
+            <Button fx:id="modifyOwnerButton" layoutX="16.0" layoutY="46.0" mnemonicParsing="false" onAction="#modifyOwnerButtonOnAction" text="Modify Owner" />
+            <Button fx:id="deleteOwnerButton" layoutX="16.0" layoutY="78.0" mnemonicParsing="false" onAction="#deleteOwnerButtonOnAction" prefHeight="25.0" prefWidth="91.0" text="Delete Owner" />
          </children>
       </AnchorPane>
    </right>

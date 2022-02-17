@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group7.controllers.OwnerAddController">
+   <top>
+      <AnchorPane prefHeight="61.0" prefWidth="300.0" style="-fx-background-color: lightgrey;" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="cancelButton" layoutX="234.0" layoutY="18.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" text="Cancel" />
+            <Label layoutX="113.0" layoutY="17.0" text="Add Owner">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </top>
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="30.0" layoutY="89.0" text="Zip Code" />
+            <TextField fx:id="zipCode" layoutX="111.0" layoutY="85.0" promptText="Zip Code" />
+            <TextField fx:id="firstName" layoutX="111.0" layoutY="120.0" promptText="First Name" />
+            <Label layoutX="30.0" layoutY="124.0" text="First Name" />
+            <Label layoutX="30.0" layoutY="160.0" text="Last Name" />
+            <TextField fx:id="lastName" layoutX="111.0" layoutY="156.0" promptText="Last Name" />
+            <Button fx:id="submitButton" layoutX="88.0" layoutY="298.0" mnemonicParsing="false" onAction="#submitButtonOnAction" prefHeight="25.0" prefWidth="125.0" text="Submit User" />
+            <Label fx:id="statusMessageLabel" layoutX="6.0" layoutY="228.0" prefHeight="17.0" prefWidth="289.0" text=" " textFill="RED" />
+            <TextField fx:id="companyName" layoutX="110.0" layoutY="14.0" promptText="Conpany Name" />
+            <Label layoutX="29.0" layoutY="18.0" text="Company" />
+            <TextField fx:id="address" layoutX="110.0" layoutY="50.0" promptText="Address" />
+            <Label layoutX="29.0" layoutY="54.0" text="Address" />
+            <TextField fx:id="mobilePhone" layoutX="111.0" layoutY="191.0" promptText="Mobile Phone Number" />
+            <Label layoutX="30.0" layoutY="195.0" text="Mobile Phone" />
+            <Label layoutX="30.0" layoutY="227.0" text="Office Phone" />
+            <TextField fx:id="officePhone" layoutX="111.0" layoutY="223.0" promptText="Cell Phone Number" />
+            <TextField fx:id="email" layoutX="111.0" layoutY="256.0" promptText="Email Address" />
+            <Label layoutX="30.0" layoutY="260.0" text="Email" />
+            <Label fx:id="statusMessageLabel2" layoutX="135.0" layoutY="283.0" />
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

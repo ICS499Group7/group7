@@ -17,7 +17,7 @@ public class AgentModel { //Will control getting and setting data to the SQL ser
 
     }
 
-    public ResultSet getUsers() { //Returns a Resultset list of all users in user_accounts
+    public ResultSet getAgents() { //Returns a Resultset list of all agents in user_accounts
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
 
@@ -31,12 +31,12 @@ public class AgentModel { //Will control getting and setting data to the SQL ser
         return rs;
     }
 
-    public ResultSet getUserDataByID(String userID) { //Returns a Resultset list of all users in user_accounts
+    public ResultSet getAgentDataByID(String agentID) { //Returns a Resultset list of all agents in Agents_accounts
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
 
         ResultSet rs = null;
-        String query = "SELECT * FROM agent_accounts WHERE id = " + userID;
+        String query = "SELECT * FROM agent_accounts WHERE id = " + agentID;
         try {
             rs = connectDB.createStatement().executeQuery(query);
         } catch (SQLException e) {
@@ -45,20 +45,21 @@ public class AgentModel { //Will control getting and setting data to the SQL ser
         return rs;
     }
 
-    public boolean deleteUser(String id) throws SQLException {
+    public boolean deleteAgent(String id) throws SQLException {
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
-        String deleteUserQuery = "DELETE FROM agent_accounts WHERE id = " + id;
+        String deleteAgentQuery = "DELETE FROM agent_accounts WHERE id = " + id;
 
-        System.out.println(deleteUserQuery);
+        System.out.println(deleteAgentQuery);
 
-        int result = connectDB.createStatement().executeUpdate(deleteUserQuery);
+        int result = connectDB.createStatement().executeUpdate(deleteAgentQuery);
         if(result == 1)
             return true;
         return false;
     }
 
-        public boolean createUser(String firstName, String lastName, String username, String password) { //returns a boolean value, adds a new user to the user_accounts
+    //returns a boolean value, adds a new agent to the agents_accounts
+    public boolean addAgent(String firstName, String lastName, String username, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
@@ -67,11 +68,10 @@ public class AgentModel { //Will control getting and setting data to the SQL ser
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
 
-        String createUserQuery = "INSERT INTO agent_accounts (first_name,last_name,username,password) VALUES ('"+ this.firstName +"','"+ this.lastName +"','"+ this.username +"','"+ this.password +"')";
-            System.out.println(createUserQuery);
+        String addAgentQuery = "INSERT INTO agent_accounts (first_name,last_name,username,password) VALUES ('"+ this.firstName +"','"+ this.lastName +"','"+ this.username +"','"+ this.password +"')";
 
         try {
-            int queryResult = connectDB.createStatement().executeUpdate(createUserQuery); //execute the above query
+            int queryResult = connectDB.createStatement().executeUpdate(addAgentQuery); //execute the above query
             if (queryResult == 1) {
                 return true;
             } else {
@@ -84,8 +84,8 @@ public class AgentModel { //Will control getting and setting data to the SQL ser
         return false;
     }
 
-    public boolean modifyUser(String userID, String firstName, String lastName, String username, String password) { //returns a boolean value, modifies user in the user_accounts
-        this.id = userID;
+    public boolean modifyAgent(String agentID, String firstName, String lastName, String username, String password) { //returns a boolean value, modifies agent in the agent_accounts
+        this.id = agentID;
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
@@ -94,12 +94,12 @@ public class AgentModel { //Will control getting and setting data to the SQL ser
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
 
-        String createUserQuery = "UPDATE agent_accounts SET first_name = '" + this.firstName + "', last_name = '" + this.lastName + "', username = '" + this.username + "', password = '" + this.password + "' WHERE id = '" + this.id + "'";
-        System.out.println(createUserQuery);
+        String modifyAgentQuery = "UPDATE agent_accounts SET first_name = '" + this.firstName + "', last_name = '" + this.lastName + "', username = '" + this.username + "', password = '" + this.password + "' WHERE id = '" + this.id + "'";
+        System.out.println(modifyAgentQuery);
 
 
         try {
-            int queryResult = connectDB.createStatement().executeUpdate(createUserQuery); //execute the above query
+            int queryResult = connectDB.createStatement().executeUpdate(modifyAgentQuery); //execute the above query
             if (queryResult == 1) {
                 return true;
             } else {
@@ -112,7 +112,7 @@ public class AgentModel { //Will control getting and setting data to the SQL ser
         return false;
     }
 
-    public boolean deleteUser() {
+    public boolean deleteAgent() {
         return false;
     }
 

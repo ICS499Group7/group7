@@ -1,5 +1,6 @@
 package com.group7.controllers;
 
+import com.group7.model.AddressModel;
 import com.group7.model.OwnerModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -42,6 +43,8 @@ public class OwnerAddController implements Initializable {
     @FXML
     private Label statusMessageLabel;
 
+    private String addressID;
+
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
@@ -60,7 +63,11 @@ public class OwnerAddController implements Initializable {
     }
 
     public void saveOwner() {
-        boolean createUserQuery = new OwnerModel().createOwner(companyName.getText(), address.getText(), zipCode.getText(), firstName.getText(),lastName.getText(),mobilePhone.getText(),officePhone.getText(),email.getText());
+
+        addressID = new AddressModel().createAddress(address.getText(),zipCode.getText());
+        System.out.println(addressID);
+
+        boolean createUserQuery = new OwnerModel().createOwner(companyName.getText(), addressID, zipCode.getText(), firstName.getText(),lastName.getText(),mobilePhone.getText(),officePhone.getText(),email.getText());
 
         if (createUserQuery == true) {
             statusMessageLabel.setText("Created User Successfully");

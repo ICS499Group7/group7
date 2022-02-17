@@ -40,3 +40,26 @@ CREATE TABLE `properties` (
 
 INSERT INTO properties (name,type,rent_value,address,zip,city,state,owner_id) VALUES ("Unit 1","House","$600","$600","6678 Adams Drive","55379","Shakopee","MN","1");
 
+CREATE TABLE `address` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `street_address` varchar(45) NOT NULL,
+  `city` varchar(45) NOT NULL,
+  `state` varchar(45) NOT NULL,
+  `zip_code` varchar(45) NOT NULL,
+  `country` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+---NEW OWNER
+CREATE TABLE `owner_accounts` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `company_name` varchar(45) NOT NULL,
+  `address_id` varchar(45) NOT NULL,
+  `first_name` varchar(45) NOT NULL,
+  `last_name` varchar(45) NOT NULL,
+  `phone` varchar(45) NOT NULL,
+  `email` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+INSERT INTO owner_accounts (company_name,address_id,first_name,last_name,phone,email) VALUES ("Owner Zero","1","Colin","Bolduc","651-500-8896","cbolduc@ozero.com");

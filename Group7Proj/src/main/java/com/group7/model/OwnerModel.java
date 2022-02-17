@@ -26,7 +26,7 @@ public class OwnerModel {
         Connection connectDB = connectNow.getConnection();
 
         ResultSet rs = null;
-        String query = "SELECT * FROM owner_accounts";
+        String query = "SELECT o.id, o.company_name,o.first_name,o.last_name,o.phone,o.email, a.street_address, a.city, a.state, a.zip_code, a.country FROM owner_accounts o LEFT JOIN address a on o.address_id = a.id";
         try {
             rs = connectDB.createStatement().executeQuery(query);
         } catch (SQLException e) {
@@ -63,9 +63,9 @@ public class OwnerModel {
         return false;
     }
 
-    public boolean createOwner(String companyName, String address, String zipcode, String firstName, String lastName, String mobilePhone, String officePhone, String email) { //returns a boolean value, adds a new user to the user_accounts
+    public boolean createOwner(String companyName, String addressID, String zipcode, String firstName, String lastName, String mobilePhone, String officePhone, String email) { //returns a boolean value, adds a new user to the user_accounts
         this.companyName = companyName;
-        this.address = address;
+        this.address = addressID;
         this.zipcode = zipcode;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -73,11 +73,10 @@ public class OwnerModel {
         this.officePhone = officePhone;
         this.email = email;
 
-
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
 
-        String createUserQuery = "INSERT INTO owner_accounts (company_name,address,zip_code,first_name,last_name,mobile_phone,office_phone,email) VALUES ('"+ this.companyName +"','"+ this.address +"','"+ this.zipcode +"','"+ this.firstName +"','"+ this.lastName +"','"+ this.mobilePhone +"','"+ this.officePhone +"','"+ this.email +"')";
+        String createUserQuery = "INSERT INTO owner_accounts (company_name,address_id,first_name,last_name,phone,email) VALUES ('"+ this.companyName +"','"+ this.address +"','"+ this.firstName +"','"+ this.lastName +"','"+ this.mobilePhone +"','"+ this.email +"')";
 
         try {
             int queryResult = connectDB.createStatement().executeUpdate(createUserQuery); //execute the above query

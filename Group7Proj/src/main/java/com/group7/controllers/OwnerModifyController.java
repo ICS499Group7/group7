@@ -1,5 +1,6 @@
 package com.group7.controllers;
 
+import com.group7.model.AddressModel;
 import com.group7.model.OwnerModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,12 +10,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class OwnerModifyController implements Initializable {
@@ -22,22 +24,24 @@ public class OwnerModifyController implements Initializable {
     private Button cancelButton;
     @FXML
     private Button submitButton;
-    @FXML
-    private TextField ownerIDModify;
+
+    private String ownerIDModify;
     @FXML
     private TextField companyNameModify;
     @FXML
     private TextField addressModify;
     @FXML
+    private TextField cityModify;
+    @FXML
     private TextField zipCodeModify;
+    @FXML
+    private TextField stateModify;
     @FXML
     private TextField firstNameModify;
     @FXML
     private TextField lastNameModify;
     @FXML
-    private TextField mobilePhoneModify;
-    @FXML
-    private TextField officePhoneModify;
+    private TextField phoneModify;
     @FXML
     private TextField emailModify;
     @FXML
@@ -47,35 +51,50 @@ public class OwnerModifyController implements Initializable {
 
     }
 
-    public void passOwnerInfo(String id, String cName, String addr, String zip, String fName, String lName, String mPhone, String oPhone, String em){
-        ownerIDModify.setText(id);
+    public void passOwnerInfo(String id, String cName, String fName, String lName, String phone, String em) throws SQLException {
+
+        String street;
+        String city;
+        String zip;
+        String state;
+
+        String addrID = new OwnerModel().getAddressIDByOwner(id);
+
+        ResultSet rs = new AddressModel().getAddressByID(addrID);
+        rs.next();
+            street = rs.getString(1);
+            city = rs.getString(2);
+            zip = rs.getString(3);
+            state = rs.getString(4);
+
+        ownerIDModify = id;
         companyNameModify.setText(cName);
-        addressModify.setText(addr);
+        addressModify.setText(street);
+        cityModify.setText(city);
         zipCodeModify.setText(zip);
+        stateModify.setText(state);
         firstNameModify.setText(fName);
         lastNameModify.setText(lName);
-        mobilePhoneModify.setText(mPhone);
-        officePhoneModify.setText(oPhone);
+        phoneModify.setText(phone);
         emailModify.setText(em);
     }
 
     public void showInformation(String id, String cName, String addr, String zip, String fName, String lName, String mPhone, String cPhone, String email){
 
-        ownerIDModify.setText(id);
+        ownerIDModify = id;
         companyNameModify.setText(cName);
         addressModify.setText(addr);
         zipCodeModify.setText(zip);
         firstNameModify.setText(fName);
         lastNameModify.setText(lName);
-        mobilePhoneModify.setText(mPhone);
-        officePhoneModify.setText(cPhone);
+        phoneModify.setText(mPhone);
         emailModify.setText(email);
 
     }
 
     public void submitButtonOnAction(ActionEvent event) throws Exception {
-        if ((companyNameModify.getText().isBlank() == false) && (addressModify.getText().isBlank() == false) && (zipCodeModify.getText().isBlank() == false) && (firstNameModify.getText().isBlank() == false) && (lastNameModify.getText().isBlank() == false) && (mobilePhoneModify.getText().isBlank() == false) &&
-                (officePhoneModify.getText().isBlank() == false) && (emailModify.getText().isBlank() == false)){
+        if ((companyNameModify.getText().isBlank() == false) && (addressModify.getText().isBlank() == false) && (zipCodeModify.getText().isBlank() == false) && (firstNameModify.getText().isBlank() == false) && (lastNameModify.getText().isBlank() == false) && (phoneModify.getText().isBlank() == false) &&
+                  (emailModify.getText().isBlank() == false)){
             saveOwner();
             ownerMainScreen();
         } else {
@@ -88,11 +107,13 @@ public class OwnerModifyController implements Initializable {
     }
 
     public void saveOwner() {
-        boolean modifyUserQuery = new OwnerModel().modifyOwner(ownerIDModify.getText(), companyNameModify.getText(), addressModify.getText(), zipCodeModify.getText(),firstNameModify.getText(),lastNameModify.getText(),mobilePhoneModify.getText(),officePhoneModify.getText(), emailModify.getText());
+        String addressID = new OwnerModel().getAddressIDByOwner(ownerIDModify);
+        boolean modifyAddressQuery = new AddressModel().modifyAddress(addressID, addressModify.getText(),cityModify.getText(), zipCodeModify.getText(),stateModify.getText());
+        boolean modifyUserQuery = new OwnerModel().modifyOwner(ownerIDModify, companyNameModify.getText(),firstNameModify.getText(),lastNameModify.getText(),phoneModify.getText(), emailModify.getText());
 
         System.out.println("in Save User = " + modifyUserQuery);
 
-        if (modifyUserQuery == true) {
+        if (modifyUserQuery == true && modifyAddressQuery == true) {
             // statusMessageLabel.setText("Updated User Successfully");
         } else {
             //  statusMessageLabel.setText("Error With DB Query");

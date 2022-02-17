@@ -85,7 +85,7 @@ public class OwnerMainController implements Initializable {
             Parent root = FXMLLoader.load(getClass().getResource("/com/group7/ownerAddForm.fxml"));
             Stage registerStage = new Stage();
             registerStage.initStyle(StageStyle.UNDECORATED);
-            registerStage.setScene(new Scene(root, 300, 400));
+            registerStage.setScene(new Scene(root, 500, 400));
             registerStage.show();
             Stage stage = (Stage) backButton.getScene().getWindow();
             stage.close();
@@ -121,11 +121,11 @@ public class OwnerMainController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/group7/ownerModifyForm.fxml"));
             Parent root = loader.load();
             OwnerModifyController modifyController = loader.getController();
-            modifyController.passOwnerInfo(id.get(0), id.get(1), id.get(2), id.get(3), id.get(4), id.get(5), id.get(6), id.get(7), id.get(8));
+            modifyController.passOwnerInfo(id.get(0), id.get(1), id.get(2), id.get(3), id.get(4), id.get(5));
 
             Stage registerStage = new Stage();
             registerStage.initStyle(StageStyle.UNDECORATED);
-            registerStage.setScene(new Scene(root, 300, 400));
+            registerStage.setScene(new Scene(root, 500, 400));
             registerStage.show();
             Stage stage = (Stage) backButton.getScene().getWindow();
             stage.close();

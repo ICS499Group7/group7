@@ -29,15 +29,17 @@ public class OwnerAddController implements Initializable {
     @FXML
     private TextField address;
     @FXML
+    private TextField city;
+    @FXML
     private TextField zipCode;
+    @FXML
+    private TextField state;
     @FXML
     private TextField firstName;
     @FXML
     private TextField lastName;
     @FXML
-    private TextField mobilePhone;
-    @FXML
-    private TextField officePhone;
+    private TextField phone;
     @FXML
     private TextField email;
     @FXML
@@ -64,10 +66,10 @@ public class OwnerAddController implements Initializable {
 
     public void saveOwner() {
 
-        addressID = new AddressModel().createAddress(address.getText(),zipCode.getText());
+        addressID = new AddressModel().createAddress(address.getText(),city.getText(), zipCode.getText(), state.getText());
         System.out.println(addressID);
 
-        boolean createUserQuery = new OwnerModel().createOwner(companyName.getText(), addressID, zipCode.getText(), firstName.getText(),lastName.getText(),mobilePhone.getText(),officePhone.getText(),email.getText());
+        boolean createUserQuery = new OwnerModel().createOwner(companyName.getText(), addressID, firstName.getText(),lastName.getText(),phone.getText(),email.getText());
 
         if (createUserQuery == true) {
             statusMessageLabel.setText("Created User Successfully");

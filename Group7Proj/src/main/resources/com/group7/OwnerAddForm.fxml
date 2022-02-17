@@ -7,12 +7,12 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group7.controllers.OwnerAddController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group7.controllers.OwnerAddController">
    <top>
       <AnchorPane prefHeight="61.0" prefWidth="300.0" style="-fx-background-color: lightgrey;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="cancelButton" layoutX="234.0" layoutY="18.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" text="Cancel" />
-            <Label layoutX="113.0" layoutY="17.0" text="Add Owner">
+            <Button fx:id="cancelButton" layoutX="428.0" layoutY="18.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" text="Cancel" />
+            <Label layoutX="205.0" layoutY="17.0" text="Add Owner">
                <font>
                   <Font size="18.0" />
                </font>
@@ -23,24 +23,26 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="30.0" layoutY="89.0" text="Zip Code" />
-            <TextField fx:id="zipCode" layoutX="111.0" layoutY="85.0" promptText="Zip Code" />
-            <TextField fx:id="firstName" layoutX="111.0" layoutY="120.0" promptText="First Name" />
-            <Label layoutX="30.0" layoutY="124.0" text="First Name" />
-            <Label layoutX="30.0" layoutY="160.0" text="Last Name" />
-            <TextField fx:id="lastName" layoutX="111.0" layoutY="156.0" promptText="Last Name" />
-            <Button fx:id="submitButton" layoutX="88.0" layoutY="298.0" mnemonicParsing="false" onAction="#submitButtonOnAction" prefHeight="25.0" prefWidth="125.0" text="Submit User" />
-            <TextField fx:id="companyName" layoutX="110.0" layoutY="14.0" promptText="Conpany Name" />
+            <Label layoutX="285.0" layoutY="57.0" text="City" />
+            <TextField fx:id="city" layoutX="331.0" layoutY="53.0" promptText="City" />
+            <TextField fx:id="firstName" layoutX="96.0" layoutY="53.0" promptText="First Name" />
+            <Label layoutX="26.0" layoutY="57.0" text="First Name" />
+            <Label layoutX="27.0" layoutY="101.0" text="Last Name" />
+            <TextField fx:id="lastName" layoutX="96.0" layoutY="93.0" promptText="Last Name" />
+            <Button fx:id="submitButton" layoutX="188.0" layoutY="288.0" mnemonicParsing="false" onAction="#submitButtonOnAction" prefHeight="25.0" prefWidth="125.0" text="Submit User" />
+            <TextField fx:id="companyName" layoutX="96.0" layoutY="14.0" promptText="Conpany Name" />
             <Label layoutX="29.0" layoutY="18.0" text="Company" />
-            <TextField fx:id="address" layoutX="110.0" layoutY="50.0" promptText="Address" />
-            <Label layoutX="29.0" layoutY="54.0" text="Address" />
-            <TextField fx:id="mobilePhone" layoutX="111.0" layoutY="191.0" promptText="Mobile Phone Number" />
-            <Label layoutX="30.0" layoutY="195.0" text="Mobile Phone" />
-            <Label layoutX="30.0" layoutY="227.0" text="Office Phone" />
-            <TextField fx:id="officePhone" layoutX="111.0" layoutY="223.0" promptText="Cell Phone Number" />
-            <TextField fx:id="email" layoutX="111.0" layoutY="256.0" promptText="Email Address" />
-            <Label layoutX="30.0" layoutY="260.0" text="Email" />
-            <Label fx:id="statusMessageLabel" layoutX="135.0" layoutY="283.0" />
+            <TextField fx:id="address" layoutX="331.0" layoutY="14.0" promptText="Address" />
+            <Label layoutX="274.0" layoutY="18.0" text="Address" />
+            <TextField fx:id="phone" layoutX="96.0" layoutY="134.0" promptText="Mobile Phone Number" />
+            <Label layoutX="38.0" layoutY="138.0" text="Phone" />
+            <TextField fx:id="email" layoutX="96.0" layoutY="177.0" promptText="Email Address" />
+            <Label layoutX="40.0" layoutY="181.0" text="Email" />
+            <Label fx:id="statusMessageLabel" layoutX="234.0" layoutY="255.0" prefHeight="17.0" prefWidth="34.0" />
+            <TextField fx:id="state" layoutX="331.0" layoutY="93.0" promptText="State" />
+            <Label layoutX="282.0" layoutY="97.0" text="State" />
+            <TextField fx:id="zipCode" layoutX="331.0" layoutY="134.0" promptText="Zip Code" />
+            <Label layoutX="272.0" layoutY="138.0" text="Zip Code" />
          </children>
       </AnchorPane>
    </center>

@@ -9,12 +9,10 @@ import java.sql.SQLException;
 public class OwnerModel {
     private String id;
     private String companyName;
-    private String address;
-    private String zipcode;
+    private String addressID;
     private String firstName;
     private String lastName;
-    private String mobilePhone;
-    private String officePhone;
+    private String phone;
     private String email;
 
     public OwnerModel() { //empty constructor
@@ -26,7 +24,7 @@ public class OwnerModel {
         Connection connectDB = connectNow.getConnection();
 
         ResultSet rs = null;
-        String query = "SELECT o.id, o.company_name,o.first_name,o.last_name,o.phone,o.email, a.street_address, a.city, a.state, a.zip_code, a.country FROM owner_accounts o LEFT JOIN address a on o.address_id = a.id";
+        String query = "SELECT o.id, o.company_name,o.first_name,o.last_name,o.phone,o.email, a.street_address, a.city, a.state, a.zip_code FROM owner_accounts o LEFT JOIN address a on o.address_id = a.id";
         try {
             rs = connectDB.createStatement().executeQuery(query);
         } catch (SQLException e) {
@@ -50,33 +48,40 @@ public class OwnerModel {
         return rs;
     }
 
-    public boolean deleteOwner(String id) throws SQLException {
+    public String getAddressIDByOwner(String ownerID) {
+        this.id = ownerID;
+
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
-        String deleteOwnerQuery = "DELETE FROM owner_accounts WHERE id = " + id;
 
-        System.out.println(deleteOwnerQuery);
+        String query = "SELECT address_id FROM owner_accounts WHERE id = '" + ownerID + "'";
+        try {
+            ResultSet rs = connectDB.createStatement().executeQuery(query);
+            if (rs.next()) {
+                return rs.getString(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-        int result = connectDB.createStatement().executeUpdate(deleteOwnerQuery);
-        if(result == 1)
-            return true;
-        return false;
+    return "null";
+
     }
 
-    public boolean createOwner(String companyName, String addressID, String zipcode, String firstName, String lastName, String mobilePhone, String officePhone, String email) { //returns a boolean value, adds a new user to the user_accounts
+
+
+    public boolean createOwner(String companyName, String addressID, String firstName, String lastName, String phone, String email) { //returns a boolean value, adds a new user to the user_accounts
         this.companyName = companyName;
-        this.address = addressID;
-        this.zipcode = zipcode;
+        this.addressID = addressID;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.mobilePhone = mobilePhone;
-        this.officePhone = officePhone;
+        this.phone = phone;
         this.email = email;
 
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
 
-        String createUserQuery = "INSERT INTO owner_accounts (company_name,address_id,first_name,last_name,phone,email) VALUES ('"+ this.companyName +"','"+ this.address +"','"+ this.firstName +"','"+ this.lastName +"','"+ this.mobilePhone +"','"+ this.email +"')";
+        String createUserQuery = "INSERT INTO owner_accounts (company_name,address_id,first_name,last_name,phone,email) VALUES ('"+ this.companyName +"','"+ this.addressID +"','"+ this.firstName +"','"+ this.lastName +"','"+ this.phone +"','"+ this.email +"')";
 
         try {
             int queryResult = connectDB.createStatement().executeUpdate(createUserQuery); //execute the above query
@@ -92,21 +97,18 @@ public class OwnerModel {
         return false;
     }
 
-    public boolean modifyOwner(String ownerID, String companyName, String address, String zipcode, String firstName, String lastName, String mobilePhone, String officePhone, String email) { //returns a boolean value, modifies user in the user_accounts
+    public boolean modifyOwner(String ownerID, String companyName, String firstName, String lastName, String phone, String email) { //returns a boolean value, modifies user in the user_accounts
         this.id = ownerID;
         this.companyName = companyName;
-        this.address = address;
-        this.zipcode = zipcode;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.mobilePhone = mobilePhone;
-        this.officePhone = officePhone;
+        this.phone = phone;
         this.email = email;
 
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
 
-        String createOwnerQuery = "UPDATE owner_accounts SET company_name = '" + this.companyName + "', address = '" + this.address + "', zip_code = '" + this.zipcode + "',first_name = '" + this.firstName + "', last_name = '" + this.lastName + "', mobile_phone = '" + this.mobilePhone + "', office_phone = '" + this.officePhone + "', email = '" + this.email + "' WHERE id = '" + this.id + "'";
+        String createOwnerQuery = "UPDATE owner_accounts SET company_name = '" + this.companyName + "', first_name = '" + this.firstName + "', last_name = '" + this.lastName + "', phone = '" + this.phone + "', email = '" + this.email + "' WHERE id = '" + this.id + "'";
         System.out.println(createOwnerQuery);
 
 
@@ -121,6 +123,24 @@ public class OwnerModel {
             e.printStackTrace();
             e.getCause();
         }
+        return false;
+    }
+
+    public boolean deleteOwner(String id) throws SQLException {
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connectDB = connectNow.getConnection();
+
+        String addrID = new OwnerModel().getAddressIDByOwner(id);
+        String deleteAddressQuery = "DELETE FROM address WHERE id = " + addrID;
+        String deleteOwnerQuery = "DELETE FROM owner_accounts WHERE id = " + id;
+
+        System.out.println(deleteOwnerQuery);
+        System.out.println(deleteAddressQuery);
+
+        int result2 = connectDB.createStatement().executeUpdate(deleteOwnerQuery);
+        int result = connectDB.createStatement().executeUpdate(deleteAddressQuery);
+        if(result == 1 && result2 == 1)
+            return true;
         return false;
     }
 

@@ -10,7 +10,6 @@ public class AddressModel {
     private String city;
     private String zipCode;
     private String state;
-    private String Country;
 
     public AddressModel() {
 
@@ -21,7 +20,7 @@ public class AddressModel {
         Connection connectDB = connectNow.getConnection();
 
         ResultSet rs = null;
-        String query = "SELECT * FROM address";
+        String query = "SELECT a.street_address, a.city, a.zip_code, a.state FROM address a";
         try {
             rs = connectDB.createStatement().executeQuery(query);
         } catch (SQLException e) {
@@ -30,20 +29,30 @@ public class AddressModel {
         return rs;
     }
 
-    public ResultSet getAddressByID() {
-        return null;
+    public ResultSet getAddressByID(String id) {
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connectDB = connectNow.getConnection();
+
+        ResultSet rs = null;
+        String query = "SELECT a.street_address, a.city, a.zip_code, a.state FROM address a WHERE a.id =" + id;
+        try {
+            rs = connectDB.createStatement().executeQuery(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rs;
     }
 
-    public String createAddress(String addr, String zip) {
+    public String createAddress(String addr, String city, String zip, String state) {
         this.streetAddress = addr;
+        this.city = city;
         this.zipCode = zip;
+        this.state = state;
 
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
 
-        String addAddressQuery = "INSERT INTO address (street_address,city,state,zip_code,country) VALUES ('"+ this.streetAddress +"','testCity','testState','"+ this.zipCode +"','testCountry')";
-        String getIDQuery = "SELECT LAST_INSERT_ID()";
-
+        String addAddressQuery = "INSERT INTO address (street_address,city,zip_code,state) VALUES ('"+ this.streetAddress +"','"+ this.city +"','"+ this.zipCode +"','"+ this.state +"')";
 
 
         try {
@@ -64,7 +73,30 @@ public class AddressModel {
         return "null";
     }
 
-    public boolean modifyAddress() {
+    public boolean modifyAddress(String addrID, String addr, String city, String zip, String state) {
+        this.id = addrID;
+        this.streetAddress = addr;
+        this.city = city;
+        this.zipCode = zip;
+        this.state = state;
+
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connectDB = connectNow.getConnection();
+
+        String modifyAddressQuery = "UPDATE address SET street_address = '" + this.streetAddress + "', city = '" + this.city + "', state = '" + this.state + "',zip_code = '" + this.zipCode + "' WHERE id = '" + this.id + "'";
+
+
+        try {
+            int queryResult = connectDB.createStatement().executeUpdate(modifyAddressQuery); //execute the above query
+            if (queryResult == 1) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
         return false;
     }
 

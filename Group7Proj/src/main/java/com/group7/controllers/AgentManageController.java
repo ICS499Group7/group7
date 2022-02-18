@@ -17,13 +17,15 @@ import javafx.stage.StageStyle;
 import java.util.ResourceBundle;
 import java.net.URL;
 
-public class AgentAddController implements Initializable {
+public class AgentManageController implements Initializable {
     @FXML
     private Button cancelButton;
     @FXML
     private Button submitAgentButton;
     @FXML
     private Label statusMessageLabel;
+    @FXML
+    private Label agentIDLabel;
     @FXML
     private TextField firstName;
     @FXML
@@ -35,8 +37,20 @@ public class AgentAddController implements Initializable {
     @FXML
     private PasswordField passwordConfirm;
 
+    private String agentID;
+
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+    }
+
+    public void passAgentInfo(String id, String fName, String lName, String userName, String password, String passwordConfirm){
+        this.agentID = id;
+        this.agentIDLabel.setText(id);
+        this.firstName.setText(fName);
+        this.lastName.setText(lName);
+        this.userName.setText(userName);
+        this.password.setText(password);
+        this.passwordConfirm.setText(passwordConfirm);
     }
 
     public void submitAgentButtonOnAction(ActionEvent event) throws Exception {
@@ -48,18 +62,40 @@ public class AgentAddController implements Initializable {
         }
     }
 
+    public void submitButtonOnAction(ActionEvent event) throws Exception {
+        if ((firstName.getText().isBlank() == false) && (lastName.getText().isBlank() == false) && (userName.getText().isBlank() == false) && (password.getText().isBlank() == false) && (passwordConfirm.getText().equals(password.getText()))){
+            modifyAgent();
+            agentMainScreen();
+        } else {
+            statusMessageLabel.setText("There was an issue with the form. Please check Entries.");
+        }
+    }
+
     public void cancelButtonOnAction(ActionEvent event) {
         agentMainScreen();
     }
 
     public void saveAgent() {
-            boolean addAgentQuery = new AgentModel().addAgent(firstName.getText(),lastName.getText(),userName.getText(),password.getText());
+        boolean addAgentQuery = new AgentModel().addAgent(firstName.getText(),lastName.getText(),userName.getText(),password.getText());
 
-            if (addAgentQuery == true) {
-                statusMessageLabel.setText("Created Agent Successfully");
-            } else {
-                statusMessageLabel.setText("Error With DB Query");
-            }
+        if (addAgentQuery == true) {
+            statusMessageLabel.setText("Created Agent Successfully");
+        } else {
+            statusMessageLabel.setText("Error With DB Query");
+        }
+
+    }
+
+    public void modifyAgent() {
+        boolean modifyAgentQuery = new AgentModel().modifyAgent(agentID, firstName.getText(),lastName.getText(),userName.getText(),password.getText());
+
+        System.out.println("in Save Agent = " + modifyAgentQuery);
+
+        if (modifyAgentQuery == true) {
+            // statusMessageLabel.setText("Updated User Successfully");
+        } else {
+            //  statusMessageLabel.setText("Error With DB Query");
+        }
 
     }
 

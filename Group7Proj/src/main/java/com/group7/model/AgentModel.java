@@ -84,8 +84,8 @@ public class AgentModel { //Will control getting and setting data to the SQL ser
         return false;
     }
 
-    public boolean modifyAgent(String agentID, String firstName, String lastName, String username, String password) { //returns a boolean value, modifies agent in the agent_accounts
-        this.id = agentID;
+    public boolean modifyAgent(String id, String firstName, String lastName, String username, String password) { //returns a boolean value, modifies agent in the agent_accounts
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;

@@ -28,22 +28,10 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class AgentMainController implements Initializable {
-    private Label statusMessageLabel;
     @FXML
     private Button backButton;
-
     @FXML
     private TableView tableView;
-
-    @FXML
-    private Button createAgentButton;
-
-    @FXML
-    private Button deleteAgentButton;
-
-    @FXML
-    private  Button modifyAgentButton;
-
 
     private ObservableList<ObservableList> items = FXCollections.observableArrayList();
     private AgentModel agent = new AgentModel();
@@ -70,17 +58,10 @@ public class AgentMainController implements Initializable {
                 for (int i=1; i<=rs.getMetaData().getColumnCount(); i++){
                     row.add(rs.getString(i));
                 }
-
                 items.add(row);
             }
-
             tableView.setItems(items);
-
-        } catch(Exception e) {
-
-        }
-
-
+        } catch(Exception e) {}
     }
 
     public void backButtonOnAction(ActionEvent event) throws IOException {
@@ -88,40 +69,6 @@ public class AgentMainController implements Initializable {
     }
 
     public void createAgentButtonOnAction(ActionEvent event) {
-        createAgentPage();
-    }
-
-    public void deleteAgentButtonOnAction(ActionEvent event) {
-        try {
-            if (agent.deleteAgent(getSelectedAgentID()))
-                tableView.getItems().removeAll(tableView.getSelectionModel().getSelectedItem());
-        } catch (Exception e) {
-            e.printStackTrace();
-            e.getCause();
-        }
-    }
-    @FXML
-    public void modifyAgentButtonOnAction(ActionEvent event) throws IOException {
-      //  agent.setId(getSelectedAgentID());
-        modifyAgentPage();
-    }
-
-    public void homepage() {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/homepage.fxml"));
-            Stage registerStage = new Stage();
-            registerStage.initStyle(StageStyle.UNDECORATED);
-            registerStage.setScene(new Scene(root, 600, 400));
-            registerStage.show();
-            Stage stage = (Stage) backButton.getScene().getWindow();
-            stage.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-            e.getCause();
-        }
-    }
-
-    public void createAgentPage() {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/com/group7/agentAddForm.fxml"));
             Stage registerStage = new Stage();
@@ -136,7 +83,7 @@ public class AgentMainController implements Initializable {
         }
     }
 
-    public void modifyAgentPage() {
+    public void modifyAgentButtonOnAction(ActionEvent event) throws IOException {
         try {
             String items = tableView.getItems().get(tableView.getSelectionModel().getSelectedIndex()).toString();
             items = items.substring(1, items.length() - 1);
@@ -146,7 +93,7 @@ public class AgentMainController implements Initializable {
             //This code is slightly different as I needed to get at .getController to transfer content from 1 scene to the next scene
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/group7/agentModifyForm.fxml"));
             Parent root = loader.load();
-            AgentModifyController modifyController = loader.getController();
+            AgentManageController modifyController = loader.getController();
             modifyController.passAgentInfo(id.get(0), id.get(1), id.get(2), id.get(3), id.get(4), id.get(4));
 
             Stage registerStage = new Stage();
@@ -163,11 +110,33 @@ public class AgentMainController implements Initializable {
         }
     }
 
-    public String getSelectedAgentID(){
-        String items = tableView.getItems().get(tableView.getSelectionModel().getSelectedIndex()).toString();
-        items = items.substring(1, items.length() - 1);
-        List<String> id = Arrays.asList(items.split(",\\s*"));
-        return id.get(0);
+    public void deleteAgentButtonOnAction(ActionEvent event) {
+        try {
+            String items = tableView.getItems().get(tableView.getSelectionModel().getSelectedIndex()).toString();
+            items = items.substring(1, items.length() - 1);
+            List<String> id = Arrays.asList(items.split(",\\s*"));
+            if (agent.deleteAgent(id.get(0)))
+                tableView.getItems().removeAll(tableView.getSelectionModel().getSelectedItem());
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
+
+
+    public void homepage() {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/homepage.fxml"));
+            Stage registerStage = new Stage();
+            registerStage.initStyle(StageStyle.UNDECORATED);
+            registerStage.setScene(new Scene(root, 600, 400));
+            registerStage.show();
+            Stage stage = (Stage) backButton.getScene().getWindow();
+            stage.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
     }
 
 

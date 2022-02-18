@@ -77,10 +77,6 @@ public class OwnerMainController implements Initializable {
     }
 
     public void createOwnerButtonOnAction(ActionEvent event) {
-        createOwnerPage();
-    }
-
-    public void createOwnerPage() {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/com/group7/ownerAddForm.fxml"));
             Stage registerStage = new Stage();
@@ -95,22 +91,7 @@ public class OwnerMainController implements Initializable {
         }
     }
 
-    public void deleteOwnerButtonOnAction(ActionEvent event) {
-        try {
-            if (owner.deleteOwner(getSelectedOwnerID()))
-                tableView.getItems().removeAll(tableView.getSelectionModel().getSelectedItem());
-        } catch (Exception e) {
-            e.printStackTrace();
-            e.getCause();
-        }
-    }
-    @FXML
     public void modifyOwnerButtonOnAction(ActionEvent event) throws IOException {
-        //  agent.setId(getSelectedAgentID());
-        modifyOwnerPage();
-    }
-
-    public void modifyOwnerPage() {
         try {
             String items = tableView.getItems().get(tableView.getSelectionModel().getSelectedIndex()).toString();
             items = items.substring(1, items.length() - 1);
@@ -120,7 +101,7 @@ public class OwnerMainController implements Initializable {
             //This code is slightly different as I needed to get at .getController to transfer content from 1 scene to the next scene
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/group7/ownerModifyForm.fxml"));
             Parent root = loader.load();
-            OwnerModifyController modifyController = loader.getController();
+            OwnerManageController modifyController = loader.getController();
             modifyController.passOwnerInfo(id.get(0), id.get(1), id.get(2), id.get(3), id.get(4), id.get(5));
 
             Stage registerStage = new Stage();
@@ -131,6 +112,16 @@ public class OwnerMainController implements Initializable {
             stage.close();
 
 
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
+
+    public void deleteOwnerButtonOnAction(ActionEvent event) {
+        try {
+            if (owner.deleteOwner(getSelectedOwnerID()))
+                tableView.getItems().removeAll(tableView.getSelectionModel().getSelectedItem());
         } catch (Exception e) {
             e.printStackTrace();
             e.getCause();

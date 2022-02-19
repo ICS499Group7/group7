@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group7.controllers.AgentManageController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group7.controllers.AgentManageController">
    <top>
       <AnchorPane prefHeight="61.0" prefWidth="300.0" style="-fx-background-color: lightgrey;" BorderPane.alignment="CENTER">
          <children>
@@ -30,8 +30,8 @@
             <PasswordField fx:id="password" layoutX="116.0" layoutY="137.0" promptText="Password" />
             <PasswordField fx:id="passwordConfirm" layoutX="116.0" layoutY="178.0" promptText="Re-Enter Password" />
             <Label layoutX="11.0" layoutY="182.0" text="Re-Enter Password" />
-            <Button fx:id="submitAgentButton" layoutX="88.0" layoutY="259.0" mnemonicParsing="false" onAction="#submitAgentButtonOnAction" prefHeight="25.0" prefWidth="125.0" text="Submit Agent" />
-            <Label fx:id="statusMessageLabel" layoutX="6.0" layoutY="228.0" prefHeight="17.0" prefWidth="289.0" text=" " textFill="RED" />
+            <Button fx:id="submitAgentButton" layoutX="98.0" layoutY="349.0" mnemonicParsing="false" onAction="#submitAgentButtonOnAction" prefHeight="25.0" prefWidth="125.0" text="Submit Agent" />
+            <Label fx:id="statusMessageLabel" layoutX="10.0" layoutY="210.0" prefHeight="120.0" prefWidth="300.0" text=" " textFill="RED" wrapText="true" />
          </children>
       </AnchorPane>
    </center>

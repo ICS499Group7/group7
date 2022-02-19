@@ -1,6 +1,7 @@
 package com.group7.controllers;
 
 import com.group7.model.AgentModel;
+import com.group7.model.LoginModel;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -32,10 +33,11 @@ public class AgentMainController implements Initializable {
     private Button backButton;
     @FXML
     private TableView tableView;
+    @FXML
+    private Label statusMessageLabel;
 
     private ObservableList<ObservableList> items = FXCollections.observableArrayList();
     private AgentModel agent = new AgentModel();
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -73,7 +75,7 @@ public class AgentMainController implements Initializable {
             Parent root = FXMLLoader.load(getClass().getResource("/com/group7/agentAddForm.fxml"));
             Stage registerStage = new Stage();
             registerStage.initStyle(StageStyle.UNDECORATED);
-            registerStage.setScene(new Scene(root, 300, 400));
+            registerStage.setScene(new Scene(root, 350, 450));
             registerStage.show();
             Stage stage = (Stage) backButton.getScene().getWindow();
             stage.close();
@@ -96,14 +98,16 @@ public class AgentMainController implements Initializable {
             AgentManageController modifyController = loader.getController();
             modifyController.passAgentInfo(id.get(0), id.get(1), id.get(2), id.get(3), id.get(4), id.get(4));
 
-            Stage registerStage = new Stage();
-            registerStage.initStyle(StageStyle.UNDECORATED);
-            registerStage.setScene(new Scene(root, 300, 400));
-            registerStage.show();
-            Stage stage = (Stage) backButton.getScene().getWindow();
-            stage.close();
-
-
+            if (!id.get(3).substring(id.get(3).length() - 1).equals("!") || LoginModel.admin) {
+                Stage registerStage = new Stage();
+                registerStage.initStyle(StageStyle.UNDECORATED);
+                registerStage.setScene(new Scene(root, 350, 450));
+                registerStage.show();
+                Stage stage = (Stage) backButton.getScene().getWindow();
+                stage.close();
+            } else {
+                statusMessageLabel.setText("Please contact an Administrator.  You must have administrative rights to change account to an Administrators account");
+            }
         } catch (Exception e) {
             e.printStackTrace();
             e.getCause();
@@ -111,15 +115,20 @@ public class AgentMainController implements Initializable {
     }
 
     public void deleteAgentButtonOnAction(ActionEvent event) {
-        try {
-            String items = tableView.getItems().get(tableView.getSelectionModel().getSelectedIndex()).toString();
-            items = items.substring(1, items.length() - 1);
-            List<String> id = Arrays.asList(items.split(",\\s*"));
-            if (agent.deleteAgent(id.get(0)))
-                tableView.getItems().removeAll(tableView.getSelectionModel().getSelectedItem());
-        } catch (Exception e) {
-            e.printStackTrace();
-            e.getCause();
+        if (LoginModel.admin)
+            try {
+                String items = tableView.getItems().get(tableView.getSelectionModel().getSelectedIndex()).toString();
+                items = items.substring(1, items.length() - 1);
+                List<String> id = Arrays.asList(items.split(",\\s*"));
+                if (agent.deleteAgent(id.get(0)))
+                    tableView.getItems().removeAll(tableView.getSelectionModel().getSelectedItem());
+            } catch (Exception e) {
+                e.printStackTrace();
+                e.getCause();
+            }
+        else {
+            statusMessageLabel.setText("Please contact an administrator.  You must have administrative rights to delete an Agent");
+
         }
     }
 

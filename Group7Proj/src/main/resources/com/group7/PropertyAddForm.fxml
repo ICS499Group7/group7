@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group7.controllers.PropertyManageController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group7.controllers.PropertyManageController">
    <top>
       <AnchorPane prefHeight="61.0" prefWidth="300.0" style="-fx-background-color: lightgrey;" BorderPane.alignment="CENTER">
          <children>
@@ -23,24 +20,24 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
+            <Label layoutX="14.0" layoutY="18.0" text="Property Name" />
+            <TextField fx:id="propertyName" layoutX="102.0" layoutY="14.0" promptText="Property Name" />
+            <Label layoutX="63.0" layoutY="57.0" text="Type" />
+            <TextField fx:id="type" layoutX="102.0" layoutY="53.0" promptText="Property Type" />
+            <Label layoutX="36.0" layoutY="97.0" text="Daily Rate" />
+            <TextField fx:id="rate" layoutX="102.0" layoutY="93.0" promptText="Daily Rate" />
+            <Label layoutX="38.0" layoutY="138.0" text="Owner ID" />
+            <TextField fx:id="ownerID" layoutX="102.0" layoutY="134.0" promptText="Owner ID" />
+            <Label layoutX="274.0" layoutY="18.0" text="Address" />
+            <TextField fx:id="address" layoutX="331.0" layoutY="14.0" promptText="Address" />
             <Label layoutX="285.0" layoutY="57.0" text="City" />
             <TextField fx:id="city" layoutX="331.0" layoutY="53.0" promptText="City" />
-            <TextField fx:id="type" layoutX="102.0" layoutY="53.0" promptText="First Name" />
-            <Label layoutX="63.0" layoutY="57.0" text="Type" />
-            <Label layoutX="36.0" layoutY="97.0" text="Daily Rate" />
-            <TextField fx:id="rate" layoutX="102.0" layoutY="93.0" promptText="Last Name" />
-            <Button fx:id="submitAddButton" layoutX="188.0" layoutY="288.0" mnemonicParsing="false" onAction="#submitAddButtonOnAction" prefHeight="25.0" prefWidth="125.0" text="Submit Owner" />
-            <TextField fx:id="propertyName" layoutX="102.0" layoutY="14.0" promptText="Property Name" />
-            <Label layoutX="14.0" layoutY="18.0" text="Property Name" />
-            <TextField fx:id="address" layoutX="331.0" layoutY="14.0" promptText="Address" />
-            <Label layoutX="274.0" layoutY="18.0" text="Address" />
-            <TextField fx:id="ownerID" layoutX="102.0" layoutY="134.0" promptText="Mobile Phone Number" />
-            <Label layoutX="38.0" layoutY="138.0" text="Owner ID" />
-            <Label fx:id="statusMessageLabel" layoutX="234.0" layoutY="255.0" prefHeight="17.0" prefWidth="34.0" />
-            <TextField fx:id="state" layoutX="331.0" layoutY="93.0" promptText="State" />
             <Label layoutX="282.0" layoutY="97.0" text="State" />
-            <TextField fx:id="zipCode" layoutX="331.0" layoutY="134.0" promptText="Zip Code" />
+            <TextField fx:id="state" layoutX="331.0" layoutY="93.0" promptText="State" />
             <Label layoutX="272.0" layoutY="138.0" text="Zip Code" />
+            <TextField fx:id="zipCode" layoutX="331.0" layoutY="134.0" promptText="Zip Code" />
+            <Button fx:id="submitAddButton" layoutX="188.0" layoutY="288.0" mnemonicParsing="false" onAction="#submitAddButtonOnAction" prefHeight="25.0" prefWidth="125.0" text="Submit Property" />
+            <Label fx:id="statusMessageLabel" layoutX="234.0" layoutY="255.0" prefHeight="17.0" prefWidth="34.0" />
             <Label fx:id="statusMessageLabel" layoutX="236.0" layoutY="255.0" />
          </children>
       </AnchorPane>

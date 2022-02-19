@@ -13,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
@@ -30,6 +31,8 @@ public class PropertyMainController implements Initializable {
 
     @FXML
     private TableView tableView;
+    @FXML
+    private Label statusMessageLabel;
 
     @FXML
     private Button backButton;
@@ -79,29 +82,35 @@ public class PropertyMainController implements Initializable {
 
     public void modifyPropertyButtonOnAction(ActionEvent event) throws IOException {
         try {
-            String items = tableView.getItems().get(tableView.getSelectionModel().getSelectedIndex()).toString();
-            items = items.substring(1, items.length() - 1);
-            List<String> id = Arrays.asList(items.split(",\\s*"));
-            System.out.println(id);
+            if (tableView.getSelectionModel().getSelectedIndex() != -1) {
+                String items = tableView.getItems().get(tableView.getSelectionModel().getSelectedIndex()).toString();
+                items = items.substring(1, items.length() - 1);
+                List<String> id = Arrays.asList(items.split(",\\s*"));
+                System.out.println(id);
 
-            //This code is slightly different as I needed to get at .getController to transfer content from 1 scene to the next scene
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/group7/PropertyModifyForm.fxml"));
-            Parent root = loader.load();
-            PropertyManageController modifyController = loader.getController();
-            modifyController.passPropertyInfo(id.get(0), id.get(1), id.get(2), id.get(3), id.get(4));
+                //This code is slightly different as I needed to get at .getController to transfer content from 1 scene to the next scene
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/group7/PropertyModifyForm.fxml"));
+                Parent root = loader.load();
+                PropertyManageController modifyController = loader.getController();
+                modifyController.passPropertyInfo(id.get(0), id.get(1), id.get(2), id.get(3), id.get(4));
 
-            Stage registerStage = new Stage();
-            registerStage.initStyle(StageStyle.UNDECORATED);
-            registerStage.setScene(new Scene(root, 500, 400));
-            registerStage.show();
-            Stage stage = (Stage) backButton.getScene().getWindow();
-            stage.close();
+                Stage registerStage = new Stage();
+                registerStage.initStyle(StageStyle.UNDECORATED);
+                registerStage.setScene(new Scene(root, 500, 400));
+                registerStage.show();
+                Stage stage = (Stage) backButton.getScene().getWindow();
+                stage.close();
+            }
+            else{
+                statusMessageLabel.setText("Please Select a Property to Modify from the Table and Try Again");
+            }
 
 
-        } catch (Exception e) {
-            e.printStackTrace();
-            e.getCause();
-        }
+            } catch(Exception e){
+                e.printStackTrace();
+                e.getCause();
+            }
+
     }
 
     public void deletePropertyButtonOnAction(ActionEvent event) {

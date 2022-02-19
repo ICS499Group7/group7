@@ -30,10 +30,9 @@ public class OwnerModel {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return rs;
     }
-
+/*
     public ResultSet getOwnerDataByID(String ownerID) { //Returns a Resultset list of all agents in Agents_accounts
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
@@ -47,7 +46,7 @@ public class OwnerModel {
         }
         return rs;
     }
-
+*/
     public String getAddressIDByOwner(String ownerID) {
         this.id = ownerID;
 
@@ -130,7 +129,7 @@ public class OwnerModel {
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
 
-        String addrID = new OwnerModel().getAddressIDByOwner(id);
+        String addrID = getAddressIDByOwner(id);
         String deleteAddressQuery = "DELETE FROM address WHERE id = " + addrID;
         String deleteOwnerQuery = "DELETE FROM owner_accounts WHERE id = " + id;
 

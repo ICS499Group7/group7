@@ -3,7 +3,6 @@ package com.group7.controllers;
 import com.group7.model.AgentModel;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -14,14 +13,9 @@ import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.stage.StageStyle;
 
-import java.util.ResourceBundle;
-import java.net.URL;
-
-public class AgentManageController implements Initializable {
+public class AgentManageController{
     @FXML
     private Button cancelButton;
-    @FXML
-    private Button submitAgentButton;
     @FXML
     private Label statusMessageLabel;
     @FXML
@@ -36,12 +30,8 @@ public class AgentManageController implements Initializable {
     private PasswordField password;
     @FXML
     private PasswordField passwordConfirm;
-
     private String agentID;
 
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
-    }
 
     public void passAgentInfo(String id, String fName, String lName, String userName, String password, String passwordConfirm){
         this.agentID = id;

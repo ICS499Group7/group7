@@ -29,13 +29,9 @@ public class LoginController implements Initializable {
     @FXML
     private ImageView brandingImageView;
     @FXML
-    private ImageView lockImageView;
-    @FXML
     private TextField usernameTextField;
     @FXML
     private TextField enterPasswordField;
-    @FXML
-    private Button loginButton;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

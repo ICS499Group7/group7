@@ -22,6 +22,8 @@ import javafx.util.Callback;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
+import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class PropertyMainController implements Initializable {
@@ -33,10 +35,10 @@ public class PropertyMainController implements Initializable {
     private Button backButton;
 
     private ObservableList<ObservableList> items = FXCollections.observableArrayList();
+    private PropertyModel property = new PropertyModel();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         ResultSet rs = new PropertyModel().getProperties();
         try {
             for(int i=0; i<rs.getMetaData().getColumnCount(); i++) {
@@ -49,19 +51,74 @@ public class PropertyMainController implements Initializable {
                 });
                 tableView.getColumns().addAll(col);
             }
-
             while (rs.next()) {
                 ObservableList<String> row = FXCollections.observableArrayList();
                 for (int i=1; i<=rs.getMetaData().getColumnCount(); i++){
                     row.add(rs.getString(i));
                 }
-
                 items.add(row);
             }
-
             tableView.setItems(items);
-
         } catch(Exception e) {}
+    }
+
+    public void createPropertyButtonOnAction(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/PropertyAddForm.fxml"));
+            Stage registerStage = new Stage();
+            registerStage.initStyle(StageStyle.UNDECORATED);
+            registerStage.setScene(new Scene(root, 500, 400));
+            registerStage.show();
+            Stage stage = (Stage) backButton.getScene().getWindow();
+            stage.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
+
+    public void modifyPropertyButtonOnAction(ActionEvent event) throws IOException {
+        try {
+            String items = tableView.getItems().get(tableView.getSelectionModel().getSelectedIndex()).toString();
+            items = items.substring(1, items.length() - 1);
+            List<String> id = Arrays.asList(items.split(",\\s*"));
+            System.out.println(id);
+
+            //This code is slightly different as I needed to get at .getController to transfer content from 1 scene to the next scene
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/group7/PropertyModifyForm.fxml"));
+            Parent root = loader.load();
+            PropertyManageController modifyController = loader.getController();
+            modifyController.passPropertyInfo(id.get(0), id.get(1), id.get(2), id.get(3), id.get(4));
+
+            Stage registerStage = new Stage();
+            registerStage.initStyle(StageStyle.UNDECORATED);
+            registerStage.setScene(new Scene(root, 500, 400));
+            registerStage.show();
+            Stage stage = (Stage) backButton.getScene().getWindow();
+            stage.close();
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
+
+    public void deletePropertyButtonOnAction(ActionEvent event) {
+        try {
+            if (property.deleteProperty(getSelectedPropertyID()))
+                tableView.getItems().removeAll(tableView.getSelectionModel().getSelectedItem());
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
+
+    public String getSelectedPropertyID(){
+        String items = tableView.getItems().get(tableView.getSelectionModel().getSelectedIndex()).toString();
+        items = items.substring(1, items.length() - 1);
+        List<String> id = Arrays.asList(items.split(",\\s*"));
+        return id.get(0);
     }
 
     public void backButtonOnAction(ActionEvent event) throws IOException {

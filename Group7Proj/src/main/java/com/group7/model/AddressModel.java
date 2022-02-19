@@ -14,7 +14,7 @@ public class AddressModel {
     public AddressModel() {
 
     }
-
+/*
     public ResultSet getAddress() {
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
@@ -28,7 +28,7 @@ public class AddressModel {
         }
         return rs;
     }
-
+*/
     public ResultSet getAddressByID(String id) {
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();

@@ -10,33 +10,40 @@ CREATE TABLE user_accounts (
 
 INSERT INTO user_accounts (first_name,last_name,username,password) VALUES ('admin','root','admin','root');
 
-CREATE TABLE `owner_accounts` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `company_name` varchar(45) NOT NULL,
-  `address` varchar(45) NOT NULL,
-  `zip_code` varchar(45) NOT NULL,
-  `first_name` varchar(45) NOT NULL,
-  `last_name` varchar(45) NOT NULL,
-  `mobile_phone` varchar(45) NOT NULL,
-  `office_phone` varchar(45) NOT NULL,
-  `email` varchar(45) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-INSERT INTO owner_accounts (company_name,address,zip_code,first_name,last_name,mobile_phone,office_phone,email) VALUES ("Owner Zero","11078 pollu ave","22334","Colin","Bolduc","651-500-8896","111-111-1111","cbolduc@ozero.com");
 
 CREATE TABLE `properties` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
   `type` varchar(45) NOT NULL,
   `rent_value` varchar(45) NOT NULL,
-  `address` varchar(45) NOT NULL,
-  `zip` varchar(45) NOT NULL,
-  `city` varchar(45) NOT NULL,
-  `state` varchar(45) NOT NULL,
+  `address_id` varchar(45) NOT NULL,
   `owner_id` int NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-INSERT INTO properties (name,type,rent_value,address,zip,city,state,owner_id) VALUES ("Unit 1","House","$600","$600","6678 Adams Drive","55379","Shakopee","MN","1");
+INSERT INTO properties (name,type,rent_value,address_id,owner_id) VALUES ("Unit 1","House","$600","1","1");
 
+CREATE TABLE `address` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `street_address` varchar(45) NOT NULL,
+  `city` varchar(45) NOT NULL,
+  `state` varchar(45) NOT NULL,
+  `zip_code` varchar(45) NOT NULL,
+  `country` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+INSERT INTO address (street_address,city,zip_code,state) VALUES ("2641 Street", "Shakopee", "55379", "Minnesota");
+
+CREATE TABLE `owner_accounts` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `company_name` varchar(45) NOT NULL,
+  `address_id` varchar(45) NOT NULL,
+  `first_name` varchar(45) NOT NULL,
+  `last_name` varchar(45) NOT NULL,
+  `phone` varchar(45) NOT NULL,
+  `email` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+INSERT INTO owner_accounts (company_name,address_id,first_name,last_name,phone,email) VALUES ("Owner Zero","1","Colin","Bolduc","651-500-8896","cbolduc@ozero.com");

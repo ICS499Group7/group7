@@ -29,13 +29,9 @@ public class LoginController implements Initializable {
     @FXML
     private ImageView brandingImageView;
     @FXML
-    private ImageView lockImageView;
-    @FXML
     private TextField usernameTextField;
     @FXML
     private TextField enterPasswordField;
-    @FXML
-    private Button loginButton;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -80,5 +76,11 @@ public class LoginController implements Initializable {
             e.getCause();
         }
     }
+    public boolean isAdmin(){
+        System.out.println(usernameTextField.getText());
+        System.out.println("this.usernameTextField.getText().length() - 1  =  " + (usernameTextField.getText().length() - 1));
+        return true; // (usernameTextField.getText().substring(this.usernameTextField.getText().length() - 1).compareTo("!") == 0);
+    }
+
 
 }

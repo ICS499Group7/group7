@@ -16,12 +16,7 @@ import java.util.ResourceBundle;
 
 public class HomepageController implements Initializable {
     @FXML
-    private Button logOutButton;
-    @FXML
     private Button exitButton;
-    @FXML
-    private Button userMainButton;
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -39,8 +34,8 @@ public class HomepageController implements Initializable {
         stage.close();
     }
 
-    public void userMainButtonOnAction(ActionEvent event) throws IOException {
-        userMainScreen();
+    public void agentMainButtonOnAction(ActionEvent event) throws IOException {
+        agentMainScreen();
         Stage stage = (Stage) exitButton.getScene().getWindow();
         stage.close();
     }
@@ -59,7 +54,7 @@ public class HomepageController implements Initializable {
 
     public void loginScreen() {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/hello-view.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/login.fxml"));
             Stage registerStage = new Stage();
             registerStage.initStyle(StageStyle.UNDECORATED);
             registerStage.setScene(new Scene(root, 520, 400));
@@ -71,9 +66,9 @@ public class HomepageController implements Initializable {
         }
     }
 
-    public void userMainScreen() {
+    public void agentMainScreen() {
         try{
-            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/userMain.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/agentMain.fxml"));
             Stage registerStage = new Stage();
             registerStage.initStyle(StageStyle.UNDECORATED);
             registerStage.setScene(new Scene(root, 600, 400));

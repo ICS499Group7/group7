@@ -12,6 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
@@ -21,21 +22,23 @@ import javafx.util.Callback;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
+import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class OwnerMainController implements Initializable {
-
     @FXML
     private TableView tableView;
-
     @FXML
     private Button backButton;
+    @FXML
+    private Label statusMessageLabel;
 
     private ObservableList<ObservableList> items = FXCollections.observableArrayList();
+    private OwnerModel owner = new OwnerModel();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         ResultSet rs = new OwnerModel().getOwners();
         try {
             for(int i=0; i<rs.getMetaData().getColumnCount(); i++) {
@@ -65,6 +68,68 @@ public class OwnerMainController implements Initializable {
 
     public void backButtonOnAction(ActionEvent event) throws IOException {
         homepage();
+    }
+
+    public void createOwnerButtonOnAction(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/ownerAddForm.fxml"));
+            Stage registerStage = new Stage();
+            registerStage.initStyle(StageStyle.UNDECORATED);
+            registerStage.setScene(new Scene(root, 500, 400));
+            registerStage.show();
+            Stage stage = (Stage) backButton.getScene().getWindow();
+            stage.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
+
+    public void modifyOwnerButtonOnAction(ActionEvent event) throws IOException {
+        try {
+            if (tableView.getSelectionModel().getSelectedIndex() != -1) {
+                String items = tableView.getItems().get(tableView.getSelectionModel().getSelectedIndex()).toString();
+                items = items.substring(1, items.length() - 1);
+                List<String> id = Arrays.asList(items.split(",\\s*"));
+                System.out.println(id);
+
+                //This code is slightly different as I needed to get at .getController to transfer content from 1 scene to the next scene
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/group7/ownerModifyForm.fxml"));
+                Parent root = loader.load();
+                OwnerManageController modifyController = loader.getController();
+                modifyController.passOwnerInfo(id.get(0), id.get(1), id.get(2), id.get(3), id.get(4), id.get(5));
+
+                Stage registerStage = new Stage();
+                registerStage.initStyle(StageStyle.UNDECORATED);
+                registerStage.setScene(new Scene(root, 500, 400));
+                registerStage.show();
+                Stage stage = (Stage) backButton.getScene().getWindow();
+                stage.close();
+            } else {
+                statusMessageLabel.setText("Please Select an Owner to Modify from the Table and Try Again");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
+
+    public void deleteOwnerButtonOnAction(ActionEvent event) {
+        try {
+            if (owner.deleteOwner(getSelectedOwnerID()))
+                tableView.getItems().removeAll(tableView.getSelectionModel().getSelectedItem());
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
+
+    public String getSelectedOwnerID(){
+        String items = tableView.getItems().get(tableView.getSelectionModel().getSelectedIndex()).toString();
+        items = items.substring(1, items.length() - 1);
+        List<String> id = Arrays.asList(items.split(",\\s*"));
+        return id.get(0);
     }
 
     public void homepage() {

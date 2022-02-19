@@ -7,20 +7,24 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class LoginModel {
-    private String username;
-    private String password;
 
+    public static String username;
+    public static boolean admin;
+    private static String password;
+
+    public LoginModel() {
+    }
     public LoginModel(String user, String pass) {
         username = user;
         password = pass;
+        admin = user.substring(user.length()-1).equals("!");
     }
 
     public boolean verifyLogin() {
-
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
 
-        String verifyLogin = "SELECT count(1) FROM user_accounts WHERE username = '" + username + "' AND password ='" + password + "'";
+        String verifyLogin = "SELECT count(1) FROM agent_accounts WHERE username = '" + username + "' AND password ='" + password + "'";
 
         try {
             Statement statement = connectDB.createStatement();

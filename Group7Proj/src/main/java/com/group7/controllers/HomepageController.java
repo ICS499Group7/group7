@@ -16,12 +16,7 @@ import java.util.ResourceBundle;
 
 public class HomepageController implements Initializable {
     @FXML
-    private Button logOutButton;
-    @FXML
     private Button exitButton;
-    @FXML
-    private Button agentMainButton;
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -59,7 +54,7 @@ public class HomepageController implements Initializable {
 
     public void loginScreen() {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/hello-view.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/login.fxml"));
             Stage registerStage = new Stage();
             registerStage.initStyle(StageStyle.UNDECORATED);
             registerStage.setScene(new Scene(root, 520, 400));

@@ -96,8 +96,6 @@ public class AgentModel { //Will control getting and setting data to the SQL ser
 
         String modifyAgentQuery = "UPDATE agent_accounts SET first_name = '" + this.firstName + "', last_name = '" + this.lastName + "', username = '" + this.username + "', password = '" + this.password + "' WHERE id = '" + this.id + "'";
         System.out.println(modifyAgentQuery);
-
-
         try {
             int queryResult = connectDB.createStatement().executeUpdate(modifyAgentQuery); //execute the above query
             if (queryResult == 1) {
@@ -112,46 +110,4 @@ public class AgentModel { //Will control getting and setting data to the SQL ser
         return false;
     }
 
-    public boolean deleteAgent() {
-        return false;
-    }
-
-
-    public String getId() {
-        return id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setId(String id) {this.id = id; }
 }

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group7.controllers.HomepageController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group7.controllers.HomepageController">
    <top>
       <AnchorPane prefHeight="47.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
@@ -23,7 +24,7 @@
             </Label>
             <Button fx:id="agentMainButton" layoutX="248.0" layoutY="82.0" mnemonicParsing="false" onAction="#agentMainButtonOnAction" prefHeight="25.0" prefWidth="104.0" text="Manage Agents" />
             <Button fx:id="ownerMainButton" layoutX="249.0" layoutY="118.0" mnemonicParsing="false" onAction="#ownerMainButtonOnAction" text="Manage Owners" />
-            <Button fx:id="propertyMainButton" layoutX="249.0" layoutY="152.0" mnemonicParsing="false" onAction="#propertyMainButtonOnAction" text="Manage Owners" />
+            <Button fx:id="propertyMainButton" layoutX="242.0" layoutY="152.0" mnemonicParsing="false" onAction="#propertyMainButtonOnAction" text="Manage Properties" />
          </children>
       </AnchorPane>
    </center>

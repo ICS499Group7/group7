@@ -16,15 +16,12 @@ CREATE TABLE `properties` (
   `name` varchar(45) NOT NULL,
   `type` varchar(45) NOT NULL,
   `rent_value` varchar(45) NOT NULL,
-  `address` varchar(45) NOT NULL,
-  `zip` varchar(45) NOT NULL,
-  `city` varchar(45) NOT NULL,
-  `state` varchar(45) NOT NULL,
+  `address_id` varchar(45) NOT NULL,
   `owner_id` int NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-INSERT INTO properties (name,type,rent_value,address,zip,city,state,owner_id) VALUES ("Unit 1","House","$600","$600","6678 Adams Drive","55379","Shakopee","MN","1");
+INSERT INTO properties (name,type,rent_value,address_id,owner_id) VALUES ("Unit 1","House","$600","1","1");
 
 CREATE TABLE `address` (
   `id` int NOT NULL AUTO_INCREMENT,

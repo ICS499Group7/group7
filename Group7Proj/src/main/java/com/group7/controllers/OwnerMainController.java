@@ -26,25 +26,16 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class OwnerMainController implements Initializable {
-
     @FXML
     private TableView tableView;
-
     @FXML
     private Button backButton;
-    @FXML
-    private Button createOwnerButton;
-    @FXML
-    private Button modifyOwnerButton;
-    @FXML
-    private Button deleteOwnerButton;
 
     private ObservableList<ObservableList> items = FXCollections.observableArrayList();
     private OwnerModel owner = new OwnerModel();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         ResultSet rs = new OwnerModel().getOwners();
         try {
             for(int i=0; i<rs.getMetaData().getColumnCount(); i++) {

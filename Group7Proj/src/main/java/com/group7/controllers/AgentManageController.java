@@ -1,6 +1,7 @@
 package com.group7.controllers;
 
 import com.group7.model.AgentModel;
+import com.group7.model.LoginModel;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,11 +14,16 @@ import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.stage.StageStyle;
 
-public class AgentManageController{
+import java.util.ResourceBundle;
+import java.net.URL;
+
+public class AgentManageController {
     @FXML
     private Button cancelButton;
     @FXML
     private Label statusMessageLabel;
+    @FXML
+    private Label statusMessageLabelModify;
     @FXML
     private Label agentIDLabel;
     @FXML
@@ -45,19 +51,29 @@ public class AgentManageController{
 
     public void submitAgentButtonOnAction(ActionEvent event) throws Exception {
         if ((firstName.getText().isBlank() == false) && (lastName.getText().isBlank() == false) && (userName.getText().isBlank() == false) && (password.getText().isBlank() == false) && (passwordConfirm.getText().equals(password.getText()))){
-            saveAgent();
-            agentMainScreen();
+            if (!userName.getText().substring(userName.getText().length() - 1).equals("!") || LoginModel.admin) {
+                saveAgent();
+                agentMainScreen();
+
+        } else {
+            statusMessageLabel.setText("Please contact an Administrator.  You must have administrative rights to add an Administrators account");
+        }
         } else {
             statusMessageLabel.setText("There was an issue with the form. Please check.");
         }
     }
 
-    public void submitButtonOnAction(ActionEvent event) throws Exception {
-        if ((firstName.getText().isBlank() == false) && (lastName.getText().isBlank() == false) && (userName.getText().isBlank() == false) && (password.getText().isBlank() == false) && (passwordConfirm.getText().equals(password.getText()))){
-            modifyAgent();
-            agentMainScreen();
+    public void submitModifyButtonOnAction(ActionEvent event) throws Exception {
+        if ((firstName.getText().isBlank() == false) && (lastName.getText().isBlank() == false) && (userName.getText().isBlank() == false) && (password.getText().isBlank() == false) && (passwordConfirm.getText().equals(password.getText()))) {
+
+            if (!userName.getText().substring(userName.getText().length() - 1).equals("!") || LoginModel.admin) {
+                modifyAgent();
+                agentMainScreen();
+            } else {
+                statusMessageLabelModify.setText("Please contact an Administrator.  You must have administrative rights to change account to an Administrators account");
+            }
         } else {
-            statusMessageLabel.setText("There was an issue with the form. Please check Entries.");
+            statusMessageLabelModify.setText("There was an issue with the form. Please check Entries.");
         }
     }
 

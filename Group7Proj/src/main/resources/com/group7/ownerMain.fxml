@@ -18,6 +18,7 @@
             <Button fx:id="createOwnerButton" layoutX="16.0" layoutY="14.0" mnemonicParsing="false" onAction="#createOwnerButtonOnAction" prefHeight="25.0" prefWidth="92.0" text="Create Owner" />
             <Button fx:id="modifyOwnerButton" layoutX="16.0" layoutY="46.0" mnemonicParsing="false" onAction="#modifyOwnerButtonOnAction" text="Modify Owner" />
             <Button fx:id="deleteOwnerButton" layoutX="16.0" layoutY="78.0" mnemonicParsing="false" onAction="#deleteOwnerButtonOnAction" prefHeight="25.0" prefWidth="91.0" text="Delete Owner" />
+            <Label fx:id="statusMessageLabel" layoutX="12.0" layoutY="119.0" prefHeight="211.0" prefWidth="95.0" textAlignment="CENTER" textFill="#f22c2c" wrapText="true" />
          </children>
       </AnchorPane>
    </right>

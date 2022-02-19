@@ -87,26 +87,30 @@ public class AgentMainController implements Initializable {
 
     public void modifyAgentButtonOnAction(ActionEvent event) throws IOException {
         try {
-            String items = tableView.getItems().get(tableView.getSelectionModel().getSelectedIndex()).toString();
-            items = items.substring(1, items.length() - 1);
-            List<String> id = Arrays.asList(items.split(",\\s*"));
-            System.out.println(id);
+            if (tableView.getSelectionModel().getSelectedIndex() != -1) {
+                String items = tableView.getItems().get(tableView.getSelectionModel().getSelectedIndex()).toString();
+                items = items.substring(1, items.length() - 1);
+                List<String> id = Arrays.asList(items.split(",\\s*"));
+                System.out.println(id);
 
-            //This code is slightly different as I needed to get at .getController to transfer content from 1 scene to the next scene
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/group7/agentModifyForm.fxml"));
-            Parent root = loader.load();
-            AgentManageController modifyController = loader.getController();
-            modifyController.passAgentInfo(id.get(0), id.get(1), id.get(2), id.get(3), id.get(4), id.get(4));
+                //This code is slightly different as I needed to get at .getController to transfer content from 1 scene to the next scene
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/group7/agentModifyForm.fxml"));
+                Parent root = loader.load();
+                AgentManageController modifyController = loader.getController();
+                modifyController.passAgentInfo(id.get(0), id.get(1), id.get(2), id.get(3), id.get(4), id.get(4));
 
-            if (!id.get(3).substring(id.get(3).length() - 1).equals("!") || LoginModel.admin) {
-                Stage registerStage = new Stage();
-                registerStage.initStyle(StageStyle.UNDECORATED);
-                registerStage.setScene(new Scene(root, 350, 450));
-                registerStage.show();
-                Stage stage = (Stage) backButton.getScene().getWindow();
-                stage.close();
+                if (!id.get(3).substring(id.get(3).length() - 1).equals("!") || LoginModel.admin) {
+                    Stage registerStage = new Stage();
+                    registerStage.initStyle(StageStyle.UNDECORATED);
+                    registerStage.setScene(new Scene(root, 350, 450));
+                    registerStage.show();
+                    Stage stage = (Stage) backButton.getScene().getWindow();
+                    stage.close();
+                } else {
+                    statusMessageLabel.setText("Please contact an Administrator.  You must have administrative rights to change account to an Administrators account");
+                }
             } else {
-                statusMessageLabel.setText("Please contact an Administrator.  You must have administrative rights to change account to an Administrators account");
+                statusMessageLabel.setText("Please Select an Agent to Modify from the Table and Try Again");
             }
         } catch (Exception e) {
             e.printStackTrace();

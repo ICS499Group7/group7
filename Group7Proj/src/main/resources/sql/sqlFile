@@ -21,8 +21,6 @@ CREATE TABLE `properties` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-INSERT INTO properties (name,type,rent_value,address_id,owner_id) VALUES ("Unit 1","House","$600","1","1");
-
 CREATE TABLE `address` (
   `id` int NOT NULL AUTO_INCREMENT,
   `street_address` varchar(45) NOT NULL,
@@ -32,8 +30,6 @@ CREATE TABLE `address` (
   `country` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
-
-INSERT INTO address (street_address,city,zip_code,state) VALUES ("2641 Street", "Shakopee", "55379", "Minnesota");
 
 CREATE TABLE `owner_accounts` (
   `id` int NOT NULL AUTO_INCREMENT,
@@ -46,4 +42,50 @@ CREATE TABLE `owner_accounts` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
 
-INSERT INTO owner_accounts (company_name,address_id,first_name,last_name,phone,email) VALUES ("Owner Zero","1","Colin","Bolduc","651-500-8896","cbolduc@ozero.com");
+INSERT INTO owner_accounts (company_name,address_id,first_name,last_name,phone,email) 
+VALUES ("NORTH LOOP DOWNTOWN LLC",18,"Mohammad","Sabri",9521234567,"jjrealty@northloop.com"),
+	("M2F PROPERTIES LLC",19,"Jousha","Stays",7633890243,"joshua.stays@m2fproperties.com"),
+	("Arthur D Ganss",10,"Arthur","Ganss",9522345678,"arthur.d.ganss42@yahoo.com"),
+	("Paul Lauer",21,"Paul","Lauer",6127210373,"paul.lauer131@yahoo.com"),
+	("Daniel Olson",22,"Daniel","Olson",9523456789,"daniel.olson97@yahoo.com"),
+	("URBAN HOMEWORKS INC",23,"Chad","Schwitters",6125986545,"chad.schwitters@mcknight.org"),
+	("DNEN 2428 LLC",24,"Deborah","Goldenberg",7635121795,"deborah.a.goldenberg@dnen2428.com"),
+	("Francois Ecclesiaste",25,"Francois","Ecclesiaste",7634567890,"francois.o.ecclesiaste77@yahoo.com"),
+	("INNOVATIVE ASSET DEVELOPMENT",26,"Ariel","Reinheimer",7635678901,"ariel.reinheimer@iad.com"),
+	("Dee Rowe",27,"Dee","Rowe",7636789012,"dee.q.rowe317@yahoo.com");
+	
+INSERT INTO properties (name,type,rent_value,address_id,owner_id) 
+VALUES
+	("Marcy-Holmes","house","900","8","14"),
+	("Phillips","apartment","1140","9","15"),
+	("Central","condo","1050","10","16"),
+	("Como","house","2000","11","17"),
+	("Powderhorn","house","2275","12","18"),
+	("Hawthorne","house","2399","13","19"),
+	("Garfield","apartment","2399","14","20"),
+	("Quincy","house","1615","15","21"),
+	("Lyndale","house","1095","16","22"),
+	("Fremont","house","1295","17","23");
+
+INSERT INTO address (street_address,city,state,zip_code)
+VALUES
+    ("814 5th St SE ","Minneapolis","MN","55414"),
+	("1802 11th Ave S","Minneapolis","MN","55404"),
+	("1820 1st Ave S","Minneapolis","MN","55403"),
+	("1030 12th Ave SE","Minneapolis","MN","55414"),
+	("2206 Garfield Ave","Minneapolis","MN","55405"),
+	("2122 N 6th St","Minneapolis","MN","55411"),
+	("2428 Garfield Ave S Unit #4","Minneapolis","MN","55405"),
+	("1811 Quincy St NE","Minneapolis","MN","55418"),
+	("2515 Lyndale Ave S","Minneapolis","MN","55405"),
+	("2204 Fremont Ave South","Minneapolis","MN","55405"),
+	("5775 Wayzata Blvd #620 ","Minneapolis","MN","55416"),
+	("25523 Vassar St Ne ","Stacey","MN","55079"),
+	("1820 1st Ave S #001","Minneapolis","MN","55403"),
+	("1948 Princeton Ave","Saint Paul","MN","55105-1525"),
+	("200 University Ave Se #305","Minneapolis","MN","55414"),
+	("2025 Emerson Ave N","Minneapolis","MN","55411"),
+	("2500 Cherrywood Rd","Minnetonka","MN","55305"),
+	("1811 Quincy St N E","Minneapolis","MN","55418"),
+	("21 Crescent Beach Road ","Glen Cove","NY","11542"),
+	("10981 Marian Rd","Lancaster","WI","53813");

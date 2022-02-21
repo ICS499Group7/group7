@@ -1,4 +1,4 @@
-CREATE TABLE user_accounts (
+CREATE TABLE agent_accounts (
   id int NOT NULL AUTO_INCREMENT,
   first_name varchar(45) NOT NULL,
   last_name varchar(45) NOT NULL,
@@ -8,18 +8,6 @@ CREATE TABLE user_accounts (
   UNIQUE KEY username_UNIQUE (username)
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-INSERT INTO user_accounts (first_name,last_name,username,password) VALUES ('admin','root','admin','root');
-
-
-CREATE TABLE `properties` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) NOT NULL,
-  `type` varchar(45) NOT NULL,
-  `rent_value` varchar(45) NOT NULL,
-  `address_id` varchar(45) NOT NULL,
-  `owner_id` int NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `address` (
   `id` int NOT NULL AUTO_INCREMENT,
@@ -41,6 +29,47 @@ CREATE TABLE `owner_accounts` (
   `email` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+CREATE TABLE `properties` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) NOT NULL,
+  `type` varchar(45) NOT NULL,
+  `rent_value` varchar(45) NOT NULL,
+  `address_id` varchar(45) NOT NULL,
+  `owner_id` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+TRUNCATE TABLE agent_accounts;
+ALTER TABLE agent_accounts AUTO_INCREMENT = 1;
+INSERT INTO user_accounts (first_name,last_name,username,password) VALUES ('agent','pass','agent','pass');
+INSERT INTO user_accounts (first_name,last_name,username,password) VALUES ('admin','root','admin!','root');
+INSERT INTO user_accounts (first_name,last_name,username,password) VALUES ('!','1','!','1');
+
+TRUNCATE TABLE address;
+ALTER TABLE address AUTO_INCREMENT = 1;
+INSERT INTO address (street_address,city,state,zip_code)
+VALUES
+    ("814 5th St SE ","Minneapolis","MN","55414"),
+	("1802 11th Ave S","Minneapolis","MN","55404"),
+	("1820 1st Ave S","Minneapolis","MN","55403"),
+	("1030 12th Ave SE","Minneapolis","MN","55414"),
+	("2206 Garfield Ave","Minneapolis","MN","55405"),
+	("2122 N 6th St","Minneapolis","MN","55411"),
+	("2428 Garfield Ave S Unit #4","Minneapolis","MN","55405"),
+	("1811 Quincy St NE","Minneapolis","MN","55418"),
+	("2515 Lyndale Ave S","Minneapolis","MN","55405"),
+	("2204 Fremont Ave South","Minneapolis","MN","55405"),
+	("5775 Wayzata Blvd #620 ","Minneapolis","MN","55416"),
+	("25523 Vassar St Ne ","Stacey","MN","55079"),
+	("1820 1st Ave S #001","Minneapolis","MN","55403"),
+	("1948 Princeton Ave","Saint Paul","MN","55105-1525"),
+	("200 University Ave Se #305","Minneapolis","MN","55414"),
+	("2025 Emerson Ave N","Minneapolis","MN","55411"),
+	("2500 Cherrywood Rd","Minnetonka","MN","55305"),
+	("1811 Quincy St N E","Minneapolis","MN","55418"),
+	("21 Crescent Beach Road ","Glen Cove","NY","11542"),
+	("10981 Marian Rd","Lancaster","WI","53813");
 
 TRUNCATE TABLE owner_accounts;
 ALTER TABLE owner_accounts AUTO_INCREMENT = 1;
@@ -71,27 +100,4 @@ VALUES
 	("Lyndale","house","1095","19","9"),
 	("Fremont","house","1295","20","10");
 
-TRUNCATE TABLE address;
-ALTER TABLE address AUTO_INCREMENT = 1;
-INSERT INTO address (street_address,city,state,zip_code)
-VALUES
-    ("814 5th St SE ","Minneapolis","MN","55414"),
-	("1802 11th Ave S","Minneapolis","MN","55404"),
-	("1820 1st Ave S","Minneapolis","MN","55403"),
-	("1030 12th Ave SE","Minneapolis","MN","55414"),
-	("2206 Garfield Ave","Minneapolis","MN","55405"),
-	("2122 N 6th St","Minneapolis","MN","55411"),
-	("2428 Garfield Ave S Unit #4","Minneapolis","MN","55405"),
-	("1811 Quincy St NE","Minneapolis","MN","55418"),
-	("2515 Lyndale Ave S","Minneapolis","MN","55405"),
-	("2204 Fremont Ave South","Minneapolis","MN","55405"),
-	("5775 Wayzata Blvd #620 ","Minneapolis","MN","55416"),
-	("25523 Vassar St Ne ","Stacey","MN","55079"),
-	("1820 1st Ave S #001","Minneapolis","MN","55403"),
-	("1948 Princeton Ave","Saint Paul","MN","55105-1525"),
-	("200 University Ave Se #305","Minneapolis","MN","55414"),
-	("2025 Emerson Ave N","Minneapolis","MN","55411"),
-	("2500 Cherrywood Rd","Minnetonka","MN","55305"),
-	("1811 Quincy St N E","Minneapolis","MN","55418"),
-	("21 Crescent Beach Road ","Glen Cove","NY","11542"),
-	("10981 Marian Rd","Lancaster","WI","53813");
+

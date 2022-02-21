@@ -6,7 +6,7 @@ CREATE TABLE agent_accounts (
   password varchar(45) NOT NULL,
   PRIMARY KEY (id),
   UNIQUE KEY username_UNIQUE (username)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+);
 
 
 CREATE TABLE `address` (
@@ -17,7 +17,7 @@ CREATE TABLE `address` (
   `zip_code` varchar(45) NOT NULL,
   `country` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+);
 
 CREATE TABLE `owner_accounts` (
   `id` int NOT NULL AUTO_INCREMENT,
@@ -28,7 +28,7 @@ CREATE TABLE `owner_accounts` (
   `phone` varchar(45) NOT NULL,
   `email` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+);
 
 CREATE TABLE `properties` (
   `id` int NOT NULL AUTO_INCREMENT,
@@ -38,7 +38,23 @@ CREATE TABLE `properties` (
   `address_id` varchar(45) NOT NULL,
   `owner_id` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+);
+
+CREATE TABLE `guests` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(45) NOT NULL,
+  `last_name` varchar(45) NOT NULL,
+  `phone` varchar(45) NOT NULL,
+  `email` varchar(45) NOT NULL,
+  `dateOfBirth` date NOT NULL,
+  PRIMARY KEY (`id`)
+);
+
+TRUNCATE TABLE guests;
+ALTER TABLE guests AUTO_INCREMENT = 1;
+INSERT INTO guests (first_name,last_name,phone,email,dateOfBirth) VALUES ('Ryan','Guest','9811111111','ryan@guest.com', "2022-06-03");
+INSERT INTO guests (first_name,last_name,phone,email,dateOfBirth) VALUES ('Gene','Milo','9822222222','ryan@guest.com', "2022-06-03");
+INSERT INTO guests (first_name,last_name,phone,email,dateOfBirth) VALUES ('Bree','Stree','9822222222','ryan@guest.com', "2022-06-03");
 
 TRUNCATE TABLE agent_accounts;
 ALTER TABLE agent_accounts AUTO_INCREMENT = 1;

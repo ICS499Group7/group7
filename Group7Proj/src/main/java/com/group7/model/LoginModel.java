@@ -12,8 +12,6 @@ public class LoginModel {
     public static boolean admin;
     private static String password;
 
-    public LoginModel() {
-    }
     public LoginModel(String user, String pass) {
         username = user;
         password = pass;

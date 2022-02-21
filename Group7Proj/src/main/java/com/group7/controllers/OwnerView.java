@@ -1,15 +1,15 @@
 package com.group7.controllers;
 
-import com.group7.model.AgentModel;
 import com.group7.model.LoginModel;
+import com.group7.model.OwnerModel;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -19,7 +19,6 @@ import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
-import javafx.scene.control.TableColumn.CellDataFeatures;
 
 import java.io.IOException;
 import java.net.URL;
@@ -28,27 +27,26 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class AgentMainController implements Initializable {
-    @FXML
-    private Button backButton;
+public class OwnerView implements Initializable {
     @FXML
     private TableView tableView;
+    @FXML
+    private Button backButton;
     @FXML
     private Label statusMessageLabel;
 
     private ObservableList<ObservableList> items = FXCollections.observableArrayList();
-    private AgentModel agent = new AgentModel();
+    private OwnerModel owner = new OwnerModel();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
-        ResultSet rs = new AgentModel().getAgents();
+        ResultSet rs = new OwnerModel().getOwners();
         try {
             for(int i=0; i<rs.getMetaData().getColumnCount(); i++) {
                 final int j = i;
                 TableColumn col = new TableColumn(rs.getMetaData().getColumnName(i+1));
-                col.setCellValueFactory(new Callback<CellDataFeatures<ObservableList,String>,ObservableValue<String>>(){
-                    public ObservableValue<String> call(CellDataFeatures<ObservableList, String> param) {
+                col.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ObservableList,String>, ObservableValue<String>>(){
+                    public ObservableValue<String> call(TableColumn.CellDataFeatures<ObservableList, String> param) {
                         return new SimpleStringProperty(param.getValue().get(j).toString());
                     }
                 });
@@ -60,9 +58,12 @@ public class AgentMainController implements Initializable {
                 for (int i=1; i<=rs.getMetaData().getColumnCount(); i++){
                     row.add(rs.getString(i));
                 }
+
                 items.add(row);
             }
+
             tableView.setItems(items);
+
         } catch(Exception e) {}
     }
 
@@ -70,12 +71,12 @@ public class AgentMainController implements Initializable {
         homepage();
     }
 
-    public void createAgentButtonOnAction(ActionEvent event) {
+    public void createOwnerButtonOnAction(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/agentAddForm.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/ownerAddForm.fxml"));
             Stage registerStage = new Stage();
             registerStage.initStyle(StageStyle.UNDECORATED);
-            registerStage.setScene(new Scene(root, 350, 450));
+            registerStage.setScene(new Scene(root, 500, 400));
             registerStage.show();
             Stage stage = (Stage) backButton.getScene().getWindow();
             stage.close();
@@ -85,7 +86,7 @@ public class AgentMainController implements Initializable {
         }
     }
 
-    public void modifyAgentButtonOnAction(ActionEvent event) throws IOException {
+    public void modifyOwnerButtonOnAction(ActionEvent event) throws IOException {
         try {
             if (tableView.getSelectionModel().getSelectedIndex() != -1) {
                 String items = tableView.getItems().get(tableView.getSelectionModel().getSelectedIndex()).toString();
@@ -94,48 +95,43 @@ public class AgentMainController implements Initializable {
                 System.out.println(id);
 
                 //This code is slightly different as I needed to get at .getController to transfer content from 1 scene to the next scene
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/group7/agentModifyForm.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/group7/ownerModifyForm.fxml"));
                 Parent root = loader.load();
-                AgentManageController modifyController = loader.getController();
-                modifyController.passAgentInfo(id.get(0), id.get(1), id.get(2), id.get(3), id.get(4), id.get(4));
+                OwnerManageController modifyController = loader.getController();
+                modifyController.passOwnerInfo(id.get(0), id.get(1), id.get(2), id.get(3), id.get(4), id.get(5));
 
-                if (!id.get(3).substring(id.get(3).length() - 1).equals("!") || LoginModel.admin) {
-                    Stage registerStage = new Stage();
-                    registerStage.initStyle(StageStyle.UNDECORATED);
-                    registerStage.setScene(new Scene(root, 350, 450));
-                    registerStage.show();
-                    Stage stage = (Stage) backButton.getScene().getWindow();
-                    stage.close();
-                } else {
-                    statusMessageLabel.setText("Please contact an Administrator.  You must have administrative rights to change account to an Administrators account");
-                }
+                Stage registerStage = new Stage();
+                registerStage.initStyle(StageStyle.UNDECORATED);
+                registerStage.setScene(new Scene(root, 500, 400));
+                registerStage.show();
+                Stage stage = (Stage) backButton.getScene().getWindow();
+                stage.close();
             } else {
-                statusMessageLabel.setText("Please Select an Agent to Modify from the Table and Try Again");
+                statusMessageLabel.setText("Please Select an Owner to Modify from the Table and Try Again");
             }
+
         } catch (Exception e) {
             e.printStackTrace();
             e.getCause();
         }
     }
 
-    public void deleteAgentButtonOnAction(ActionEvent event) {
-        if (LoginModel.admin)
-            try {
-                String items = tableView.getItems().get(tableView.getSelectionModel().getSelectedIndex()).toString();
-                items = items.substring(1, items.length() - 1);
-                List<String> id = Arrays.asList(items.split(",\\s*"));
-                if (agent.deleteAgent(id.get(0)))
-                    tableView.getItems().removeAll(tableView.getSelectionModel().getSelectedItem());
-            } catch (Exception e) {
-                e.printStackTrace();
-                e.getCause();
-            }
-        else {
-            statusMessageLabel.setText("Please contact an administrator.  You must have administrative rights to delete an Agent");
-
+    public void deleteOwnerButtonOnAction(ActionEvent event) {
+        try {
+            if (owner.deleteOwner(getSelectedOwnerID()) && LoginModel.admin)
+                tableView.getItems().removeAll(tableView.getSelectionModel().getSelectedItem());
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
         }
     }
 
+    public String getSelectedOwnerID(){
+        String items = tableView.getItems().get(tableView.getSelectionModel().getSelectedIndex()).toString();
+        items = items.substring(1, items.length() - 1);
+        List<String> id = Arrays.asList(items.split(",\\s*"));
+        return id.get(0);
+    }
 
     public void homepage() {
         try {
@@ -152,6 +148,4 @@ public class AgentMainController implements Initializable {
         }
     }
 
-
 }
-

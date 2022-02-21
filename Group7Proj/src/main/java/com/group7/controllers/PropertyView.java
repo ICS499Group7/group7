@@ -1,6 +1,6 @@
 package com.group7.controllers;
 
-import com.group7.model.OwnerModel;
+import com.group7.model.PropertyModel;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -26,20 +26,22 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class OwnerMainController implements Initializable {
+public class PropertyView implements Initializable {
+
     @FXML
     private TableView tableView;
     @FXML
-    private Button backButton;
-    @FXML
     private Label statusMessageLabel;
 
+    @FXML
+    private Button backButton;
+
     private ObservableList<ObservableList> items = FXCollections.observableArrayList();
-    private OwnerModel owner = new OwnerModel();
+    private PropertyModel property = new PropertyModel();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        ResultSet rs = new OwnerModel().getOwners();
+        ResultSet rs = new PropertyModel().getProperties();
         try {
             for(int i=0; i<rs.getMetaData().getColumnCount(); i++) {
                 final int j = i;
@@ -51,28 +53,20 @@ public class OwnerMainController implements Initializable {
                 });
                 tableView.getColumns().addAll(col);
             }
-
             while (rs.next()) {
                 ObservableList<String> row = FXCollections.observableArrayList();
                 for (int i=1; i<=rs.getMetaData().getColumnCount(); i++){
                     row.add(rs.getString(i));
                 }
-
                 items.add(row);
             }
-
             tableView.setItems(items);
-
         } catch(Exception e) {}
     }
 
-    public void backButtonOnAction(ActionEvent event) throws IOException {
-        homepage();
-    }
-
-    public void createOwnerButtonOnAction(ActionEvent event) {
+    public void createPropertyButtonOnAction(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/ownerAddForm.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/PropertyAddForm.fxml"));
             Stage registerStage = new Stage();
             registerStage.initStyle(StageStyle.UNDECORATED);
             registerStage.setScene(new Scene(root, 500, 400));
@@ -85,7 +79,7 @@ public class OwnerMainController implements Initializable {
         }
     }
 
-    public void modifyOwnerButtonOnAction(ActionEvent event) throws IOException {
+    public void modifyPropertyButtonOnAction(ActionEvent event) throws IOException {
         try {
             if (tableView.getSelectionModel().getSelectedIndex() != -1) {
                 String items = tableView.getItems().get(tableView.getSelectionModel().getSelectedIndex()).toString();
@@ -94,10 +88,10 @@ public class OwnerMainController implements Initializable {
                 System.out.println(id);
 
                 //This code is slightly different as I needed to get at .getController to transfer content from 1 scene to the next scene
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/group7/ownerModifyForm.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/group7/PropertyModifyForm.fxml"));
                 Parent root = loader.load();
-                OwnerManageController modifyController = loader.getController();
-                modifyController.passOwnerInfo(id.get(0), id.get(1), id.get(2), id.get(3), id.get(4), id.get(5));
+                PropertyManageController modifyController = loader.getController();
+                modifyController.passPropertyInfo(id.get(0), id.get(1), id.get(2), id.get(3), id.get(4));
 
                 Stage registerStage = new Stage();
                 registerStage.initStyle(StageStyle.UNDECORATED);
@@ -105,19 +99,22 @@ public class OwnerMainController implements Initializable {
                 registerStage.show();
                 Stage stage = (Stage) backButton.getScene().getWindow();
                 stage.close();
-            } else {
-                statusMessageLabel.setText("Please Select an Owner to Modify from the Table and Try Again");
+            }
+            else{
+                statusMessageLabel.setText("Please Select a Property to Modify from the Table and Try Again");
             }
 
-        } catch (Exception e) {
-            e.printStackTrace();
-            e.getCause();
-        }
+
+            } catch(Exception e){
+                e.printStackTrace();
+                e.getCause();
+            }
+
     }
 
-    public void deleteOwnerButtonOnAction(ActionEvent event) {
+    public void deletePropertyButtonOnAction(ActionEvent event) {
         try {
-            if (owner.deleteOwner(getSelectedOwnerID()))
+            if (property.deleteProperty(getSelectedPropertyID()))
                 tableView.getItems().removeAll(tableView.getSelectionModel().getSelectedItem());
         } catch (Exception e) {
             e.printStackTrace();
@@ -125,14 +122,14 @@ public class OwnerMainController implements Initializable {
         }
     }
 
-    public String getSelectedOwnerID(){
+    public String getSelectedPropertyID(){
         String items = tableView.getItems().get(tableView.getSelectionModel().getSelectedIndex()).toString();
         items = items.substring(1, items.length() - 1);
         List<String> id = Arrays.asList(items.split(",\\s*"));
         return id.get(0);
     }
 
-    public void homepage() {
+    public void backButtonOnAction(ActionEvent event) throws IOException {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/com/group7/homepage.fxml"));
             Stage registerStage = new Stage();
@@ -146,5 +143,6 @@ public class OwnerMainController implements Initializable {
             e.getCause();
         }
     }
+
 
 }

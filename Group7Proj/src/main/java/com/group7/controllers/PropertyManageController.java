@@ -43,10 +43,6 @@ public class PropertyManageController {
     private String propertyID;
     private String addressID;
 
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
-    }
-
     public void cancelButtonOnAction(ActionEvent event) {
         propertyMainScreen();
     }

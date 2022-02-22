@@ -53,7 +53,7 @@ public class HomepageView implements Initializable {
     }
 
     public void guestMainButtonOnAction(ActionEvent event) throws IOException {
-        propertyMainScreen();
+        guestMainScreen();
         Stage stage = (Stage) exitButton.getScene().getWindow();
         stage.close();
     }
@@ -101,6 +101,19 @@ public class HomepageView implements Initializable {
     public void propertyMainScreen() {
         try{
             Parent root = FXMLLoader.load(getClass().getResource("/com/group7/propertyMain.fxml"));
+            Stage registerStage = new Stage();
+            registerStage.initStyle(StageStyle.UNDECORATED);
+            registerStage.setScene(new Scene(root, 600, 400));
+            registerStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
+
+    public void guestMainScreen() {
+        try{
+            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/guestMain.fxml"));
             Stage registerStage = new Stage();
             registerStage.initStyle(StageStyle.UNDECORATED);
             registerStage.setScene(new Scene(root, 600, 400));

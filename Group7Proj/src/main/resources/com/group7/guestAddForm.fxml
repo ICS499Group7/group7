@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group7.controllers.GuestManageController">
+   <top>
+      <AnchorPane prefHeight="61.0" prefWidth="300.0" style="-fx-background-color: lightgrey;" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="cancelButton" layoutX="234.0" layoutY="18.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" text="Cancel" />
+            <Label layoutX="113.0" layoutY="17.0" text="Add Guest">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </top>
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="35.0" layoutY="18.0" text="First Name" />
+            <TextField fx:id="firstName" layoutX="116.0" layoutY="14.0" promptText="First Name" />
+            <TextField fx:id="lastName" layoutX="116.0" layoutY="55.0" promptText="Last Name" />
+            <Label layoutX="35.0" layoutY="59.0" text="Last Name" />
+            <Label layoutX="35.0" layoutY="100.0" text="Phone" />
+            <TextField fx:id="phone" layoutX="116.0" layoutY="96.0" promptText="Phone" />
+            <Label layoutX="35.0" layoutY="141.0" text="Email" />
+            <PasswordField fx:id="email" layoutX="116.0" layoutY="137.0" promptText="Email" />
+            <Label layoutX="28.0" layoutY="182.0" text="Date Of Birth" />
+            <Button fx:id="submitGuestButton" layoutX="98.0" layoutY="349.0" mnemonicParsing="false" onAction="#submitGuestButtonOnAction" prefHeight="25.0" prefWidth="125.0" text="Submit Guest" />
+            <Label fx:id="statusMessageLabel" layoutX="10.0" layoutY="210.0" prefHeight="120.0" prefWidth="300.0" text=" " textFill="RED" wrapText="true" />
+            <DatePicker fx:id="dateOfBirthField" layoutX="116.0" layoutY="178.0" />
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

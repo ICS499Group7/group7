@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class HomepageController implements Initializable {
+public class HomepageView implements Initializable {
     @FXML
     private Button exitButton;
 
@@ -47,6 +47,12 @@ public class HomepageController implements Initializable {
     }
 
     public void propertyMainButtonOnAction(ActionEvent event) throws IOException {
+        propertyMainScreen();
+        Stage stage = (Stage) exitButton.getScene().getWindow();
+        stage.close();
+    }
+
+    public void guestMainButtonOnAction(ActionEvent event) throws IOException {
         propertyMainScreen();
         Stage stage = (Stage) exitButton.getScene().getWindow();
         stage.close();

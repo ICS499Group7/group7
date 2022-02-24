@@ -1,5 +1,6 @@
-package com.group7.controllers;
+package com.group7.View;
 
+import com.group7.controllers.GuestManageController;
 import com.group7.model.GuestModel;
 import com.group7.model.LoginModel;
 import javafx.beans.property.SimpleStringProperty;

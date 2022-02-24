@@ -23,4 +23,6 @@ module com.group7 {
     opens com.group7.model to javafx.fxml;
     exports com.group7.application;
     opens com.group7.application to javafx.fxml;
+    exports com.group7.View;
+    opens com.group7.View to javafx.fxml;
 }

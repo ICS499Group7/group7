@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class HomepageController implements Initializable {
+public class HomepageView implements Initializable {
     @FXML
     private Button exitButton;
 
@@ -48,6 +48,12 @@ public class HomepageController implements Initializable {
 
     public void propertyMainButtonOnAction(ActionEvent event) throws IOException {
         propertyMainScreen();
+        Stage stage = (Stage) exitButton.getScene().getWindow();
+        stage.close();
+    }
+
+    public void guestMainButtonOnAction(ActionEvent event) throws IOException {
+        guestMainScreen();
         Stage stage = (Stage) exitButton.getScene().getWindow();
         stage.close();
     }
@@ -95,6 +101,19 @@ public class HomepageController implements Initializable {
     public void propertyMainScreen() {
         try{
             Parent root = FXMLLoader.load(getClass().getResource("/com/group7/propertyMain.fxml"));
+            Stage registerStage = new Stage();
+            registerStage.initStyle(StageStyle.UNDECORATED);
+            registerStage.setScene(new Scene(root, 600, 400));
+            registerStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
+
+    public void guestMainScreen() {
+        try{
+            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/guestMain.fxml"));
             Stage registerStage = new Stage();
             registerStage.initStyle(StageStyle.UNDECORATED);
             registerStage.setScene(new Scene(root, 600, 400));

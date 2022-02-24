@@ -5,9 +5,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group7.controllers.HomepageController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group7.controllers.HomepageView">
    <top>
-      <AnchorPane prefHeight="47.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="47.0" prefWidth="600.0" style="-fx-background-color: Gray;" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="logOutButton" layoutX="476.0" layoutY="11.0" mnemonicParsing="false" onAction="#logOutButtonOnAction" text="Log Out" />
             <Button fx:id="exitButton" layoutX="551.0" layoutY="11.0" mnemonicParsing="false" onAction="#exitButtonOnAction" text="Exit" />
@@ -17,14 +17,16 @@
    <center>
       <AnchorPane prefHeight="272.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Label contentDisplay="CENTER" layoutX="210.0" layoutY="51.0" prefHeight="20.0" prefWidth="180.0" text="Welcome to the Application!">
+            <Button fx:id="agentMainButton" layoutX="240.0" layoutY="80.0" minWidth="120.0" mnemonicParsing="false" onAction="#agentMainButtonOnAction" prefHeight="25.0" prefWidth="104.0" text="Manage Agents" />
+            <Button fx:id="ownerMainButton" layoutX="240.0" layoutY="115.0" minWidth="120.0" mnemonicParsing="false" onAction="#ownerMainButtonOnAction" text="Manage Owners" />
+            <Button fx:id="propertyMainButton" layoutX="240.0" layoutY="150.0" minWidth="120.0" mnemonicParsing="false" onAction="#propertyMainButtonOnAction" text="Manage Properties" />
+            <Button fx:id="guestMainButton" layoutX="240.0" layoutY="185.0" minWidth="120.0" mnemonicParsing="false" onAction="#guestMainButtonOnAction" text="Manage Guests" />
+            <Label layoutX="286.0" layoutY="14.0" />
+            <Label contentDisplay="CENTER" layoutX="238.0" layoutY="14.0" prefHeight="35.0" prefWidth="124.0" text="Property+">
                <font>
-                  <Font size="14.0" />
+                  <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <Button fx:id="agentMainButton" layoutX="248.0" layoutY="82.0" mnemonicParsing="false" onAction="#agentMainButtonOnAction" prefHeight="25.0" prefWidth="104.0" text="Manage Agents" />
-            <Button fx:id="ownerMainButton" layoutX="249.0" layoutY="118.0" mnemonicParsing="false" onAction="#ownerMainButtonOnAction" text="Manage Owners" />
-            <Button fx:id="propertyMainButton" layoutX="242.0" layoutY="152.0" mnemonicParsing="false" onAction="#propertyMainButtonOnAction" text="Manage Properties" />
          </children>
       </AnchorPane>
    </center>

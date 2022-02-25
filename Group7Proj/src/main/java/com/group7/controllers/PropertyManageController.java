@@ -90,9 +90,9 @@ public class PropertyManageController {
         System.out.println("in Save User = " + modifyUserQuery);
 
         if (modifyUserQuery == true && modifyAddressQuery == true) {
-            // statusMessageLabel.setText("Updated User Successfully");
+             statusMessageLabel.setText("Modified Property Successfully");
         } else {
-            //  statusMessageLabel.setText("Error With DB Query");
+              statusMessageLabel.setText("Error With DB Query");
         }
     }
 

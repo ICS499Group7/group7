@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.stage.StageStyle;
 
+import java.util.Locale;
 import java.util.ResourceBundle;
 import java.net.URL;
 
@@ -50,11 +51,15 @@ public class AgentManageController {
     }
 
     public void submitAgentButtonOnAction(ActionEvent event) throws Exception {
+        String checkPass = this.password.getText();
         if ((firstName.getText().isBlank() == false) && (lastName.getText().isBlank() == false) && (userName.getText().isBlank() == false) && (password.getText().isBlank() == false) && (passwordConfirm.getText().equals(password.getText()))){
             if (!userName.getText().substring(userName.getText().length() - 1).equals("!") || LoginModel.admin) {
-                saveAgent();
-                agentMainScreen();
-
+                if(checkPassword(this.password.getText())) {
+                    saveAgent();
+                    agentMainScreen();
+                }else {
+                    statusMessageLabel.setText("Please try again, the password must include at least 1 numeral, 1 upper case letter, and 1 lower case letter.");
+                }
         } else {
             statusMessageLabel.setText("Please contact an Administrator.  You must have administrative rights to add an Administrators account");
         }
@@ -119,6 +124,20 @@ public class AgentManageController {
             e.getCause();
         }
     }
+
+    private boolean checkPassword(String password) {
+        boolean length = password.length() >= 8;
+        System.out.println(length);
+        boolean lower = password.matches(".*[a-z].*");  //if not false password has an uppercase letter
+        System.out.println(lower);
+        boolean upper = password.matches(".*[A-Z].*"); //if not false password has a lowercase letter
+        System.out.println(upper);
+        boolean number = password.matches(".*[0-9].*"); //if not false password has a lowercase letter
+        System.out.println(number);
+        return length && lower && upper && number;
+
+        }
+
 
 
 }

@@ -1,4 +1,4 @@
-package com.group7.controllers;
+package com.group7.View;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;

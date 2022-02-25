@@ -34,7 +34,6 @@ public class AgentManageController {
     @FXML
     private PasswordField passwordConfirm;
     private String agentID;
-    private static String dbError;
 
 
     public void passAgentInfo(String id, String fName, String lName, String userName, String password, String passwordConfirm){
@@ -52,8 +51,9 @@ public class AgentManageController {
 
             if (!userName.getText().substring(userName.getText().length() - 1).equals("!") || LoginModel.admin) {
                 if (checkPassword(this.password.getText())) {
-                    if (saveAgent())
+                    if (saveAgent()){
                         agentMainScreen();
+                    }
                 } else {
                     statusMessageLabel.setText("Please try again, the password must have 8 characters and include at least 1 number, 1 upper case letter, and 1 lower case letter.");
                 }
@@ -70,8 +70,9 @@ public class AgentManageController {
 
             if (!userName.getText().substring(userName.getText().length() - 1).equals("!") || LoginModel.admin) {
                 if (checkPassword(this.password.getText())) {
-                    if (modifyAgent())
+                    if (modifyAgent()) {
                         agentMainScreen();
+                    }
                 } else {
                     statusMessageLabelModify.setText("Please try again, the password must have 8 characters and include at least 1 number, 1 upper case letter, and 1 lower case letter.");
                 }
@@ -88,28 +89,40 @@ public class AgentManageController {
     }
 
     public boolean saveAgent() {
-        boolean addAgentQuery = new AgentModel().addAgent(firstName.getText(),lastName.getText(),userName.getText(),password.getText());
-
-        if (addAgentQuery == true) {
-            statusMessageLabel.setText("Created Agent Successfully");
-            return true;
-        } else {
-            statusMessageLabel.setText("The following error occurred - " + dbError);
-            dbError = "";
-            return false;
+        int addAgentQuery = new AgentModel().addAgent(firstName.getText(),lastName.getText(),userName.getText(),password.getText());
+        System.out.println("addAgentQuery = " + addAgentQuery);
+        switch(addAgentQuery){
+            case 0:
+                statusMessageLabel.setText("Error With DB Query");
+                return false;
+            case 1:
+                statusMessageLabel.setText("Created Agent Successfully");
+                return true;
+            case 2:
+                statusMessageLabel.setText("Please try again, the username must be unique");
+                return false;
+            default:
+                statusMessageLabel.setText("Unknown error");
+                return false;
         }
     }
 
     public boolean modifyAgent() {
-        boolean modifyAgentQuery = new AgentModel().modifyAgent(agentID, firstName.getText(),lastName.getText(),userName.getText(),password.getText());
-
-        if (modifyAgentQuery == true) {
-            statusMessageLabelModify.setText("Modified Agent Successfully");
-            return true;
-        } else {
-            statusMessageLabelModify.setText("The following error occurred - " + dbError);
-            dbError = "";
-            return false;
+        int modifyAgentQuery = new AgentModel().modifyAgent(agentID, firstName.getText(),lastName.getText(),userName.getText(),password.getText());
+        System.out.println("modifyAgentQuery = " + modifyAgentQuery);
+        switch(modifyAgentQuery){
+            case 0:
+                statusMessageLabelModify.setText("Error With DB Query");
+                return false;
+            case 1:
+                statusMessageLabelModify.setText("Modified Agent Successfully");
+                return true;
+            case 2:
+                statusMessageLabelModify.setText("Please try again, the username must be unique");
+                return false;
+            default:
+                statusMessageLabelModify.setText("Unknown error");
+                return false;
         }
     }
 
@@ -138,14 +151,6 @@ public class AgentManageController {
         boolean number = password.matches(".*[0-9].*"); //if true password has number
         System.out.println(number);
         return length && lower && upper && number;
-    }
-
-    public String getDbError() {
-        return dbError;
-    }
-
-    public void setDbError(String dbError) {
-        this.dbError = dbError;
     }
 
 }

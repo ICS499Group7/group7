@@ -1,15 +1,13 @@
 package com.group7.model;
 
 import com.group7.DatabaseConnection;
-import javafx.collections.FXCollections;
+import javafx.fxml.FXML;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Arrays;
-import java.util.List;
 
-public class PropertyModel {
+public class ReservationModel {
     private String id;
     private String propertyName;
     private String type;
@@ -17,7 +15,7 @@ public class PropertyModel {
     private String addressID;
     private String ownerID;
 
-    public PropertyModel() { //empty constructor
+    public ReservationModel() { //empty constructor
 
     }
 
@@ -126,34 +124,6 @@ public class PropertyModel {
         if(result == 1 && result2 == 1)
             return true;
         return false;
-    }
-
-    public ResultSet uniquePropertyZipCodes() throws SQLException {
-        DatabaseConnection connectNow = new DatabaseConnection();
-        Connection connectDB = connectNow.getConnection();
-        ResultSet rs = null;
-        String query = "SELECT DISTINCT(zip_code) FROM address";
-        try {
-            rs = connectDB.createStatement().executeQuery(query);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return rs;
-    }
-
-    public ResultSet uniquePropertyCity() throws SQLException {
-
-        DatabaseConnection connectNow = new DatabaseConnection();
-        Connection connectDB = connectNow.getConnection();
-
-        ResultSet rs = null;
-        String query = "SELECT DISTINCT(city) FROM address";
-        try {
-            rs = connectDB.createStatement().executeQuery(query);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return rs;
     }
 
 

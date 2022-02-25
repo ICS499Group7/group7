@@ -3,6 +3,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group7.View.PropertyView">
     <left>
@@ -23,9 +24,14 @@
         </AnchorPane>
     </right>
     <top>
-        <AnchorPane prefHeight="38.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+        <AnchorPane prefHeight="38.0" prefWidth="600.0" style="-fx-background-color: lightgrey;" BorderPane.alignment="CENTER">
             <children>
                 <Button fx:id="backButton" layoutX="494.0" layoutY="7.0" mnemonicParsing="false" onAction="#backButtonOnAction" text="Back To Menu" />
+            <Label layoutX="14.0" layoutY="5.0" text="Property Management">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
             </children>
         </AnchorPane>
     </top>

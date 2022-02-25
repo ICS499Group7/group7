@@ -1,8 +1,10 @@
 package com.group7.model;
 
+import com.group7.controllers.AgentManageController;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 
 import com.group7.DatabaseConnection;
 
@@ -12,6 +14,7 @@ public class AgentModel { //Will control getting and setting data to the SQL ser
     private String lastName;
     private String username;
     private String password;
+    AgentManageController sendDBError = new AgentManageController();
 
     public AgentModel() { //empty constructor
 
@@ -65,24 +68,33 @@ public class AgentModel { //Will control getting and setting data to the SQL ser
         this.username = username;
         this.password = password;
 
+
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
 
-        String addAgentQuery = "INSERT INTO agent_accounts (first_name,last_name,username,password) VALUES ('"+ this.firstName +"','"+ this.lastName +"','"+ this.username +"','"+ this.password +"')";
+        String addAgentQuery = "INSERT INTO agent_accounts (first_name,last_name,username,password) VALUES ('" + this.firstName + "','" + this.lastName + "','" + this.username + "','" + this.password + "')";
 
         try {
             int queryResult = connectDB.createStatement().executeUpdate(addAgentQuery); //execute the above query
+
             if (queryResult == 1) {
                 return true;
             } else {
                 return false;
             }
-        } catch (Exception e) {
+
+        } catch( SQLIntegrityConstraintViolationException eu) {
+            sendDBError.setDbError("The username must be unique");
+            return false;
+        }
+        catch (Exception e) {
             e.printStackTrace();
             e.getCause();
+            sendDBError.setDbError("Error With DB Query");
         }
+
         return false;
-    }
+}
 
     public boolean modifyAgent(String id, String firstName, String lastName, String username, String password) { //returns a boolean value, modifies agent in the agent_accounts
         this.id = id;
@@ -103,7 +115,12 @@ public class AgentModel { //Will control getting and setting data to the SQL ser
             } else {
                 return false;
             }
-        } catch (Exception e) {
+        }catch( SQLIntegrityConstraintViolationException eu) {
+        System.out.println("not unique");
+        sendDBError.setDbError("The username must be unique");
+        return false;
+    }
+        catch (Exception e) {
             e.printStackTrace();
             e.getCause();
         }

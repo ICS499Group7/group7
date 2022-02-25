@@ -58,7 +58,7 @@ public class AgentManageController {
                     saveAgent();
                     agentMainScreen();
                 }else {
-                    statusMessageLabel.setText("Please try again, the password must include at least 1 numeral, 1 upper case letter, and 1 lower case letter.");
+                    statusMessageLabel.setText("Please try again, the password must have 8 characters and include at least 1 number, 1 upper case letter, and 1 lower case letter.");
                 }
         } else {
             statusMessageLabel.setText("Please contact an Administrator.  You must have administrative rights to add an Administrators account");
@@ -128,11 +128,11 @@ public class AgentManageController {
     private boolean checkPassword(String password) {
         boolean length = password.length() >= 8;
         System.out.println(length);
-        boolean lower = password.matches(".*[a-z].*");  //if not false password has an uppercase letter
+        boolean lower = password.matches(".*[a-z].*");  //if true password has a lower letter
         System.out.println(lower);
-        boolean upper = password.matches(".*[A-Z].*"); //if not false password has a lowercase letter
+        boolean upper = password.matches(".*[A-Z].*"); //if true password has an uppercase letter
         System.out.println(upper);
-        boolean number = password.matches(".*[0-9].*"); //if not false password has a lowercase letter
+        boolean number = password.matches(".*[0-9].*"); //if true password has number
         System.out.println(number);
         return length && lower && upper && number;
 

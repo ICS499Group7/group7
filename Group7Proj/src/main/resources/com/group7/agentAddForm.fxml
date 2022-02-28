@@ -22,10 +22,10 @@
          <children>
             <Label layoutX="35.0" layoutY="18.0" text="First Name" />
             <TextField fx:id="firstName" layoutX="116.0" layoutY="14.0" promptText="First Name" />
-            <TextField fx:id="lastName" layoutX="116.0" layoutY="55.0" promptText="First Name" />
+            <TextField fx:id="lastName" layoutX="116.0" layoutY="55.0" promptText="Last Name" />
             <Label layoutX="35.0" layoutY="59.0" text="Last Name" />
             <Label layoutX="35.0" layoutY="100.0" text="Username" />
-            <TextField fx:id="userName" layoutX="116.0" layoutY="96.0" promptText="First Name" />
+            <TextField fx:id="userName" layoutX="116.0" layoutY="96.0" promptText="User Name" />
             <Label layoutX="35.0" layoutY="141.0" text="Password" />
             <PasswordField fx:id="password" layoutX="116.0" layoutY="137.0" promptText="Password" />
             <PasswordField fx:id="passwordConfirm" layoutX="116.0" layoutY="178.0" promptText="Re-Enter Password" />

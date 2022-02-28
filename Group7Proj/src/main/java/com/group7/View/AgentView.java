@@ -100,7 +100,7 @@ public class AgentView implements Initializable {
                 AgentManageController modifyController = loader.getController();
                 modifyController.passAgentInfo(id.get(0), id.get(1), id.get(2), id.get(3), id.get(4), id.get(4));
 
-                if (!id.get(3).substring(id.get(3).length() - 1).equals("!") || LoginModel.admin) {
+                if (!id.get(3).startsWith("!") || LoginModel.admin) {
                     Stage registerStage = new Stage();
                     registerStage.initStyle(StageStyle.UNDECORATED);
                     registerStage.setScene(new Scene(root, 350, 450));

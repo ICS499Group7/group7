@@ -1,12 +1,5 @@
 package com.group7.View;
 
-import com.group7.controllers.AgentManageController;
-import com.group7.model.AgentModel;
-import com.group7.model.LoginModel;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -85,7 +78,7 @@ public class HomepageView implements Initializable {
         stage.close();
     }
 
-    public void loginScreen() {
+    public void logOutButtonOnAction() {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/com/group7/login.fxml"));
             Stage registerStage = new Stage();
@@ -97,9 +90,11 @@ public class HomepageView implements Initializable {
             e.printStackTrace();
             e.getCause();
         }
+        Stage stage = (Stage) exitButton.getScene().getWindow();
+        stage.close();
     }
 
-    public void agentMainScreen() {
+    public void agentMainButtonOnAction() {
         try{
             Parent root = FXMLLoader.load(getClass().getResource("/com/group7/Agent/agentMain.fxml"));
             Stage registerStage = new Stage();
@@ -110,9 +105,11 @@ public class HomepageView implements Initializable {
             e.printStackTrace();
             e.getCause();
         }
+        Stage stage = (Stage) exitButton.getScene().getWindow();
+        stage.close();
     }
 
-    public void ownerMainScreen() {
+    public void ownerMainButtonOnAction() {
         try{
             Parent root = FXMLLoader.load(getClass().getResource("/com/group7/Owner/ownerMain.fxml"));
             Stage registerStage = new Stage();
@@ -123,9 +120,11 @@ public class HomepageView implements Initializable {
             e.printStackTrace();
             e.getCause();
         }
+        Stage stage = (Stage) exitButton.getScene().getWindow();
+        stage.close();
     }
 
-    public void propertyMainScreen() {
+    public void propertyMainButtonOnAction() {
         try{
             Parent root = FXMLLoader.load(getClass().getResource("/com/group7/Property/propertyMain.fxml"));
             Stage registerStage = new Stage();
@@ -136,9 +135,11 @@ public class HomepageView implements Initializable {
             e.printStackTrace();
             e.getCause();
         }
+        Stage stage = (Stage) exitButton.getScene().getWindow();
+        stage.close();
     }
 
-    public void guestMainScreen() {
+    public void guestMainButtonOnAction() {
         try{
             Parent root = FXMLLoader.load(getClass().getResource("/com/group7/Guest/guestMain.fxml"));
             Stage registerStage = new Stage();
@@ -149,9 +150,11 @@ public class HomepageView implements Initializable {
             e.printStackTrace();
             e.getCause();
         }
+        Stage stage = (Stage) exitButton.getScene().getWindow();
+        stage.close();
     }
 
-    public void vendorMainScreen() {
+    public void vendorMainButtonOnAction() {
         try{
             Parent root = FXMLLoader.load(getClass().getResource("/com/group7/Vendor/vendorMain.fxml"));
             Stage registerStage = new Stage();
@@ -162,6 +165,8 @@ public class HomepageView implements Initializable {
             e.printStackTrace();
             e.getCause();
         }
+        Stage stage = (Stage) exitButton.getScene().getWindow();
+        stage.close();
     }
 
     public void loadModifyAgentForCurrentUser(){

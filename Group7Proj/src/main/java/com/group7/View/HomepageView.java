@@ -58,6 +58,12 @@ public class HomepageView implements Initializable {
         stage.close();
     }
 
+    public void vendorMainButtonOnAction(ActionEvent event) throws IOException {
+        vendorMainScreen();
+        Stage stage = (Stage) exitButton.getScene().getWindow();
+        stage.close();
+    }
+
     public void loginScreen() {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/com/group7/login.fxml"));
@@ -114,6 +120,19 @@ public class HomepageView implements Initializable {
     public void guestMainScreen() {
         try{
             Parent root = FXMLLoader.load(getClass().getResource("/com/group7/guestMain.fxml"));
+            Stage registerStage = new Stage();
+            registerStage.initStyle(StageStyle.UNDECORATED);
+            registerStage.setScene(new Scene(root, 600, 400));
+            registerStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
+
+    public void vendorMainScreen() {
+        try{
+            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/vendorMain.fxml"));
             Stage registerStage = new Stage();
             registerStage.initStyle(StageStyle.UNDECORATED);
             registerStage.setScene(new Scene(root, 600, 400));

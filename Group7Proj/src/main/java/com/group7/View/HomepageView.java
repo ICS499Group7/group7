@@ -101,7 +101,7 @@ public class HomepageView implements Initializable {
 
     public void agentMainScreen() {
         try{
-            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/agentMain.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/Agent/agentMain.fxml"));
             Stage registerStage = new Stage();
             registerStage.initStyle(StageStyle.UNDECORATED);
             registerStage.setScene(new Scene(root, 600, 400));
@@ -114,7 +114,7 @@ public class HomepageView implements Initializable {
 
     public void ownerMainScreen() {
         try{
-            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/ownerMain.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/Owner/ownerMain.fxml"));
             Stage registerStage = new Stage();
             registerStage.initStyle(StageStyle.UNDECORATED);
             registerStage.setScene(new Scene(root, 600, 400));
@@ -127,7 +127,7 @@ public class HomepageView implements Initializable {
 
     public void propertyMainScreen() {
         try{
-            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/propertyMain.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/Property/propertyMain.fxml"));
             Stage registerStage = new Stage();
             registerStage.initStyle(StageStyle.UNDECORATED);
             registerStage.setScene(new Scene(root, 600, 400));
@@ -140,7 +140,7 @@ public class HomepageView implements Initializable {
 
     public void guestMainScreen() {
         try{
-            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/guestMain.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/Guest/guestMain.fxml"));
             Stage registerStage = new Stage();
             registerStage.initStyle(StageStyle.UNDECORATED);
             registerStage.setScene(new Scene(root, 600, 400));
@@ -153,7 +153,7 @@ public class HomepageView implements Initializable {
 
     public void vendorMainScreen() {
         try{
-            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/vendorMain.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/Vendor/vendorMain.fxml"));
             Stage registerStage = new Stage();
             registerStage.initStyle(StageStyle.UNDECORATED);
             registerStage.setScene(new Scene(root, 600, 400));

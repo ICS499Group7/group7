@@ -67,7 +67,7 @@ public class PropertyView implements Initializable {
 
     public void createPropertyButtonOnAction(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/PropertyAddForm.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/Property/propertyAddForm.fxml"));
             Stage registerStage = new Stage();
             registerStage.initStyle(StageStyle.UNDECORATED);
             registerStage.setScene(new Scene(root, 500, 400));
@@ -89,7 +89,7 @@ public class PropertyView implements Initializable {
                 System.out.println(id);
 
                 //This code is slightly different as I needed to get at .getController to transfer content from 1 scene to the next scene
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/group7/PropertyModifyForm.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/group7/Property/propertyModifyForm.fxml"));
                 Parent root = loader.load();
                 PropertyManageController modifyController = loader.getController();
                 modifyController.passPropertyInfo(id.get(0), id.get(1), id.get(2), id.get(3), id.get(4));

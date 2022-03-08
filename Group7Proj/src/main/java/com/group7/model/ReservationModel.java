@@ -19,6 +19,22 @@ public class ReservationModel {
 
     }
 
+    public ResultSet getReservationsByPropertyId(String propertyId) {
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connectDB = connectNow.getConnection();
+        ResultSet rs = null;
+        String query = "SELECT r.* FROM reservations r LEFT JOIN properties p on r.propertyId = '" + propertyId + "'";
+
+        try {
+            rs = connectDB.createStatement().executeQuery(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return rs;
+
+    }
+
     public ResultSet getProperties() { //Returns a Resultset list of all users in user_accounts
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();

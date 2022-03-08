@@ -119,4 +119,19 @@ public class HomepageView implements Initializable {
         stage.close();
     }
 
+    public void reservationMainButtonOnAction() {
+        try{
+            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/reservationCreate.fxml"));
+            Stage registerStage = new Stage();
+            registerStage.initStyle(StageStyle.UNDECORATED);
+            registerStage.setScene(new Scene(root, 600, 400));
+            registerStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+        Stage stage = (Stage) exitButton.getScene().getWindow();
+        stage.close();
+    }
+
 }

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group7.controllers.ReservationCreationController">
+   <left>
+      <AnchorPane prefHeight="363.0" prefWidth="449.0" BorderPane.alignment="CENTER">
+         <children>
+            <DatePicker fx:id="startDate" layoutX="138.0" layoutY="101.0" onAction="#triggerEndUpdate" />
+            <DatePicker fx:id="endDate" layoutX="138.0" layoutY="141.0" />
+            <ChoiceBox fx:id="propertyChoice" layoutX="150.0" layoutY="25.0" prefWidth="150.0" />
+            <Button fx:id="checkButton" layoutX="170.0" layoutY="182.0" mnemonicParsing="false" onAction="#checkButtonOnSubmit" text="Check Avaliability" />
+            <Label fx:id="avaliabilityStatus" layoutX="206.0" layoutY="228.0" text="Output" />
+            <Button fx:id="reserveButton" layoutX="199.0" layoutY="268.0" mnemonicParsing="false" onAction="#reserveButtonOnAction" text="reserve" />
+            <Button fx:id="setProperty" layoutX="332.0" layoutY="25.0" mnemonicParsing="false" onAction="#setPropertyOnAction" text="Button" />
+         </children>
+      </AnchorPane>
+   </left>
+   <top>
+      <AnchorPane prefHeight="37.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="backButton" layoutX="534.0" layoutY="6.0" mnemonicParsing="false" onAction="#backButtonOnAction" text="Back" />
+         </children>
+      </AnchorPane>
+   </top>
+   <right>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </right>
+</BorderPane>

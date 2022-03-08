@@ -50,6 +50,17 @@ CREATE TABLE `guests` (
   PRIMARY KEY (`id`)
 );
 
+CREATE TABLE `vendors` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `company_name` VARCHAR(45) NOT NULL,
+  `first_name` VARCHAR(45) NOT NULL,
+  `last_name` VARCHAR(45) NOT NULL,
+  `address_id` VARCHAR(45) NOT NULL,
+  `phone` VARCHAR(45) NOT NULL,
+  `email` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`));
+
+
 TRUNCATE TABLE guests;
 ALTER TABLE guests AUTO_INCREMENT = 1;
 INSERT INTO guests (first_name,last_name,phone,email,dateOfBirth) VALUES ('Ryan','Guest','9811111111','ryan@guest.com', "2022-06-03");
@@ -120,4 +131,7 @@ VALUES
 	("Lyndale","house","1095","19","9"),
 	("Fremont","house","1295","20","10");
 
-
+TRUNCATE TABLE vendors;
+ALTER TABLE vendors AUTO_INCREMENT = 1;
+INSERT INTO vendors (company_name,address_id,first_name,last_name,phone,email)
+VALUES ("Clean House LLC",1,"Johnson","Cleaner","3444627788","jcleaner@ch.com"),

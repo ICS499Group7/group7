@@ -128,7 +128,7 @@ public class AgentManageController {
 
     public void agentMainScreen() {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/agentMain.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/Agent/agentMain.fxml"));
             Stage registerStage = new Stage();
             registerStage.initStyle(StageStyle.UNDECORATED);
             registerStage.setScene(new Scene(root, 600, 400));

@@ -148,7 +148,7 @@ public class OwnerManageController implements Initializable {
 
     public void ownerMainScreen() {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/ownerMain.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/Owner/ownerMain.fxml"));
             Stage registerStage = new Stage();
             registerStage.initStyle(StageStyle.UNDECORATED);
             registerStage.setScene(new Scene(root, 600, 400));

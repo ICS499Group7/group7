@@ -72,7 +72,7 @@ public class GuestView implements Initializable {
 
     public void createGuestButtonOnAction(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/guestAddForm.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/Guest/guestAddForm.fxml"));
             Stage registerStage = new Stage();
             registerStage.initStyle(StageStyle.UNDECORATED);
             registerStage.setScene(new Scene(root, 350, 450));
@@ -94,7 +94,7 @@ public class GuestView implements Initializable {
                 System.out.println(id);
 
                 //This code is slightly different as I needed to get at .getController to transfer content from 1 scene to the next scene
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/group7/guestModifyForm.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/group7/Guest/guestModifyForm.fxml"));
                 Parent root = loader.load();
                 GuestManageController modifyController = loader.getController();
                 modifyController.passGuestInfo(id.get(0), id.get(1), id.get(2), id.get(3), id.get(4), id.get(5));

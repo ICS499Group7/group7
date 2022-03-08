@@ -134,7 +134,7 @@ public class VendorManageController implements Initializable {
 
     public void vendorMainScreen() {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/vendorMain.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/Vendor/vendorMain.fxml"));
             Stage registerStage = new Stage();
             registerStage.initStyle(StageStyle.UNDECORATED);
             registerStage.setScene(new Scene(root, 600, 400));

@@ -13,10 +13,8 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ResourceBundle;
 
 public class PropertyManageController {
     @FXML
@@ -126,7 +124,7 @@ public class PropertyManageController {
 
     public void propertyMainScreen() {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/propertyMain.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/Property/propertyMain.fxml"));
             Stage registerStage = new Stage();
             registerStage.initStyle(StageStyle.UNDECORATED);
             registerStage.setScene(new Scene(root, 600, 400));

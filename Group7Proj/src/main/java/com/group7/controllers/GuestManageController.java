@@ -1,23 +1,17 @@
 package com.group7.controllers;
 
-import com.group7.model.AgentModel;
 import com.group7.model.GuestModel;
-import com.group7.model.LoginModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.util.StringConverter;
 
-import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ResourceBundle;
 
 public class GuestManageController {
 
@@ -107,7 +101,7 @@ public class GuestManageController {
 
     public void guestMainScreen() {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/guestMain.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/Guest/guestMain.fxml"));
             Stage registerStage = new Stage();
             registerStage.initStyle(StageStyle.UNDECORATED);
             registerStage.setScene(new Scene(root, 600, 400));

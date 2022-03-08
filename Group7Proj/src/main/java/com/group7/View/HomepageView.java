@@ -23,48 +23,12 @@ public class HomepageView implements Initializable {
         //Images
     }
 
-    public void exitButtonOnAction(ActionEvent event) {
+    public void exitButtonOnAction() {
         Stage stage = (Stage) exitButton.getScene().getWindow();
         stage.close();
     }
 
-    public void logOutButtonOnAction(ActionEvent event) throws IOException {
-        loginScreen();
-        Stage stage = (Stage) exitButton.getScene().getWindow();
-        stage.close();
-    }
-
-    public void agentMainButtonOnAction(ActionEvent event) throws IOException {
-        agentMainScreen();
-        Stage stage = (Stage) exitButton.getScene().getWindow();
-        stage.close();
-    }
-
-    public void ownerMainButtonOnAction(ActionEvent event) throws IOException {
-        ownerMainScreen();
-        Stage stage = (Stage) exitButton.getScene().getWindow();
-        stage.close();
-    }
-
-    public void propertyMainButtonOnAction(ActionEvent event) throws IOException {
-        propertyMainScreen();
-        Stage stage = (Stage) exitButton.getScene().getWindow();
-        stage.close();
-    }
-
-    public void guestMainButtonOnAction(ActionEvent event) throws IOException {
-        guestMainScreen();
-        Stage stage = (Stage) exitButton.getScene().getWindow();
-        stage.close();
-    }
-
-    public void vendorMainButtonOnAction(ActionEvent event) throws IOException {
-        vendorMainScreen();
-        Stage stage = (Stage) exitButton.getScene().getWindow();
-        stage.close();
-    }
-
-    public void loginScreen() {
+    public void logOutButtonOnAction() {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/com/group7/login.fxml"));
             Stage registerStage = new Stage();
@@ -76,9 +40,11 @@ public class HomepageView implements Initializable {
             e.printStackTrace();
             e.getCause();
         }
+        Stage stage = (Stage) exitButton.getScene().getWindow();
+        stage.close();
     }
 
-    public void agentMainScreen() {
+    public void agentMainButtonOnAction() {
         try{
             Parent root = FXMLLoader.load(getClass().getResource("/com/group7/Agent/agentMain.fxml"));
             Stage registerStage = new Stage();
@@ -89,9 +55,11 @@ public class HomepageView implements Initializable {
             e.printStackTrace();
             e.getCause();
         }
+        Stage stage = (Stage) exitButton.getScene().getWindow();
+        stage.close();
     }
 
-    public void ownerMainScreen() {
+    public void ownerMainButtonOnAction() {
         try{
             Parent root = FXMLLoader.load(getClass().getResource("/com/group7/Owner/ownerMain.fxml"));
             Stage registerStage = new Stage();
@@ -102,9 +70,11 @@ public class HomepageView implements Initializable {
             e.printStackTrace();
             e.getCause();
         }
+        Stage stage = (Stage) exitButton.getScene().getWindow();
+        stage.close();
     }
 
-    public void propertyMainScreen() {
+    public void propertyMainButtonOnAction() {
         try{
             Parent root = FXMLLoader.load(getClass().getResource("/com/group7/Property/propertyMain.fxml"));
             Stage registerStage = new Stage();
@@ -115,9 +85,11 @@ public class HomepageView implements Initializable {
             e.printStackTrace();
             e.getCause();
         }
+        Stage stage = (Stage) exitButton.getScene().getWindow();
+        stage.close();
     }
 
-    public void guestMainScreen() {
+    public void guestMainButtonOnAction() {
         try{
             Parent root = FXMLLoader.load(getClass().getResource("/com/group7/Guest/guestMain.fxml"));
             Stage registerStage = new Stage();
@@ -128,9 +100,11 @@ public class HomepageView implements Initializable {
             e.printStackTrace();
             e.getCause();
         }
+        Stage stage = (Stage) exitButton.getScene().getWindow();
+        stage.close();
     }
 
-    public void vendorMainScreen() {
+    public void vendorMainButtonOnAction() {
         try{
             Parent root = FXMLLoader.load(getClass().getResource("/com/group7/Vendor/vendorMain.fxml"));
             Stage registerStage = new Stage();
@@ -141,6 +115,8 @@ public class HomepageView implements Initializable {
             e.printStackTrace();
             e.getCause();
         }
+        Stage stage = (Stage) exitButton.getScene().getWindow();
+        stage.close();
     }
 
 }

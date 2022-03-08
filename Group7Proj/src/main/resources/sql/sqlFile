@@ -60,6 +60,16 @@ CREATE TABLE `vendors` (
   `email` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`));
 
+CREATE TABLE `reservations` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `guestId` INT NOT NULL,
+  `propertyId` INT NOT NULL,
+  `agentId` INT NOT NULL,
+  `startDate` DATE NOT NULL,
+  `endDate` DATE NOT NULL,
+  `bookedDate` DATE NOT NULL,
+  `totalValue` FLOAT NOT NULL,
+  PRIMARY KEY (`id`));
 
 TRUNCATE TABLE guests;
 ALTER TABLE guests AUTO_INCREMENT = 1;
@@ -134,4 +144,4 @@ VALUES
 TRUNCATE TABLE vendors;
 ALTER TABLE vendors AUTO_INCREMENT = 1;
 INSERT INTO vendors (company_name,address_id,first_name,last_name,phone,email)
-VALUES ("Clean House LLC",1,"Johnson","Cleaner","3444627788","jcleaner@ch.com"),
+VALUES ("Clean House LLC",1,"Johnson","Cleaner","3444627788","jcleaner@ch.com");

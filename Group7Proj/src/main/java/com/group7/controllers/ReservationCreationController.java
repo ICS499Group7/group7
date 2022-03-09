@@ -1,5 +1,6 @@
 package com.group7.controllers;
 
+import com.group7.model.GuestModel;
 import com.group7.model.PropertyModel;
 import com.group7.model.ReservationModel;
 import javafx.collections.FXCollections;
@@ -23,11 +24,11 @@ public class ReservationCreationController implements Initializable {
     @FXML
     private Button backButton;
     @FXML
-    private Button checkButton;
-    @FXML
     private Button reserveButton;
     @FXML
-    private ChoiceBox propertyChoice;
+    private ComboBox propertyChoice;
+    @FXML
+    private ChoiceBox guestChoice;
     @FXML
     private DatePicker startDate;
     @FXML
@@ -35,9 +36,14 @@ public class ReservationCreationController implements Initializable {
     @FXML
     private Label avaliabilityStatus;
 
-    private ObservableList<ObservableList> items = FXCollections.observableArrayList();
+    private ObservableList<String> propertyItems = FXCollections.observableArrayList();
+    private ObservableList<String> guestItems = FXCollections.observableArrayList();
+    private ObservableList<LocalDate> items = FXCollections.observableArrayList();
     private PropertyModel property = new PropertyModel();
+    private GuestModel guest = new GuestModel();
     private ReservationModel reservations = new ReservationModel();
+
+
 
     private String sDate;
     private String eDate;
@@ -46,24 +52,88 @@ public class ReservationCreationController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        reserveButton.setVisible(false);
 
-        ResultSet rs = property.getProperties();
+        ResultSet rsp = property.getProperties();
+        ResultSet rsg = guest.getGuests();
         try {
-            while (rs.next()) {
-                ObservableList<String> row = FXCollections.observableArrayList();
-                row.add(rs.getString(2));
-                items.add(row);
-                System.out.println(row);
+            while (rsp.next()) {
+                propertyItems.add(rsp.getString(2));
             }
-            propertyChoice.setItems(items);
-            restrictDatePicker(startDate,LocalDate.now());
-            restrictDatePicker(endDate,LocalDate.now());
+            propertyChoice.setItems(propertyItems);
+            while (rsg.next()) {
+                guestItems.add(rsg.getString(2) + " " + rsg.getString(3));
+            }
+            guestChoice.setItems(guestItems);
         } catch(Exception e) {}
+
+
 
     }
 
     public void checkButtonOnSubmit() {
+
+    }
+
+    public void setPropertyOnAction() {
+        p = propertyChoice.getValue().toString();
+        System.out.println(p);
+        ResultSet rs = reservations.getReservationsByPropertyName(p);
+        items.clear();
+
+        String rStart;
+        String rEnd;
+
+        try{
+            while (rs.next()) {
+                rStart = rs.getString(5);
+                rEnd = rs.getString(6);
+                items.add(LocalDate.parse(rStart));
+                items.add(LocalDate.parse(rEnd));
+
+            }
+            System.out.println("IMPORT: " + items.size());
+            restrictDatePicker(startDate,items);
+
+        }catch (Exception e){
+
+        }
+    }
+
+
+
+
+    public void restrictDatePicker(DatePicker datePicker,ObservableList<LocalDate> listItems) {
+        final Callback<DatePicker, DateCell> dayCellFactory = new Callback<DatePicker, DateCell>(){
+            @Override
+            public DateCell call(final DatePicker datePicker) {
+                return new DateCell() {
+                    @Override
+                    public void updateItem(LocalDate item, boolean empty) {
+                        if (listItems.size() == 0){
+                            super.updateItem(item, empty);
+                        }
+                        for(int i=0; i < listItems.size(); i=i+2){
+                            LocalDate minDate = listItems.get(i);
+                            LocalDate maxDate = listItems.get(i+1);
+                            super.updateItem(item, empty);
+                            if (item.isAfter(minDate) && item.isBefore(maxDate) || item.isEqual(minDate) || item.isEqual(maxDate)) {
+                                setDisable(true);
+                                setStyle("-fx-background-color: #ffc0cb;");
+                            }
+                        }
+
+                    }
+                };
+            }
+        };
+        datePicker.setDayCellFactory(dayCellFactory);
+    }
+
+    public void triggerEndUpdate() {
+        //restrictDatePicker(endDate,LocalDate.parse(startDate.getValue().toString()).plusDays(1));
+    }
+
+    public void reserveButtonOnAction() {
         sDate = startDate.getValue().toString();
         eDate = endDate.getValue().toString();
         p = propertyChoice.getValue().toString();
@@ -79,7 +149,7 @@ public class ReservationCreationController implements Initializable {
 
         System.out.println("[" + sDate + ", " + eDate + ", " + p +"]");
 
-        ResultSet rs = reservations.getReservationsByPropertyId(p);
+        ResultSet rs = reservations.getReservationsByPropertyName(p);
         boolean isValid = true;
         try{
             while (rs.next()){
@@ -103,53 +173,6 @@ public class ReservationCreationController implements Initializable {
         } catch (Exception e) {
 
         }
-    }
-
-    public void setPropertyOnAction() {
-        p = propertyChoice.getValue().toString();
-        ResultSet rs = reservations.getReservationsByPropertyId(p);
-
-        String rStart;
-        String rEnd;
-        restrictDatePicker(startDate,LocalDate.now());
-        try{
-            while (rs.next()) {
-                rStart = rs.getString(5);
-                rEnd = rs.getString(6);
-
-            }
-        }catch (Exception e){
-
-        }
-
-    }
-
-
-    public void restrictDatePicker(DatePicker datePicker, LocalDate minDate) {
-        final Callback<DatePicker, DateCell> dayCellFactory = new Callback<DatePicker, DateCell>() {
-            @Override
-            public DateCell call(final DatePicker datePicker) {
-                return new DateCell() {
-                    @Override
-                    public void updateItem(LocalDate item, boolean empty) {
-                        super.updateItem(item, empty);
-                        if (item.isBefore(minDate)) {
-                            setDisable(true);
-                            setStyle("-fx-background-color: #ffc0cb;");
-                        }
-                    }
-                };
-            }
-        };
-        datePicker.setDayCellFactory(dayCellFactory);
-    }
-
-    public void triggerEndUpdate() {
-        restrictDatePicker(endDate,LocalDate.parse(startDate.getValue().toString()).plusDays(1));
-    }
-
-    public void reserveButtonOnAction() {
-
     }
 
     public void backButtonOnAction() {

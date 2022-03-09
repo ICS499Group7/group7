@@ -19,11 +19,11 @@ public class ReservationModel {
 
     }
 
-    public ResultSet getReservationsByPropertyId(String propertyId) {
+    public ResultSet getReservationsByPropertyName(String propertyId) {
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
         ResultSet rs = null;
-        String query = "SELECT r.* FROM reservations r LEFT JOIN properties p on r.propertyId = '" + propertyId + "'";
+        String query = "SELECT r.* FROM reservations r WHERE r.propertyId = (SELECT p.id FROM properties p WHERE p.name = '" + propertyId + "')";
 
         try {
             rs = connectDB.createStatement().executeQuery(query);

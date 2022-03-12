@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group7.View.OwnerView">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group7.View.VendorView">
    <left>
       <AnchorPane prefHeight="350.0" prefWidth="432.0" BorderPane.alignment="CENTER">
          <children>
@@ -16,9 +16,9 @@
    <right>
       <AnchorPane prefHeight="350.0" prefWidth="264.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="createOwnerButton" layoutX="16.0" layoutY="14.0" mnemonicParsing="false" onAction="#createOwnerButtonOnAction" prefHeight="25.0" prefWidth="92.0" text="Create Owner" />
-            <Button fx:id="modifyOwnerButton" layoutX="16.0" layoutY="46.0" mnemonicParsing="false" onAction="#modifyOwnerButtonOnAction" text="Modify Owner" />
-            <Button fx:id="deleteOwnerButton" layoutX="16.0" layoutY="78.0" mnemonicParsing="false" onAction="#deleteOwnerButtonOnAction" prefHeight="25.0" prefWidth="91.0" text="Delete Owner" />
+            <Button fx:id="createVendorButton" layoutX="10.0" layoutY="14.0" mnemonicParsing="false" onAction="#createVendorButtonOnAction" prefHeight="25.0" prefWidth="100.0" text="Create Vendor" />
+            <Button fx:id="modifyVendorButton" layoutX="10.0" layoutY="46.0" mnemonicParsing="false" onAction="#modifyVendorButtonOnAction" prefHeight="25.0" prefWidth="100.0" text="Modify Vendor" />
+            <Button fx:id="deleteVendorButton" layoutX="10.0" layoutY="78.0" mnemonicParsing="false" onAction="#deleteVendorButtonOnAction" prefHeight="25.0" prefWidth="100.0" text="Delete Vendor" />
             <Label fx:id="statusMessageLabel" layoutX="12.0" layoutY="119.0" prefHeight="211.0" prefWidth="95.0" textAlignment="CENTER" textFill="#f22c2c" wrapText="true" />
          </children>
       </AnchorPane>
@@ -27,7 +27,7 @@
       <AnchorPane prefHeight="42.0" prefWidth="600.0" style="-fx-background-color: lightgrey;" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="backButton" layoutX="494.0" layoutY="7.0" mnemonicParsing="false" onAction="#backButtonOnAction" text="Back To Menu" />
-            <Label layoutX="14.0" layoutY="6.0" text="Owner Management">
+            <Label layoutX="14.0" layoutY="6.0" text="Vendor Management">
                <font>
                   <Font size="18.0" />
                </font>

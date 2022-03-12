@@ -1,7 +1,7 @@
 package com.group7.controllers;
 
 import com.group7.model.AddressModel;
-import com.group7.model.OwnerModel;
+import com.group7.model.VendorModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,14 +13,15 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class OwnerManageController implements Initializable {
+public class VendorManageController implements Initializable {
     @FXML
-    private Label ownerIDLabel;
+    private Label vendorIDLabel;
     @FXML
     private Button cancelButton;
     @FXML
@@ -44,7 +45,7 @@ public class OwnerManageController implements Initializable {
     @FXML
     private Label statusMessageLabel;
 
-    private String ownerID;
+    private String vendorID;
     private String addressID;
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -52,13 +53,13 @@ public class OwnerManageController implements Initializable {
     }
 
     public void cancelButtonOnAction(ActionEvent event) {
-        ownerMainScreen();
+        vendorMainScreen();
     }
 
     public void submitAddButtonOnAction(ActionEvent event) throws Exception {
         if (1 == 1){
-            addOwner();
-            ownerMainScreen();
+            addVendor();
+            vendorMainScreen();
         } else {
             statusMessageLabel.setText("There was an issue with the form. Please check.");
         }
@@ -66,20 +67,20 @@ public class OwnerManageController implements Initializable {
     public void submitModifyButtonOnAction(ActionEvent event) throws Exception {
         if ((companyName.getText().isBlank() == false) && (address.getText().isBlank() == false) && (zipCode.getText().isBlank() == false) && (firstName.getText().isBlank() == false) && (lastName.getText().isBlank() == false) && (phone.getText().isBlank() == false) &&
                 (email.getText().isBlank() == false)){
-            modifyOwner();
-            ownerMainScreen();
+            modifyVendor();
+            vendorMainScreen();
         } else {
             statusMessageLabel.setText("There was an issue with the form. Please check Entries.");
         }
     }
 
 
-    public void addOwner() {
+    public void addVendor() {
 
         addressID = new AddressModel().createAddress(address.getText(),city.getText(), zipCode.getText(), state.getText());
         System.out.println(addressID);
 
-        boolean createUserQuery = new OwnerModel().createOwner(companyName.getText(), addressID, firstName.getText(),lastName.getText(),phone.getText(),email.getText());
+        boolean createUserQuery = new VendorModel().createVendor(companyName.getText(), addressID, firstName.getText(),lastName.getText(),phone.getText(),email.getText());
 
         if (createUserQuery == true) {
             statusMessageLabel.setText("Created User Successfully");
@@ -89,10 +90,10 @@ public class OwnerManageController implements Initializable {
 
     }
 
-    public void modifyOwner() {
-        String addressID = new OwnerModel().getAddressIDByOwner(ownerID);
+    public void modifyVendor() {
+        String addressID = new VendorModel().getAddressIDByVendor(vendorID);
         boolean modifyAddressQuery = new AddressModel().modifyAddress(addressID, address.getText(),city.getText(), zipCode.getText(),state.getText());
-        boolean modifyUserQuery = new OwnerModel().modifyOwner(ownerID, companyName.getText(),firstName.getText(),lastName.getText(),phone.getText(), email.getText());
+        boolean modifyUserQuery = new VendorModel().modifyVendor(vendorID,companyName.getText(),firstName.getText(),lastName.getText(),phone.getText(), email.getText());
 
         System.out.println("in Save User = " + modifyUserQuery);
 
@@ -103,14 +104,13 @@ public class OwnerManageController implements Initializable {
         }
     }
 
-    public void passOwnerInfo(String id, String cName, String fName, String lName, String phone, String em) throws SQLException {
-
+    public void passVendorInfo(String id, String cName, String fName, String lName, String phone, String em) throws SQLException {
         String street;
         String city;
         String zip;
         String state;
 
-        String addrID = new OwnerModel().getAddressIDByOwner(id);
+        String addrID = new VendorModel().getAddressIDByVendor(id);
 
         ResultSet rs = new AddressModel().getAddressByID(addrID);
         rs.next();
@@ -119,8 +119,8 @@ public class OwnerManageController implements Initializable {
         zip = rs.getString(3);
         state = rs.getString(4);
 
-        this.ownerID = id;
-        this.ownerIDLabel.setText(id);
+        this.vendorID = id;
+        this.vendorIDLabel.setText(id);
         this.companyName.setText(cName);
         this.address.setText(street);
         this.city.setText(city);
@@ -131,24 +131,10 @@ public class OwnerManageController implements Initializable {
         this.phone.setText(phone);
         this.email.setText(em);
     }
-/*
-    public void showInformation(String id, String cName, String addr, String zip, String fName, String lName, String mPhone, String cPhone, String email){
 
-        ownerIDModify = id;
-        companyNameModify.setText(cName);
-        addressModify.setText(addr);
-        zipCodeModify.setText(zip);
-        firstNameModify.setText(fName);
-        lastNameModify.setText(lName);
-        phoneModify.setText(mPhone);
-        emailModify.setText(email);
-
-    }
-*/
-
-    public void ownerMainScreen() {
+    public void vendorMainScreen() {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/Owner/ownerMain.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/Vendor/vendorMain.fxml"));
             Stage registerStage = new Stage();
             registerStage.initStyle(StageStyle.UNDECORATED);
             registerStage.setScene(new Scene(root, 600, 400));

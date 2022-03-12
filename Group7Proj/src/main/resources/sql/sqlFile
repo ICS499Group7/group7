@@ -50,6 +50,27 @@ CREATE TABLE `guests` (
   PRIMARY KEY (`id`)
 );
 
+CREATE TABLE `vendors` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `company_name` VARCHAR(45) NOT NULL,
+  `first_name` VARCHAR(45) NOT NULL,
+  `last_name` VARCHAR(45) NOT NULL,
+  `address_id` VARCHAR(45) NOT NULL,
+  `phone` VARCHAR(45) NOT NULL,
+  `email` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`));
+
+CREATE TABLE `reservations` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `guestId` INT NOT NULL,
+  `propertyId` INT NOT NULL,
+  `agentId` INT NOT NULL,
+  `startDate` DATE NOT NULL,
+  `endDate` DATE NOT NULL,
+  `bookedDate` DATE NOT NULL,
+  `totalValue` FLOAT NOT NULL,
+  PRIMARY KEY (`id`));
+
 TRUNCATE TABLE guests;
 ALTER TABLE guests AUTO_INCREMENT = 1;
 INSERT INTO guests (first_name,last_name,phone,email,dateOfBirth) VALUES ('Ryan','Guest','9811111111','ryan@guest.com', "2022-06-03");
@@ -58,9 +79,13 @@ INSERT INTO guests (first_name,last_name,phone,email,dateOfBirth) VALUES ('Bree'
 
 TRUNCATE TABLE agent_accounts;
 ALTER TABLE agent_accounts AUTO_INCREMENT = 1;
-INSERT INTO user_accounts (first_name,last_name,username,password) VALUES ('agent','pass','agent','pass');
-INSERT INTO user_accounts (first_name,last_name,username,password) VALUES ('admin','root','admin!','root');
-INSERT INTO user_accounts (first_name,last_name,username,password) VALUES ('!','1','!','1');
+INSERT INTO agent_accounts (first_name,last_name,username,password) VALUES ('Dev_account','admin','!','1');
+INSERT INTO agent_accounts (first_name,last_name,username,password) VALUES ('Bob','Smith','smithb1!','PassWord10');
+INSERT INTO agent_accounts (first_name,last_name,username,password) VALUES ('Jill','Larson','larsonj1','PassWord11');
+INSERT INTO agent_accounts (first_name,last_name,username,password) VALUES ('Ann','Williams','williamsa1','PassWord12');
+INSERT INTO agent_accounts (first_name,last_name,username,password) VALUES ('Miles','Davis','davism1','PassWord13');
+INSERT INTO agent_accounts (first_name,last_name,username,password) VALUES ('Jack','Olson','olsonj1','PassWord14');
+
 
 TRUNCATE TABLE address;
 ALTER TABLE address AUTO_INCREMENT = 1;
@@ -116,4 +141,7 @@ VALUES
 	("Lyndale","house","1095","19","9"),
 	("Fremont","house","1295","20","10");
 
-
+TRUNCATE TABLE vendors;
+ALTER TABLE vendors AUTO_INCREMENT = 1;
+INSERT INTO vendors (company_name,address_id,first_name,last_name,phone,email)
+VALUES ("Clean House LLC",1,"Johnson","Cleaner","3444627788","jcleaner@ch.com");

@@ -23,10 +23,10 @@
             <Label layoutX="43.0" layoutY="22.0" text="User ID" />
             <Label layoutX="38.0" layoutY="60.0" text="First Name" />
             <TextField fx:id="firstName" layoutX="119.0" layoutY="56.0" promptText="First Name" />
-            <TextField fx:id="lastName" layoutX="119.0" layoutY="97.0" promptText="First Name" />
+            <TextField fx:id="lastName" layoutX="119.0" layoutY="97.0" promptText="Last Name" />
             <Label layoutX="38.0" layoutY="101.0" text="Last Name" />
             <Label layoutX="38.0" layoutY="142.0" text="Username" />
-            <TextField fx:id="userName" layoutX="119.0" layoutY="138.0" promptText="First Name" />
+            <TextField fx:id="userName" layoutX="119.0" layoutY="138.0" promptText="User Name" />
             <Label layoutX="38.0" layoutY="183.0" text="Password" />
             <PasswordField fx:id="password" layoutX="119.0" layoutY="179.0" promptText="Password" />
             <PasswordField fx:id="passwordConfirm" layoutX="119.0" layoutY="220.0" promptText="Re-Enter Password" />

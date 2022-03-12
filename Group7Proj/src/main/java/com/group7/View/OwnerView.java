@@ -74,7 +74,7 @@ public class OwnerView implements Initializable {
 
     public void createOwnerButtonOnAction(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/ownerAddForm.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/Owner/ownerAddForm.fxml"));
             Stage registerStage = new Stage();
             registerStage.initStyle(StageStyle.UNDECORATED);
             registerStage.setScene(new Scene(root, 500, 400));
@@ -96,7 +96,7 @@ public class OwnerView implements Initializable {
                 System.out.println(id);
 
                 //This code is slightly different as I needed to get at .getController to transfer content from 1 scene to the next scene
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/group7/ownerModifyForm.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/group7/Owner/ownerModifyForm.fxml"));
                 Parent root = loader.load();
                 OwnerManageController modifyController = loader.getController();
                 modifyController.passOwnerInfo(id.get(0), id.get(1), id.get(2), id.get(3), id.get(4), id.get(5));

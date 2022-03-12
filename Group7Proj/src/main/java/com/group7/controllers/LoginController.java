@@ -9,13 +9,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
-import java.io.File;
 import java.util.ResourceBundle;
 import java.net.URL;
 
@@ -74,11 +70,5 @@ public class LoginController implements Initializable {
             e.getCause();
         }
     }
-    public boolean isAdmin(){
-        System.out.println(usernameTextField.getText());
-        System.out.println("this.usernameTextField.getText().length() - 1  =  " + (usernameTextField.getText().length() - 1));
-        return true; // (usernameTextField.getText().substring(this.usernameTextField.getText().length() - 1).compareTo("!") == 0);
-    }
-
 
 }

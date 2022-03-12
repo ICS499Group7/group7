@@ -73,7 +73,7 @@ public class AgentView implements Initializable {
 
     public void createAgentButtonOnAction(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/agentAddForm.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/Agent/agentAddForm.fxml"));
             Stage registerStage = new Stage();
             registerStage.initStyle(StageStyle.UNDECORATED);
             registerStage.setScene(new Scene(root, 350, 450));
@@ -95,12 +95,12 @@ public class AgentView implements Initializable {
                 System.out.println(id);
 
                 //This code is slightly different as I needed to get at .getController to transfer content from 1 scene to the next scene
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/group7/agentModifyForm.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/group7/Agent/agentModifyForm.fxml"));
                 Parent root = loader.load();
                 AgentManageController modifyController = loader.getController();
                 modifyController.passAgentInfo(id.get(0), id.get(1), id.get(2), id.get(3), id.get(4), id.get(4));
 
-                if (!id.get(3).substring(id.get(3).length() - 1).equals("!") || LoginModel.admin) {
+                if (!id.get(3).startsWith("!") || LoginModel.admin) {
                     Stage registerStage = new Stage();
                     registerStage.initStyle(StageStyle.UNDECORATED);
                     registerStage.setScene(new Scene(root, 350, 450));

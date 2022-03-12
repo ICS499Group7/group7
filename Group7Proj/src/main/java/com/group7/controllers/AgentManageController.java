@@ -49,7 +49,7 @@ public class AgentManageController {
     public void submitAgentButtonOnAction(ActionEvent event) throws Exception {
         if ((firstName.getText().isBlank() == false) && (lastName.getText().isBlank() == false) && (userName.getText().isBlank() == false) && (password.getText().isBlank() == false) && (passwordConfirm.getText().equals(password.getText()))) {
 
-            if (!userName.getText().substring(userName.getText().length() - 1).equals("!") || LoginModel.admin) {
+            if (!userName.getText().startsWith("!") || LoginModel.admin) {
                 if (checkPassword(this.password.getText())) {
                     if (saveAgent()){
                         agentMainScreen();
@@ -68,14 +68,19 @@ public class AgentManageController {
     public void submitModifyButtonOnAction(ActionEvent event) throws Exception {
         if ((firstName.getText().isBlank() == false) && (lastName.getText().isBlank() == false) && (userName.getText().isBlank() == false) && (password.getText().isBlank() == false) && (passwordConfirm.getText().equals(password.getText()))) {
 
-            if (!userName.getText().substring(userName.getText().length() - 1).equals("!") || LoginModel.admin) {
-                if (checkPassword(this.password.getText())) {
+            if (!userName.getText().startsWith("!") || LoginModel.admin) {
+                LoginModel.username = userName.getText();
+//                if (checkPassword(this.password.getText())) {
                     if (modifyAgent()) {
-                        agentMainScreen();
+                        if (LoginModel.admin) {
+                            agentMainScreen();
+                        } else {
+                            homepageForAgent();
+                        }
                     }
-                } else {
-                    statusMessageLabelModify.setText("Please try again, the password must have 8 characters and include at least 1 number, 1 upper case letter, and 1 lower case letter.");
-                }
+//                } else {
+//                    statusMessageLabelModify.setText("Please try again, the password must have 8 characters and include at least 1 number, 1 upper case letter, and 1 lower case letter.");
+//                }
             } else {
                 statusMessageLabelModify.setText("Please contact an Administrator.  You must have administrative rights to change account to an Administrators account");
             }
@@ -85,7 +90,11 @@ public class AgentManageController {
     }
 
     public void cancelButtonOnAction(ActionEvent event) {
-        agentMainScreen();
+        if (LoginModel.admin) {
+            agentMainScreen();
+        } else {
+            homepageForAgent();
+        }
     }
 
     public boolean saveAgent() {
@@ -136,6 +145,20 @@ public class AgentManageController {
             Stage stage = (Stage) cancelButton.getScene().getWindow();
             stage.close();
         } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
+    public void homepageForAgent() {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/homepage.fxml"));
+            Stage registerStage = new Stage();
+            registerStage.initStyle(StageStyle.UNDECORATED);
+            registerStage.setScene(new Scene(root, 600,400));
+            registerStage.show();
+            Stage stage = (Stage) cancelButton.getScene().getWindow();
+            stage.close();
+        } catch(Exception e) {
             e.printStackTrace();
             e.getCause();
         }

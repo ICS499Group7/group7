@@ -79,9 +79,13 @@ INSERT INTO guests (first_name,last_name,phone,email,dateOfBirth) VALUES ('Bree'
 
 TRUNCATE TABLE agent_accounts;
 ALTER TABLE agent_accounts AUTO_INCREMENT = 1;
-INSERT INTO user_accounts (first_name,last_name,username,password) VALUES ('agent','pass','agent','pass');
-INSERT INTO user_accounts (first_name,last_name,username,password) VALUES ('admin','root','admin!','root');
-INSERT INTO user_accounts (first_name,last_name,username,password) VALUES ('!','1','!','1');
+INSERT INTO agent_accounts (first_name,last_name,username,password) VALUES ('Dev_account','admin','!','1');
+INSERT INTO agent_accounts (first_name,last_name,username,password) VALUES ('Bob','Smith','smithb1!','PassWord10');
+INSERT INTO agent_accounts (first_name,last_name,username,password) VALUES ('Jill','Larson','larsonj1','PassWord11');
+INSERT INTO agent_accounts (first_name,last_name,username,password) VALUES ('Ann','Williams','williamsa1','PassWord12');
+INSERT INTO agent_accounts (first_name,last_name,username,password) VALUES ('Miles','Davis','davism1','PassWord13');
+INSERT INTO agent_accounts (first_name,last_name,username,password) VALUES ('Jack','Olson','olsonj1','PassWord14');
+
 
 TRUNCATE TABLE address;
 ALTER TABLE address AUTO_INCREMENT = 1;

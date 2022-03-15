@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="520.0" style="-fx-background-color: Gray;" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group7.controllers.LoginController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="520.0" style="-fx-background-color: Gray;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group7.controllers.LoginController">
    <top>
       <AnchorPane prefHeight="40.0" prefWidth="520.0" style="-fx-background-color: #F5F5F5;" BorderPane.alignment="CENTER" />
    </top>
@@ -24,7 +24,7 @@
                <font>
                   <Font size="16.0" />
                </font></PasswordField>
-            <Label fx:id="loginMessageLabel" alignment="CENTER" layoutX="140.0" layoutY="157.0" prefHeight="19.0" prefWidth="256.0" textFill="RED">
+            <Label fx:id="loginMessageLabel" alignment="CENTER" layoutX="141.0" layoutY="229.0" prefHeight="19.0" prefWidth="256.0" textFill="RED">
                <font>
                   <Font size="13.0" />
                </font>
@@ -39,8 +39,8 @@
                   <Font name="Poppins Bold" size="50.0" />
                </font>
             </Text>
-            <Button fx:id="loginButton" layoutX="144.0" layoutY="243.0" mnemonicParsing="false" onAction="#loginButtonOnAction" prefHeight="25.0" prefWidth="248.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 0, 0, 0); -fx-background-color: #1d3557;" text="Login" textFill="WHITE" />
-            <Button fx:id="cancelButton" layoutX="144.0" layoutY="294.0" mnemonicParsing="false" onAction="#CancelButtonOnAction" prefHeight="25.0" prefWidth="248.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 0, 0, 0); -fx-background-color: #1d3557;" text="Exit" textFill="WHITE" />
+            <Button fx:id="loginButton" layoutX="144.0" layoutY="261.0" mnemonicParsing="false" onAction="#loginButtonOnAction" prefHeight="25.0" prefWidth="248.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 0, 0, 0); -fx-background-color: #1d3557;" text="Login" textFill="WHITE" />
+            <Button fx:id="cancelButton" layoutX="144.0" layoutY="304.0" mnemonicParsing="false" onAction="#CancelButtonOnAction" prefHeight="25.0" prefWidth="248.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 0, 0, 0); -fx-background-color: #1d3557;" text="Exit" textFill="WHITE" />
          </children>
       </AnchorPane>
    </bottom>

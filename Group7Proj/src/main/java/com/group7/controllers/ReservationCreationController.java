@@ -1,8 +1,6 @@
 package com.group7.controllers;
 
-import com.group7.model.GuestModel;
-import com.group7.model.PropertyModel;
-import com.group7.model.ReservationModel;
+import com.group7.model.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -34,7 +32,7 @@ public class ReservationCreationController implements Initializable {
     @FXML
     private DatePicker endDate;
     @FXML
-    private Label avaliabilityStatus;
+    private Label statusLabel;
 
     private ObservableList<String> propertyItems = FXCollections.observableArrayList();
     private ObservableList<String> guestItems = FXCollections.observableArrayList();
@@ -43,11 +41,11 @@ public class ReservationCreationController implements Initializable {
     private GuestModel guest = new GuestModel();
     private ReservationModel reservations = new ReservationModel();
 
-
-
     private String sDate;
     private String eDate;
     private String p;
+    private String g;
+    private String a;
 
 
     @Override
@@ -65,13 +63,6 @@ public class ReservationCreationController implements Initializable {
             }
             guestChoice.setItems(guestItems);
         } catch(Exception e) {}
-
-
-
-    }
-
-    public void checkButtonOnSubmit() {
-
     }
 
     public void setPropertyOnAction() {
@@ -89,10 +80,10 @@ public class ReservationCreationController implements Initializable {
                 rEnd = rs.getString(6);
                 items.add(LocalDate.parse(rStart));
                 items.add(LocalDate.parse(rEnd));
-
             }
             System.out.println("IMPORT: " + items.size());
             restrictDatePicker(startDate,items);
+            restrictDatePicker(endDate,items);
 
         }catch (Exception e){
 
@@ -142,10 +133,9 @@ public class ReservationCreationController implements Initializable {
         String rEnd;
 
         if (sDate.compareTo(eDate) >= 0){
-            avaliabilityStatus.setText("End date must be at least 1 day after start date!");
+            statusLabel.setText("End date must be at least 1 day after start date!");
             return;
         }
-
 
         System.out.println("[" + sDate + ", " + eDate + ", " + p +"]");
 
@@ -165,9 +155,10 @@ public class ReservationCreationController implements Initializable {
             }
 
             if (isValid == true) {
-                avaliabilityStatus.setText("Reservation is avaliable!");
+                statusLabel.setText("Reservation is avaliable!");
+                createReservation();
             } else {
-                avaliabilityStatus.setText("Not avaliable!");
+                statusLabel.setText("Not avaliable!");
             }
 
         } catch (Exception e) {
@@ -175,12 +166,35 @@ public class ReservationCreationController implements Initializable {
         }
     }
 
+    public void createReservation() {
+        p = property.getPropertyIdByName(propertyChoice.getValue().toString());
+        String fName = guestChoice.getValue().toString().split(" ")[0];
+        String lName = guestChoice.getValue().toString().split(" ")[1];
+        g = guest.getGuestIdByName(fName, lName);
+
+        a = AgentModel.getAgentIdByName(LoginModel.username);
+
+        System.out.println(p +" AND " +g);
+
+        sDate = startDate.getValue().toString();
+        eDate = endDate.getValue().toString();
+        String cDate = String.valueOf(LocalDate.now());
+
+        boolean createReservationQuery = reservations.createReservation(p,g,a,sDate,eDate,"11",cDate);
+        if (createReservationQuery == true) {
+            statusLabel.setText("Created Reservation Successfully");
+        } else {
+            statusLabel.setText("Error With DB Query");
+        }
+
+    }
+
     public void backButtonOnAction() {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/homepage.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/reservationMain.fxml"));
             Stage registerStage = new Stage();
             registerStage.initStyle(StageStyle.UNDECORATED);
-            registerStage.setScene(new Scene(root, 600, 400));
+            registerStage.setScene(new Scene(root, 800, 600));
             registerStage.show();
             Stage stage = (Stage) backButton.getScene().getWindow();
             stage.close();

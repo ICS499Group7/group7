@@ -69,7 +69,18 @@ public class VendorView  implements Initializable {
     }
 
     public void backButtonOnAction(ActionEvent event) throws IOException {
-        homepage();
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/homepage.fxml"));
+            Stage registerStage = new Stage();
+            registerStage.initStyle(StageStyle.UNDECORATED);
+            registerStage.setScene(new Scene(root, 600, 400));
+            registerStage.show();
+            Stage stage = (Stage) backButton.getScene().getWindow();
+            stage.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
     }
 
     public void createVendorButtonOnAction(ActionEvent event) {
@@ -133,20 +144,4 @@ public class VendorView  implements Initializable {
         List<String> id = Arrays.asList(items.split(",\\s*"));
         return id.get(0);
     }
-
-    public void homepage() {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/homepage.fxml"));
-            Stage registerStage = new Stage();
-            registerStage.initStyle(StageStyle.UNDECORATED);
-            registerStage.setScene(new Scene(root, 600, 400));
-            registerStage.show();
-            Stage stage = (Stage) backButton.getScene().getWindow();
-            stage.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-            e.getCause();
-        }
-    }
-
 }

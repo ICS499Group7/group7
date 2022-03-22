@@ -10,13 +10,15 @@
          <children>
             <DatePicker fx:id="startDate" layoutX="138.0" layoutY="101.0" onAction="#triggerEndUpdate" />
             <DatePicker fx:id="endDate" layoutX="138.0" layoutY="141.0" />
-            <Label fx:id="avaliabilityStatus" layoutX="206.0" layoutY="228.0" text="Output" />
+            <Label fx:id="statusLabel" layoutX="206.0" layoutY="228.0" text="Output" />
             <Button fx:id="reserveButton" layoutX="199.0" layoutY="268.0" mnemonicParsing="false" onAction="#reserveButtonOnAction" text="reserve" />
             <Button fx:id="setProperty" layoutX="332.0" layoutY="25.0" mnemonicParsing="false" onAction="#setPropertyOnAction" text="Set Property" />
             <ChoiceBox fx:id="guestChoice" layoutX="150.0" layoutY="60.0" prefWidth="150.0" />
             <Label layoutX="90.0" layoutY="29.0" text="Property" />
-            <Label layoutX="90.0" layoutY="64.0" text="Guest" />
+            <Label layoutX="98.0" layoutY="64.0" text="Guest" />
             <ComboBox fx:id="propertyChoice" layoutX="150.0" layoutY="25.0" prefWidth="150.0" />
+            <Label layoutX="82.0" layoutY="105.0" text="Start Date" />
+            <Label layoutX="79.0" layoutY="145.0" text="End Date" />
          </children>
       </AnchorPane>
    </left>

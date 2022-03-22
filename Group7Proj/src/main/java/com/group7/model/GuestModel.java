@@ -33,6 +33,24 @@ public class GuestModel {
         return rs;
     }
 
+    public String getGuestIdByName(String fName, String lName) { //Returns a String id
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connectDB = connectNow.getConnection();
+
+        ResultSet rs = null;
+        String query = "SELECT g.id FROM guests g WHERE g.first_name = '" + fName + "' AND g.last_name = '" + lName + "'";
+        try {
+            rs = connectDB.createStatement().executeQuery(query);
+            if (rs.next()) {
+                return rs.getString(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return "null";
+    }
+
     public ResultSet getGuestDataByID(String guestID) { //Returns a Resultset list of all agents in Agents_accounts
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();

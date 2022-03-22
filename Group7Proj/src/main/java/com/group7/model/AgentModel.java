@@ -32,6 +32,24 @@ public class AgentModel { //Will control getting and setting data to the SQL ser
         return rs;
     }
 
+    public static String getAgentIdByName(String name) { //Returns a String id
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connectDB = connectNow.getConnection();
+
+        ResultSet rs = null;
+        String query = "SELECT a.id FROM agent_accounts a WHERE a.username = '" + name + "'";
+        try {
+            rs = connectDB.createStatement().executeQuery(query);
+            if (rs.next()) {
+                return rs.getString(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return "null";
+    }
+
     public ResultSet getAgentDataByID(String agentID) { //Returns a Resultset list of all agents in Agents_accounts
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();

@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group7.controllers.ReservationController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group7.View.ReservationView">
     <left>
         <AnchorPane prefHeight="400.0" prefWidth="600.0" BorderPane.alignment="CENTER">
             <children>
-                <TableView fx:id="tableView" layoutY="189.0" prefHeight="384.0" prefWidth="666.0" />
+                <TableView fx:id="tableView" layoutY="162.0" prefHeight="411.0" prefWidth="692.0" />
             <DatePicker fx:id="fromResDate" layoutX="73.0" layoutY="26.0" />
             <DatePicker fx:id="toResDate" layoutX="73.0" layoutY="58.0" />
             <Label layoutX="34.0" layoutY="30.0" text="From:" />
@@ -16,19 +17,22 @@
             <CheckBox fx:id="selectCity" layoutX="30.0" layoutY="121.0" mnemonicParsing="false" text="City" />
             <ComboBox fx:id="listZipCode" layoutX="109.0" layoutY="91.0" prefWidth="150.0" />
             <ComboBox layoutX="109.0" layoutY="117.0" prefWidth="150.0" />
+                <Button fx:id="searchProperty" layoutX="304.0" layoutY="118.0" mnemonicParsing="false" onAction="#searchPropertyButtonOnAction" prefHeight="25.0" prefWidth="110.0" text="Search Property" />
+            <Button fx:id="createReservationButton" layoutX="488.0" layoutY="118.0" mnemonicParsing="false" onAction="#createReservationButtonOnAction" prefHeight="25.0" prefWidth="153.0" text="Create Reservation" />
             </children>
         </AnchorPane>
     </left>
     <right>
         <AnchorPane prefHeight="517.0" prefWidth="125.0" BorderPane.alignment="CENTER">
             <children>
-                <Button fx:id="searchProperty" layoutX="7.0" layoutY="173.0" mnemonicParsing="false" onAction="#reservationMainButtonOnAction" prefHeight="25.0" prefWidth="110.0" text="Search Property" />
                 <Label fx:id="statusMessageLabel" layoutX="15.0" layoutY="273.0" prefHeight="211.0" prefWidth="95.0" textAlignment="CENTER" textFill="#f22c2c" wrapText="true" />
-                <Button fx:id="backButton" layoutX="7.0" layoutY="139.0" mnemonicParsing="false" onAction="#backButtonOnAction" text="Back To Menu" />
             </children>
         </AnchorPane>
     </right>
     <top>
-        <AnchorPane prefHeight="27.0" prefWidth="800.0" BorderPane.alignment="CENTER" />
+        <AnchorPane prefHeight="27.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+         <children>
+                <Button fx:id="backButton" layoutX="700.0" layoutY="7.0" mnemonicParsing="false" onAction="#backButtonOnAction" text="Back To Menu" />
+         </children></AnchorPane>
     </top>
 </BorderPane>

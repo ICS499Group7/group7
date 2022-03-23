@@ -9,22 +9,41 @@ import java.sql.SQLException;
 
 public class ReservationModel {
     private String id;
-    private String propertyName;
-    private String type;
-    private String rate;
-    private String addressID;
-    private String ownerID;
+    private String propertyId;
+    private String guestId;
+    private String agentId;
+    private String startDate;
+    private String endDate;
+    private String bookedDate;
+    private String totalValue;
 
     public ReservationModel() { //empty constructor
 
     }
 
-    public ResultSet getProperties() { //Returns a Resultset list of all users in user_accounts
+    public ResultSet getReservationsByPropertyName(String propertyId) {
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connectDB = connectNow.getConnection();
+        ResultSet rs = null;
+        String query = "SELECT r.* FROM reservations r WHERE r.propertyId = (SELECT p.id FROM properties p WHERE p.name = '" + propertyId + "')";
+
+        try {
+            rs = connectDB.createStatement().executeQuery(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return rs;
+
+    }
+
+    public ResultSet getReservations() { //Returns a Resultset list of all users in user_accounts
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
 
         ResultSet rs = null;
-        String query = "SELECT p.id, p.name,p.type, p.rent_value,p.owner_id, a.street_address, a.city, a.state, a.zip_code FROM properties p LEFT JOIN address a on p.address_id = a.id";
+        //String query = "SELECT p.id, p.name,p.type, p.rent_value,p.owner_id, a.street_address, a.city, a.state, a.zip_code FROM properties p LEFT JOIN address a on p.address_id = a.id";
+        String query = "SELECT r.id, g.first_name, g.last_name, p.name, a.street_address, r.startDate, r.endDate, r.totalValue FROM reservations r LEFT JOIN properties p on p.id = r.propertyId LEFT JOIN address a on p.address_id = a.id LEFT JOIN guests g on g.id = r.guestId";
         try {
             rs = connectDB.createStatement().executeQuery(query);
         } catch (SQLException e) {
@@ -54,20 +73,22 @@ public class ReservationModel {
 
     }
 
-    public boolean createProperty(String propertyName, String type, String rate, String addressID, String ownerID) { //returns a boolean value, adds a new user to the user_accounts
-        this.propertyName = propertyName;
-        this.type = type;
-        this.rate = rate;
-        this.addressID = addressID;
-        this.ownerID = ownerID;
+    public boolean createReservation(String propertyId, String guestId, String agentId, String startDate, String endDate, String totalValue, String currentDate) { //returns a boolean value, adds a new user to the user_accounts
+        this.propertyId = propertyId;
+        this.guestId = guestId;
+        this.agentId = agentId;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.totalValue = totalValue;
+        this.bookedDate = currentDate;
 
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
 
-        String createPropertyQuery = "INSERT INTO properties (name,type,rent_value,address_id,owner_id) VALUES ('"+ this.propertyName +"','"+ this.type +"','"+ this.rate +"','"+ this.addressID +"','"+ this.ownerID +"')";
+        String createQuery = "INSERT INTO reservations (propertyId, guestId, agentId, startDate, endDate, totalValue, bookedDate) VALUES ('"+ this.propertyId +"','"+ this.guestId +"','"+ this.agentId +"','"+ this.startDate +"','"+ this.endDate +"','"+ this.totalValue +"','"+ this.bookedDate +"')";
 
         try {
-            int queryResult = connectDB.createStatement().executeUpdate(createPropertyQuery); //execute the above query
+            int queryResult = connectDB.createStatement().executeUpdate(createQuery); //execute the above query
             if (queryResult == 1) {
                 return true;
             } else {
@@ -80,22 +101,23 @@ public class ReservationModel {
         return false;
     }
 
-    public boolean modifyProperty(String propertyID, String propertyName, String type, String rate, String ownerID) { //returns a boolean value, modifies user in the user_accounts
-        this.id = propertyID;
-        this.propertyName = propertyName;
-        this.type = type;
-        this.rate = rate;
-        this.ownerID = ownerID;
+    public boolean modifyReservation(String id, String propertyId, String guestId, String startDate, String endDate, String totalValue) { //returns a boolean value, modifies user in the user_accounts
+        this.id = id;
+        this.propertyId = propertyId;
+        this.guestId = guestId;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.totalValue = totalValue;
 
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
 
-        String createOwnerQuery = "UPDATE properties SET name = '" + this.propertyName + "', type = '" + this.type + "', rent_value = '" + this.rate + "', owner_id = '" + this.ownerID + "'";
-        System.out.println(createOwnerQuery);
+        String createReservationQuery = "UPDATE reservations SET propertyId = '" + this.propertyId + "', guestId = '" + this.guestId + "', startDate = '" + this.startDate + "', endDate = '" + this.endDate + "',totalValue = '" + this.totalValue + "' WHERE id = '" + this.id + "'";
+        System.out.println(createReservationQuery);
 
 
         try {
-            int queryResult = connectDB.createStatement().executeUpdate(createOwnerQuery); //execute the above query
+            int queryResult = connectDB.createStatement().executeUpdate(createReservationQuery); //execute the above query
             if (queryResult == 1) {
                 return true;
             } else {

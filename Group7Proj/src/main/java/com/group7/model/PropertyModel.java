@@ -36,6 +36,24 @@ public class PropertyModel {
         return rs;
     }
 
+    public String getPropertyIdByName(String name) { //Returns a String id
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connectDB = connectNow.getConnection();
+
+        ResultSet rs = null;
+        String query = "SELECT p.id FROM properties p WHERE p.name = '" + name + "'";
+        try {
+            rs = connectDB.createStatement().executeQuery(query);
+            if (rs.next()) {
+                return rs.getString(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return "null";
+    }
+
     public String getAddressIDByProperty(String propertyID) {
         this.id = propertyID;
 
@@ -92,7 +110,7 @@ public class PropertyModel {
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
 
-        String createOwnerQuery = "UPDATE properties SET name = '" + this.propertyName + "', type = '" + this.type + "', rent_value = '" + this.rate + "', owner_id = '" + this.ownerID + "'";
+        String createOwnerQuery = "UPDATE properties SET name = '" + this.propertyName + "', type = '" + this.type + "', rent_value = '" + this.rate + "', owner_id = '" + this.ownerID + "' WHERE id = '" + this.id + "'";
         System.out.println(createOwnerQuery);
 
 

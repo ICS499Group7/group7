@@ -144,6 +144,21 @@ public class HomepageView implements Initializable {
         stage.close();
     }
 
+    public void reservationMainButtonOnAction() {
+        try{
+            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/reservationMain.fxml"));
+            Stage registerStage = new Stage();
+            registerStage.initStyle(StageStyle.UNDECORATED);
+            registerStage.setScene(new Scene(root, 800, 600));
+            registerStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+        Stage stage = (Stage) exitButton.getScene().getWindow();
+        stage.close();
+    }
+
     public void loadModifyAgentForCurrentUser(){
         ResultSet rs = new AgentModel().getAgents();
         List<String> currentUser = new ArrayList<>();

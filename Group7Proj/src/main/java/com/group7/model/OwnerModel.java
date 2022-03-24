@@ -67,6 +67,19 @@ public class OwnerModel {
 
     }
 
+    public ResultSet getOwnerDataById(String id) { //Returns a Resultset list of all users in user_accounts
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connectDB = connectNow.getConnection();
+
+        ResultSet rs = null;
+        String query = "SELECT o.company_name,o.phone,o.email FROM owner_accounts o WHERE o.id = '" + id + "'";
+        try {
+            rs = connectDB.createStatement().executeQuery(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rs;
+    }
 
 
     public boolean createOwner(String companyName, String addressID, String firstName, String lastName, String phone, String email) { //returns a boolean value, adds a new user to the user_accounts

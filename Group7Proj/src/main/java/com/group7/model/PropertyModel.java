@@ -74,6 +74,41 @@ public class PropertyModel {
 
     }
 
+    public String getValueByProperty(String propertyId) {
+        this.id = propertyId;
+
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connectDB = connectNow.getConnection();
+
+        String query = "SELECT rent_value FROM properties WHERE id = '" + propertyId + "'";
+        try {
+            ResultSet rs = connectDB.createStatement().executeQuery(query);
+            if (rs.next()) {
+                return rs.getString(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return "null";
+
+    }
+
+    public ResultSet getPropertyDataById(String id) { //Returns a Resultset list of all users in user_accounts
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connectDB = connectNow.getConnection();
+
+        ResultSet rs = null;
+        String query = "SELECT p.name,p.type,p.owner_id, a.street_address, a.city, a.state, a.zip_code FROM properties p LEFT JOIN address a on p.address_id = a.id WHERE p.id = '" + id + "'";
+        try {
+            rs = connectDB.createStatement().executeQuery(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return rs;
+    }
+
     public boolean createProperty(String propertyName, String type, String rate, String addressID, String ownerID) { //returns a boolean value, adds a new user to the user_accounts
         this.propertyName = propertyName;
         this.type = type;

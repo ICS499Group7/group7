@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group7.controllers.ReservationController">
+   <top>
+      <AnchorPane prefHeight="42.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="backButton" layoutX="534.0" layoutY="12.0" mnemonicParsing="false" onAction="#backButtonOnAction" text="Back" />
+            <Label fx:id="resId" layoutX="14.0" layoutY="6.0" text="Reservation #0000">
+               <font>
+                  <Font size="28.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </top>
+   <left>
+      <AnchorPane prefHeight="472.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Text layoutX="25.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Comapny Name" />
+            <Text layoutX="25.0" layoutY="202.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address" />
+            <Text layoutX="25.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type" />
+            <Text layoutX="231.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Owner Name" />
+            <Text layoutX="231.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Guest Name" />
+            <Text layoutX="231.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Guest Phone" />
+            <Text layoutX="231.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Guest Email" />
+            <Text layoutX="14.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Value" wrappingWidth="112.515625" />
+            <Text layoutX="14.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="nights" wrappingWidth="112.515625" />
+            <Text layoutX="14.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="startDate" wrappingWidth="112.515625" />
+            <Text layoutX="14.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="endDate" wrappingWidth="112.515625" />
+            <Text layoutX="14.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BookedDate" wrappingWidth="112.515625" />
+            <Label fx:id="resValue" layoutX="113.0" layoutY="11.0" text="Label" />
+            <Label fx:id="resNights" layoutX="113.0" layoutY="28.0" text="Label" />
+            <Label fx:id="resStart" layoutX="113.0" layoutY="47.0" text="Label" />
+            <Label fx:id="resEnd" layoutX="113.0" layoutY="65.0" text="Label" />
+            <Label fx:id="resBooked" layoutX="113.0" layoutY="82.0" text="Label" />
+            <Label fx:id="propertyName" layoutX="124.0" layoutY="170.0" text="Label" />
+            <Label fx:id="propertyAddress" layoutX="124.0" layoutY="192.0" text="Label" />
+            <Label fx:id="propertyType" layoutX="124.0" layoutY="209.0" text="Label" />
+            <Label fx:id="propertyOwnerCompanyName" layoutX="330.0" layoutY="167.0" text="Label" />
+            <Text layoutX="231.0" layoutY="194.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Owner Phone" />
+            <Text layoutX="231.0" layoutY="211.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Owner Email" />
+            <Label fx:id="propertyOwnerPhone" layoutX="330.0" layoutY="184.0" text="Label" />
+            <Label fx:id="propertyOwnerEmail" layoutX="330.0" layoutY="201.0" text="Label" />
+            <Label fx:id="guestName" layoutX="316.0" layoutY="34.0" text="Label" />
+            <Text layoutX="25.0" layoutY="239.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vendor Name" />
+            <Label fx:id="propertyVendorName" layoutX="122.0" layoutY="229.0" text="Label" />
+            <Label fx:id="guestPhone" layoutX="316.0" layoutY="54.0" text="Label" />
+            <Label fx:id="guestEmail" layoutX="316.0" layoutY="72.0" text="Label" />
+            <Label fx:id="guestDateOfBirth" layoutX="316.0" layoutY="96.0" text="Label" />
+            <Text layoutX="231.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Guest DOB" />
+            <Text layoutX="25.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Property">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+            <Text layoutX="232.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Owner">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+            <Text layoutX="230.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Guest">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+   </left>
+</BorderPane>

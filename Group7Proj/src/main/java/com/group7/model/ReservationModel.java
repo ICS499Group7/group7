@@ -42,7 +42,7 @@ public class ReservationModel {
         Connection connectDB = connectNow.getConnection();
 
         ResultSet rs = null;
-        //String query = "SELECT p.id, p.name,p.type, p.rent_value,p.owner_id, a.street_address, a.city, a.state, a.zip_code FROM properties p LEFT JOIN address a on p.address_id = a.id";
+
         String query = "SELECT r.id, g.first_name, g.last_name, p.name, a.street_address, r.startDate, r.endDate, r.totalValue FROM reservations r LEFT JOIN properties p on p.id = r.propertyId LEFT JOIN address a on p.address_id = a.id LEFT JOIN guests g on g.id = r.guestId";
         try {
             rs = connectDB.createStatement().executeQuery(query);
@@ -72,6 +72,24 @@ public class ReservationModel {
         return "null";
 
     }
+
+    public ResultSet getReservationDataById(String id) {
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connectDB = connectNow.getConnection();
+
+        ResultSet rs = null;
+
+        String query = "SELECT r.guestId, r.propertyId, r.agentId, r.startDate, r.endDate, r.bookedDate, r.totalValue FROM reservations r WHERE r.id = '" + id + "'";
+        try {
+            rs = connectDB.createStatement().executeQuery(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return rs;
+    }
+
+
 
     public boolean createReservation(String propertyId, String guestId, String agentId, String startDate, String endDate, String totalValue, String currentDate) { //returns a boolean value, adds a new user to the user_accounts
         this.propertyId = propertyId;

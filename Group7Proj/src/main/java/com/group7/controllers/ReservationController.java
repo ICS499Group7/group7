@@ -1,7 +1,10 @@
 package com.group7.controllers;
 
-import com.group7.model.ReservationModel;
-import com.group7.model.PropertyModel;
+import com.group7.model.*;
+
+import com.group7.controllers.OwnerManageController;
+import com.group7.model.LoginModel;
+import com.group7.model.OwnerModel;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -12,104 +15,190 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
 
+import javax.xml.transform.Result;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import static java.time.temporal.ChronoUnit.DAYS;
+
 public class ReservationController implements Initializable {
 
     @FXML
-    private TableView tableView;
+    private Label resId;
     @FXML
-    private Label statusMessageLabel;
+    private Label resValue;
+    @FXML
+    private Label resNights;
+    @FXML
+    private Label resStart;
+    @FXML
+    private Label resEnd;
+    @FXML
+    private Label resBooked;
+    @FXML
+    private Label propertyName;
+    @FXML
+    private Label propertyAddress;
+    @FXML
+    private Label propertyType;
+    @FXML
+    private Label propertyOwnerCompanyName;
+    @FXML
+    private Label propertyOwnerPhone;
+    @FXML
+    private Label propertyOwnerEmail;
+    @FXML
+    private Label propertyVendorName;
+    @FXML
+    private Label guestName;
+    @FXML
+    private Label guestPhone;
+    @FXML
+    private Label guestEmail;
+    @FXML
+    private Label guestDateOfBirth;
 
     @FXML
     private Button backButton;
     @FXML
-    private DatePicker fromDate;
-    @FXML
-    private DatePicker toDate;
-    @FXML
-    private TextField searchCity;
-    @FXML
-    private ComboBox listZipCode;
-    @FXML
-    private ComboBox listCity;
+    private Button modifyButton;
 
-    private ObservableList<ObservableList> items = FXCollections.observableArrayList();
+    private ReservationModel reservations = new ReservationModel();
     private PropertyModel property = new PropertyModel();
+    private OwnerModel owner = new OwnerModel();
+    private GuestModel guest = new GuestModel();
+    private VendorModel vendor = new VendorModel();
+
+    String reservationIdData;
+    String resValueData;
+    String resNightsData;
+    String resStartData;
+    String resEndData;
+    String resBookedData;
+    String propertyIdData;
+    String propertyNameData;
+    String propertyAddressData;
+    String propertyTypeData;
+    String propertyOwnerIdData;
+    String propertyOwnerCompanyNameData;
+    String propertyOwnerPhoneData;
+    String propertyOwnerEmailData;
+    String propertyVendorNameData;
+    String guestIdData;
+    String guestNameData;
+    String guestPhoneData;
+    String guestEmailData;
+    String guestDateOfBirthData;
+    String agentIdData;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
 
-    public void reservationMainButtonOnAction(ActionEvent event) {
-
-        ResultSet rs = new PropertyModel().getProperties();
-        try {
-            for(int i=0; i<rs.getMetaData().getColumnCount(); i++) {
-                final int j = i;
-                TableColumn col = new TableColumn(rs.getMetaData().getColumnName(i+1));
-                col.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ObservableList,String>, ObservableValue<String>>(){
-                    public ObservableValue<String> call(TableColumn.CellDataFeatures<ObservableList, String> param) {
-                        return new SimpleStringProperty(param.getValue().get(j).toString());
-                    }
-                });
-                tableView.getColumns().addAll(col);
-            }
-            while (rs.next()) {
-                ObservableList<String> row = FXCollections.observableArrayList();
-                for (int i=1; i<=rs.getMetaData().getColumnCount(); i++){
-                    row.add(rs.getString(i));
-                }
-                items.add(row);
-            }
-            tableView.setItems(items);
-
-
-            ResultSet zip = property.uniquePropertyZipCodes();
-            while(zip.next() ){
-                listZipCode.getItems().add(zip.getString("zip_code"));
-            }
-
-            ResultSet city = property.uniquePropertyCity();
-
-//            while(test.next() ){
-//                listCity.getItems().add(test.getString("city"));
-//            }
-
-
-        } catch(Exception e) {}
-
-
+    public void passInfo(String id){
+        reservationIdData = id;
+        fillData();
     }
 
-    public String getSelectedPropertyID(){
-        String items = tableView.getItems().get(tableView.getSelectionModel().getSelectedIndex()).toString();
-        items = items.substring(1, items.length() - 1);
-        List<String> id = Arrays.asList(items.split(",\\s*"));
-        return id.get(0);
+
+
+    public void fillData(){
+        try {
+            ResultSet resRs = reservations.getReservationDataById(reservationIdData);
+            if (resRs.next()){
+                guestIdData = resRs.getString(1);
+                propertyIdData = resRs.getString(2);
+                agentIdData = resRs.getString(3);
+                resStartData = resRs.getString(4);
+                resEndData = resRs.getString(5);
+                resBookedData = resRs.getString(6);
+                resValueData = resRs.getString(7);
+                resNightsData = Long.toString(DAYS.between(LocalDate.parse(resStartData), LocalDate.parse(resEndData)));
+            }
+
+
+            ResultSet propRs = property.getPropertyDataById(propertyIdData);
+            if (propRs.next()){
+                propertyNameData = propRs.getString(1);
+                propertyTypeData = propRs.getString(2);
+                propertyOwnerIdData = propRs.getString(3);
+                propertyAddressData = propRs.getString(4) + ", " + propRs.getString(5) + ", " + propRs.getString(6) + ", " + propRs.getString(7);
+            }
+
+            ResultSet ownerRs = owner.getOwnerDataById(propertyOwnerIdData);
+            if (ownerRs.next()){
+                propertyOwnerCompanyNameData = ownerRs.getString(1);
+                propertyOwnerPhoneData = ownerRs.getString(2);
+                propertyOwnerEmailData = ownerRs.getString(3);
+            }
+
+            ResultSet guestRs = guest.getGuestDataByID(guestIdData);
+            if (guestRs.next()){
+                guestNameData = guestRs.getString(2) + " " + guestRs.getString(3);
+                guestPhoneData = guestRs.getString(4);
+                guestEmailData = guestRs.getString(5);
+                guestDateOfBirthData = guestRs.getString(6);
+            }
+
+        } catch(Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+        displayData();
+    }
+
+    public void displayData() {
+        resId.setText("Reservation #" + reservationIdData);
+        resValue.setText(resValueData);
+        resNights.setText(resNightsData);
+        resStart.setText(resStartData);
+        resEnd.setText(resEndData);
+        resBooked.setText(resBookedData);
+
+        propertyName.setText(propertyNameData);
+        propertyAddress.setText(propertyAddressData);
+        propertyType.setText(propertyTypeData);
+
+        propertyOwnerCompanyName.setText(propertyOwnerCompanyNameData);
+        propertyOwnerPhone.setText(propertyOwnerPhoneData);
+        propertyOwnerEmail.setText(propertyOwnerEmailData);
+
+        guestName.setText(guestNameData);
+        guestPhone.setText(guestPhoneData);
+        guestEmail.setText(guestEmailData);
+        guestDateOfBirth.setText(guestDateOfBirthData);
+
     }
 
     public void backButtonOnAction(ActionEvent event) throws IOException {
-        homepage();
+        resView();
     }
 
-    public void homepage() {
+    public void modifyButtonOnAction() {
+
+    }
+
+    public void resView() {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/homepage.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/reservationMain.fxml"));
             Stage registerStage = new Stage();
             registerStage.initStyle(StageStyle.UNDECORATED);
-            registerStage.setScene(new Scene(root, 600, 400));
+            registerStage.setScene(new Scene(root, 800, 600));
             registerStage.show();
             Stage stage = (Stage) backButton.getScene().getWindow();
             stage.close();

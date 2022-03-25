@@ -62,7 +62,6 @@ public class VendorView  implements Initializable {
 
                 items.add(row);
             }
-
             tableView.setItems(items);
 
         } catch(Exception e) {}
@@ -130,8 +129,10 @@ public class VendorView  implements Initializable {
 
     public void deleteVendorButtonOnAction(ActionEvent event) {
         try {
-            if (vendor.deleteVendor(getSelectedVendorID()) && LoginModel.admin)
+            if (vendor.deleteVendor(getSelectedVendorID()) && LoginModel.admin) {
+
                 tableView.getItems().removeAll(tableView.getSelectionModel().getSelectedItem());
+            }
         } catch (Exception e) {
             e.printStackTrace();
             e.getCause();
@@ -143,5 +144,40 @@ public class VendorView  implements Initializable {
         items = items.substring(1, items.length() - 1);
         List<String> id = Arrays.asList(items.split(",\\s*"));
         return id.get(0);
+    }
+
+    /*****************************************************************************
+     * addContractButtonOnAction
+     *****************************************************************************/
+    public void addContractButtonOnAction(ActionEvent actionEvent) {
+        try {
+            if (tableView.getSelectionModel().getSelectedIndex() != -1) {
+                String items = tableView.getItems().get(tableView.getSelectionModel().getSelectedIndex()).toString();
+                items = items.substring(1, items.length() - 1);
+                List<String> id = Arrays.asList(items.split(",\\s*"));
+                System.out.println("ID = " + id);
+
+                //This code is slightly different as I needed to get at .getController to transfer content from 1 scene to the next scene
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/group7/Vendor/vendorContractForm.fxml"));
+                Parent root = loader.load();
+
+                VendorManageController modifyController = loader.getController();
+                modifyController.passVendorInfoToContractForm(id.get(0), id.get(1));
+                modifyController.loadTable();
+
+                Stage registerStage = new Stage();
+                registerStage.initStyle(StageStyle.UNDECORATED);
+                registerStage.setScene(new Scene(root, 600, 400));
+                registerStage.show();
+                Stage stage = (Stage) backButton.getScene().getWindow();
+                stage.close();
+            } else {
+                statusMessageLabel.setText("Please Select a Vendor from the Table and Try Again");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
     }
 }

@@ -131,6 +131,8 @@ public class VendorModel {
         String addrID = getAddressIDByVendor(id);
         String deleteAddressQuery = "DELETE FROM address WHERE id = " + addrID;
         String deleteVendorQuery = "DELETE FROM vendors WHERE id = " + id;
+        deleteVendorsContracts(id, "");
+
 
         System.out.println(deleteVendorQuery);
         System.out.println(deleteAddressQuery);
@@ -179,9 +181,9 @@ public class VendorModel {
         if(vendorID.compareTo("") != 0 && propertyID.compareTo("") != 0 ) {
             deleteVendorContractQuery = "DELETE FROM vendor_contracts WHERE vendorId = " + vendorID + " AND propertyId = " + propertyID;
         } else if(vendorID.compareTo("") != 0 && propertyID.compareTo("") == 0 ) {
-            deleteVendorContractQuery = "DELETE FROM vendor_contracts WHERE propertyId = " + propertyID;
-        } else if(vendorID.compareTo("") == 0 && propertyID.compareTo("") != 0 ) {
             deleteVendorContractQuery = "DELETE FROM vendor_contracts WHERE vendorId = " + vendorID;
+        } else if(vendorID.compareTo("") == 0 && propertyID.compareTo("") != 0 ) {
+            deleteVendorContractQuery = "DELETE FROM vendor_contracts WHERE propertyId = " + propertyID;
         }
 
         System.out.println(deleteVendorContractQuery);

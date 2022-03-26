@@ -9,6 +9,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
@@ -16,7 +20,10 @@ import javafx.util.Callback;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.ResourceBundle;
+
+import static java.time.temporal.ChronoUnit.DAYS;
 
 public class ReservationCreationController implements Initializable {
     @FXML
@@ -63,6 +70,9 @@ public class ReservationCreationController implements Initializable {
             }
             guestChoice.setItems(guestItems);
         } catch(Exception e) {}
+
+        statusLabel.setText("");
+
     }
 
     public void setPropertyOnAction() {
@@ -100,6 +110,9 @@ public class ReservationCreationController implements Initializable {
                 return new DateCell() {
                     @Override
                     public void updateItem(LocalDate item, boolean empty) {
+                        if (item.isBefore(LocalDate.now())) {
+                            setStyle("-fx-background-color: #FFFFE0;");
+                        }
                         if (listItems.size() == 0){
                             super.updateItem(item, empty);
                         }
@@ -109,8 +122,11 @@ public class ReservationCreationController implements Initializable {
                             super.updateItem(item, empty);
                             if (item.isAfter(minDate) && item.isBefore(maxDate) || item.isEqual(minDate) || item.isEqual(maxDate)) {
                                 setDisable(true);
-                                setStyle("-fx-background-color: #ffc0cb;");
+                                //setStyle("-fx-background-color: #ffc0cb;");
+                                setFont(Font.font("family", FontWeight.BOLD, FontPosture.REGULAR, 12));
+                                setTextFill(Color.RED);
                             }
+
                         }
 
                     }
@@ -180,7 +196,11 @@ public class ReservationCreationController implements Initializable {
         eDate = endDate.getValue().toString();
         String cDate = String.valueOf(LocalDate.now());
 
-        boolean createReservationQuery = reservations.createReservation(p,g,a,sDate,eDate,"11",cDate);
+
+        String totalValue = Long.toString(Integer.parseInt(property.getValueByProperty(p)) * DAYS.between(startDate.getValue(), endDate.getValue()));
+
+
+        boolean createReservationQuery = reservations.createReservation(p,g,a,sDate,eDate,totalValue,cDate);
         if (createReservationQuery == true) {
             statusLabel.setText("Created Reservation Successfully");
         } else {

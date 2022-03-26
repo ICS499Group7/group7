@@ -77,7 +77,7 @@
                         <Font name="Poppins Medium" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="vendorMainButton1" layoutX="144.0" layoutY="154.0" minWidth="120.0" mnemonicParsing="false" onAction="#vendorMainButtonOnAction" prefHeight="30.0" prefWidth="104.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 0, 0, 0); -fx-background-color: #0090C1;" text="Reservation">
+                  <Button fx:id="reservationMainButton" layoutX="144.0" layoutY="154.0" minWidth="120.0" mnemonicParsing="false" onAction="#reservationMainButtonOnAction" prefHeight="30.0" prefWidth="104.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 0, 0, 0); -fx-background-color: #0090C1;" text="Reservation">
                      <font>
                         <Font name="Poppins Medium" size="12.0" />
                      </font>

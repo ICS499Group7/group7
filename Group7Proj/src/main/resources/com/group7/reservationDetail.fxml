@@ -10,7 +10,7 @@
       <AnchorPane prefHeight="42.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="backButton" layoutX="534.0" layoutY="12.0" mnemonicParsing="false" onAction="#backButtonOnAction" text="Back" />
-            <Label fx:id="resId" layoutX="14.0" layoutY="6.0" text="Reservation #0000">
+            <Label fx:id="resId" layoutX="14.0" layoutY="6.0" text="Reservation #0000" underline="true">
                <font>
                   <Font size="28.0" />
                </font>
@@ -21,49 +21,54 @@
    <left>
       <AnchorPane prefHeight="472.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Text layoutX="25.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Comapny Name" />
-            <Text layoutX="25.0" layoutY="202.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address" />
-            <Text layoutX="25.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type" />
-            <Text layoutX="231.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Owner Name" />
-            <Text layoutX="231.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Guest Name" />
-            <Text layoutX="231.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Guest Phone" />
-            <Text layoutX="231.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Guest Email" />
-            <Text layoutX="14.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Value" wrappingWidth="112.515625" />
-            <Text layoutX="14.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="nights" wrappingWidth="112.515625" />
-            <Text layoutX="14.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="startDate" wrappingWidth="112.515625" />
-            <Text layoutX="14.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="endDate" wrappingWidth="112.515625" />
-            <Text layoutX="14.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BookedDate" wrappingWidth="112.515625" />
-            <Label fx:id="resValue" layoutX="113.0" layoutY="11.0" text="Label" />
-            <Label fx:id="resNights" layoutX="113.0" layoutY="28.0" text="Label" />
-            <Label fx:id="resStart" layoutX="113.0" layoutY="47.0" text="Label" />
-            <Label fx:id="resEnd" layoutX="113.0" layoutY="65.0" text="Label" />
-            <Label fx:id="resBooked" layoutX="113.0" layoutY="82.0" text="Label" />
-            <Label fx:id="propertyName" layoutX="124.0" layoutY="170.0" text="Label" />
-            <Label fx:id="propertyAddress" layoutX="124.0" layoutY="192.0" text="Label" />
-            <Label fx:id="propertyType" layoutX="124.0" layoutY="209.0" text="Label" />
-            <Label fx:id="propertyOwnerCompanyName" layoutX="330.0" layoutY="167.0" text="Label" />
-            <Text layoutX="231.0" layoutY="194.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Owner Phone" />
-            <Text layoutX="231.0" layoutY="211.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Owner Email" />
-            <Label fx:id="propertyOwnerPhone" layoutX="330.0" layoutY="184.0" text="Label" />
-            <Label fx:id="propertyOwnerEmail" layoutX="330.0" layoutY="201.0" text="Label" />
-            <Label fx:id="guestName" layoutX="316.0" layoutY="34.0" text="Label" />
-            <Text layoutX="25.0" layoutY="239.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vendor Name" />
-            <Label fx:id="propertyVendorName" layoutX="122.0" layoutY="229.0" text="Label" />
-            <Label fx:id="guestPhone" layoutX="316.0" layoutY="54.0" text="Label" />
-            <Label fx:id="guestEmail" layoutX="316.0" layoutY="72.0" text="Label" />
-            <Label fx:id="guestDateOfBirth" layoutX="316.0" layoutY="96.0" text="Label" />
-            <Text layoutX="231.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Guest DOB" />
-            <Text layoutX="25.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Property">
+            <Text layoutX="300.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Comapny Name" />
+            <Text layoutX="25.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address" />
+            <Text layoutX="25.0" layoutY="240.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type" />
+            <Text layoutX="301.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Owner Name" />
+            <Text layoutX="302.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Guest Name" />
+            <Text layoutX="302.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Guest Phone" />
+            <Text layoutX="302.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Guest Email" />
+            <Text layoutX="25.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Value" wrappingWidth="112.515625" />
+            <Text layoutX="25.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="nights" wrappingWidth="112.515625" />
+            <Text layoutX="25.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="startDate" wrappingWidth="112.515625" />
+            <Text layoutX="25.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="endDate" wrappingWidth="112.515625" />
+            <Text layoutX="25.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BookedDate" wrappingWidth="112.515625" />
+            <Label fx:id="resValue" layoutX="110.0" layoutY="47.0" prefHeight="17.0" prefWidth="30.0" text="Label" />
+            <Label fx:id="resNights" layoutX="110.0" layoutY="67.0" text="Label" />
+            <Label fx:id="resStart" layoutX="110.0" layoutY="87.0" text="Label" />
+            <Label fx:id="resEnd" layoutX="110.0" layoutY="107.0" text="Label" />
+            <Label fx:id="resBooked" layoutX="110.0" layoutY="127.0" text="Label" />
+            <Label fx:id="propertyName" layoutX="395.0" layoutY="187.0" text="Label" />
+            <Label fx:id="propertyAddress" layoutX="110.0" layoutY="187.0" maxWidth="250.0" prefHeight="38.0" prefWidth="188.0" text="Label" wrapText="true" />
+            <Label fx:id="propertyType" layoutX="110.0" layoutY="227.0" text="Label" />
+            <Label fx:id="propertyOwnerCompanyName" layoutX="395.0" layoutY="207.0" text="Label" />
+            <Text layoutX="301.0" layoutY="240.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Owner Phone" />
+            <Text layoutX="301.0" layoutY="260.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Owner Email" />
+            <Label fx:id="propertyOwnerPhone" layoutX="395.0" layoutY="227.0" text="Label" />
+            <Label fx:id="propertyOwnerEmail" layoutX="395.0" layoutY="247.0" text="Label" />
+            <Label fx:id="guestName" layoutX="385.0" layoutY="47.0" text="Label" />
+            <Text layoutX="25.0" layoutY="260.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vendor" />
+            <Label fx:id="propertyVendorName" layoutX="110.0" layoutY="247.0" text="Label" />
+            <Label fx:id="guestPhone" layoutX="385.0" layoutY="67.0" text="Label" />
+            <Label fx:id="guestEmail" layoutX="385.0" layoutY="87.0" text="Label" />
+            <Label fx:id="guestDateOfBirth" layoutX="385.0" layoutY="107.0" text="Label" />
+            <Text layoutX="302.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Guest DOB" />
+            <Text layoutX="20.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Property     " underline="true">
                <font>
                   <Font size="24.0" />
                </font>
             </Text>
-            <Text layoutX="232.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Owner">
+            <Text layoutX="302.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Owner" underline="true">
                <font>
                   <Font size="24.0" />
                </font>
             </Text>
-            <Text layoutX="230.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Guest">
+            <Text layoutX="300.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Guest" underline="true">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+            <Text layoutX="20.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reservation" underline="true">
                <font>
                   <Font size="24.0" />
                </font>

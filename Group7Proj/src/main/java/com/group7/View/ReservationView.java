@@ -36,15 +36,7 @@ public class ReservationView implements Initializable {
     @FXML
     private Label statusMessageLabel;
     @FXML
-    private Button createReservationButton;
-    @FXML
     private Button backButton;
-    @FXML
-    private TextField filterField;
-    @FXML
-    private DatePicker filterStartDate;
-    @FXML
-    private DatePicker filterEndDate;
 
     private ObservableList<ObservableList> items = FXCollections.observableArrayList();
     private ReservationModel reservations = new ReservationModel();

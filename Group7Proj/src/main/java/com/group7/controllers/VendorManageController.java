@@ -185,6 +185,7 @@ public class VendorManageController implements Initializable {
         } catch(Exception e) {}
         this.vendorID = id;
         this.selectedVendor.setText(cName);
+        chooseProperty.setValue(propertyItems.get(0));
 
 //        tableViewContracts.getItems().removeAll(1);
 //        System.out.println("In passVendorIDtoContractForm Item1 = " + tableViewContracts.getItems().removeAll(1));

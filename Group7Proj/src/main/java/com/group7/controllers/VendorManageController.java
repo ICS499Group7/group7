@@ -187,7 +187,6 @@ public class VendorManageController implements Initializable {
         this.selectedVendor.setText(cName);
         chooseProperty.setValue(propertyItems.get(0));
 
-
     }
 
     /*****************************************************************************

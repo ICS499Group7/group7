@@ -170,6 +170,7 @@ public class PropertyModel {
         String addrID = getAddressIDByProperty(id);
         String deleteAddressQuery = "DELETE FROM address WHERE id = " + addrID;
         String deletePropertyQuery = "DELETE FROM properties WHERE id = " + id;
+        boolean vm = new VendorModel().deleteVendorsContracts("", id);
 
         System.out.println(deletePropertyQuery);
         System.out.println(deleteAddressQuery);

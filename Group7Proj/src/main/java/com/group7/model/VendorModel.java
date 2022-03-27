@@ -68,8 +68,6 @@ public class VendorModel {
 
     }
 
-
-
     public boolean createVendor(String companyName, String addressID, String firstName, String lastName, String phone, String email) { //returns a boolean value, adds a new user to the user_accounts
         this.companyName = companyName;
         this.firstName = firstName;
@@ -133,6 +131,8 @@ public class VendorModel {
         String addrID = getAddressIDByVendor(id);
         String deleteAddressQuery = "DELETE FROM address WHERE id = " + addrID;
         String deleteVendorQuery = "DELETE FROM vendors WHERE id = " + id;
+        deleteVendorsContracts(id, "");
+
 
         System.out.println(deleteVendorQuery);
         System.out.println(deleteAddressQuery);
@@ -143,5 +143,86 @@ public class VendorModel {
             return true;
         return false;
     }
+
+
+    //Vendor_Contract Code
+    /*****************************************************************************
+     * getVendorsContracts
+     *****************************************************************************/
+    public ResultSet getVendorsContracts(String vendorID) {
+        this.id = vendorID;
+
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connectDB = connectNow.getConnection();
+
+        String query = "SELECT propertyId FROM vendor_contracts WHERE vendorId = '" + vendorID + "'";
+        System.out.println( "getVendorsContracts query = "  + query);
+
+
+
+        try {
+            ResultSet rs = connectDB.createStatement().executeQuery(query);
+            return rs;
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /*****************************************************************************
+     * deleteVendorsContracts
+     *****************************************************************************/
+    public boolean deleteVendorsContracts(String vendorID, String propertyID) throws SQLException {
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connectDB = connectNow.getConnection();
+        String deleteVendorContractQuery = "";
+        if(vendorID.compareTo("") != 0 && propertyID.compareTo("") != 0 ) {
+            deleteVendorContractQuery = "DELETE FROM vendor_contracts WHERE vendorId = " + vendorID + " AND propertyId = " + propertyID;
+        } else if(vendorID.compareTo("") != 0 && propertyID.compareTo("") == 0 ) {
+            deleteVendorContractQuery = "DELETE FROM vendor_contracts WHERE vendorId = " + vendorID;
+        } else if(vendorID.compareTo("") == 0 && propertyID.compareTo("") != 0 ) {
+            deleteVendorContractQuery = "DELETE FROM vendor_contracts WHERE propertyId = " + propertyID;
+        }
+
+        System.out.println(deleteVendorContractQuery);
+
+        int result = connectDB.createStatement().executeUpdate(deleteVendorContractQuery);
+        if(result == 1)
+            return true;
+        return false;
+    }
+
+
+    /*****************************************************************************
+    * addVendorsContracts
+    *****************************************************************************/
+    public boolean addVendorsContracts(String vendorID, String propertyID) throws SQLException {
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connectDB = connectNow.getConnection();
+
+        String queryCheckExists = "SELECT id FROM vendor_contracts WHERE vendorId = " + vendorID + " AND propertyId = " + propertyID;
+        ResultSet rs = connectDB.createStatement().executeQuery(queryCheckExists);
+
+        System.out.println( "getVendorsContracts query = "  + queryCheckExists);
+        String ID = "";
+        if (rs.next()) {
+            ID = rs.getString(1);
+        }
+        System.out.println( "getVendorsContracts results = "  + ID);
+        if(ID.compareTo("") == 0 )
+        {
+            String addVendorContractQuery = "INSERT INTO vendor_contracts (vendorId,propertyId) VALUES ('"+ vendorID +"','"+ propertyID +"')";
+            System.out.println(addVendorContractQuery);
+
+            int result = connectDB.createStatement().executeUpdate(addVendorContractQuery);
+            if(result == 1)
+                return true;
+            return false;
+        }
+        return false;
+    }
+
 
 }

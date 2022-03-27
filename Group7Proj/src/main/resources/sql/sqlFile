@@ -71,6 +71,12 @@ CREATE TABLE `reservations` (
   `totalValue` FLOAT NOT NULL,
   PRIMARY KEY (`id`));
 
+CREATE TABLE `vendor_contracts` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `vendorId` VARCHAR(45) NOT NULL,
+  `propertyId` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`));
+
 TRUNCATE TABLE guests;
 ALTER TABLE guests AUTO_INCREMENT = 1;
 INSERT INTO guests (first_name,last_name,phone,email,dateOfBirth) VALUES ('Ryan','Guest','9811111111','ryan@guest.com', "2022-06-03");
@@ -144,4 +150,25 @@ VALUES
 TRUNCATE TABLE vendors;
 ALTER TABLE vendors AUTO_INCREMENT = 1;
 INSERT INTO vendors (company_name,address_id,first_name,last_name,phone,email)
-VALUES ("Clean House LLC",1,"Johnson","Cleaner","3444627788","jcleaner@ch.com");
+VALUES ("Clean House LLC",1,"Johnson","Cleaner","3444627788","jcleaner@ch.com"),
+       ("vendor2",2,"vendor2FN","vendor2LN","2222222222","vendor2@ch.com"),
+       ("vendor3",3,"vendor3FN","vendor3LN","3333333333","vendor3@ch.com"),
+       ("vendor4",4,"vendor4FN","vendor4LN","4444444444","vendor4@ch.com"),
+       ("vendor5",5,"vendor5FN","vendor5LN","5555555555","vendor5@ch.com"),
+       ("vendor6",6,"vendor6FN","vendor6LN","6666666666","vendor6@ch.com"),
+       ("vendor7",7,"vendor7FN","vendor7LN","7777777777","vendor7@ch.com");
+
+TRUNCATE TABLE vendor_contracts;
+ALTER TABLE vendor_contracts AUTO_INCREMENT = 1;
+INSERT INTO vendor_contracts (vendorId,propertyId)
+VALUES
+	("1","1"),
+	("1","2"),
+	("1","4"),
+	("2","2"),
+	("2","5"),
+	("2","6"),
+	("3","2"),
+    ("3","8"),
+    ("4","9"),
+    ("5","2");

@@ -1,18 +1,23 @@
 package com.group7.controllers;
 
 import com.group7.model.AddressModel;
+import com.group7.model.LoginModel;
+import com.group7.model.PropertyModel;
 import com.group7.model.VendorModel;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Callback;
 
 import java.net.URL;
 import java.sql.ResultSet;
@@ -44,9 +49,20 @@ public class VendorManageController implements Initializable {
     private TextField email;
     @FXML
     private Label statusMessageLabel;
+    @FXML
+    private TextField selectedVendor;
+    @FXML
+    private ComboBox chooseProperty;
+    @FXML
+    private TableView tableViewContracts;
+
 
     private String vendorID;
+    private String propertyID;
     private String addressID;
+    private ObservableList<ObservableList> items = FXCollections.observableArrayList();
+    private ObservableList<String> propID = FXCollections.observableArrayList();
+    private PropertyModel property = new PropertyModel();
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -147,4 +163,105 @@ public class VendorManageController implements Initializable {
         }
     }
 
+    /*****************************************************************************
+     * passVendorInfoToContractForm
+     *****************************************************************************/
+    public void passVendorInfoToContractForm(String id, String cName) throws SQLException {
+
+        VendorModel propertyNames = new VendorModel();
+
+        ResultSet rs = property.getProperties();
+
+        ObservableList<ObservableList> items = FXCollections.observableArrayList();
+        ObservableList<String> propertyItems = FXCollections.observableArrayList();
+        ObservableList<String> propertyItemsID = FXCollections.observableArrayList();
+
+        try {
+            while (rs.next()) {
+                propertyItems.add(rs.getString(2));
+            }
+            chooseProperty.setItems(propertyItems);
+
+        } catch(Exception e) {}
+        this.vendorID = id;
+        this.selectedVendor.setText(cName);
+        chooseProperty.setValue(propertyItems.get(0));
+
+    }
+
+    /*****************************************************************************
+     * loadTable
+     *****************************************************************************/
+    public void loadTable() {
+        //Get the properties that are already assigned to the Vendor
+        ResultSet propID = new VendorModel().getVendorsContracts(vendorID);
+
+        try {
+            // Clear table before reloading
+            for ( int i = 0; i<tableViewContracts.getItems().size(); i++) {
+                tableViewContracts.getItems().clear();
+            }
+
+            //populate the table with the properties that the vendor currently has
+            while (propID.next()) {
+                System.out.println("propID.getString(1) =" + propID.getString(1));
+
+                ResultSet rsVM = new PropertyModel().getPropertyDataById(propID.getString(1));
+                tableViewContracts.getColumns().clear();
+                for (int i = 0; i < rsVM.getMetaData().getColumnCount(); i++)
+                {
+                    final int j = i;
+
+                    TableColumn col = new TableColumn(rsVM.getMetaData().getColumnName(i + 1));
+                    col.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ObservableList, String>, ObservableValue<String>>()
+                    {
+                        public ObservableValue<String> call(TableColumn.CellDataFeatures<ObservableList, String> param)
+                        {
+                            return new SimpleStringProperty(param.getValue().get(j).toString());
+                        }
+                    });
+
+                    tableViewContracts.getColumns().addAll(col);
+                }
+                while (rsVM.next()) {
+                    ObservableList<String> row = FXCollections.observableArrayList();
+                    for (int i = 1; i <= rsVM.getMetaData().getColumnCount(); i++) {
+                        row.add(rsVM.getString(i));
+                        System.out.println("In loadTable row.add, i = " + i + ",  " + rsVM.getString(i));
+                    }
+                    items.add(row);
+                    System.out.println("In loadTable row = " + row);
+                }
+                tableViewContracts.setItems(items);
+//                System.out.println("In items row = " + items);
+            }
+//            System.out.println("In items row After CLEAR = " + items);
+        } catch(Exception e) {}
+    }
+
+    /*****************************************************************************
+     * addPropertyToVendor
+     *****************************************************************************/
+    public void addPropertyToVendor(String vendorID, String propertyID) throws SQLException {
+
+        System.out.println(" In addProperyToVendor propertyID = " + propertyID);
+        boolean createUserQuery = new VendorModel().addVendorsContracts(vendorID, propertyID);
+        loadTable();
+
+    }
+
+    /*****************************************************************************
+     * saveContractButtonOnAction
+     *****************************************************************************/
+    public void saveContractButtonOnAction(ActionEvent actionEvent) throws SQLException {
+        addPropertyToVendor(vendorID, property.getPropertyIdByName(chooseProperty.getValue().toString()));
+    }
+
+    /*****************************************************************************
+     * deleteContractButtonOnAction
+     *****************************************************************************/
+    public void deleteContractButtonOnAction(ActionEvent actionEvent) throws SQLException {
+        boolean createUserQuery = new VendorModel().deleteVendorsContracts(vendorID, property.getPropertyIdByName(chooseProperty.getValue().toString()));
+        loadTable();
+    }
 }

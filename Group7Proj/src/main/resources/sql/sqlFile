@@ -15,7 +15,6 @@ CREATE TABLE `address` (
   `city` varchar(45) NOT NULL,
   `state` varchar(45) NOT NULL,
   `zip_code` varchar(45) NOT NULL,
-  `country` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
 );
 

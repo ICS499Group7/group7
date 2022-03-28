@@ -12,15 +12,15 @@
     fx-alignment: center;
 }
 
-.table-row-cell: hover {
+.table-row-cell:hover {
     -fx-text-background-color: red;
 }
 
-.table-row-cell: odd {
+.table-row-cell:odd {
     -fx-background-color: #93f9b911;
 }
 
-.table-row-cell: even {
+.table-row-cell:even {
     -fx-background-color: #1dbbdd11;
 }
 

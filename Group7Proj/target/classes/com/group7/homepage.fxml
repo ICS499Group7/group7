@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group7.View.HomepageView">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group7.View.HomepageView">
    <top>
       <AnchorPane prefHeight="63.0" prefWidth="593.0" style="-fx-background-color: #F5F5F5;" BorderPane.alignment="CENTER">
          <children>
@@ -41,30 +41,30 @@
                </image>
             </ImageView>
             <Label layoutX="286.0" layoutY="14.0" />
-            <AnchorPane layoutX="30.0" layoutY="3.0" prefHeight="336.0" prefWidth="184.0" style="-fx-background-color: #EBEBEB; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 0, 0, 0);">
+            <AnchorPane layoutX="36.0" layoutY="62.0" prefHeight="218.0" prefWidth="272.0" style="-fx-background-color: #EBEBEB; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 0, 0, 0);">
                <children>
-                  <Button fx:id="agentMainButton" layoutX="32.0" layoutY="61.0" minWidth="120.0" mnemonicParsing="false" onAction="#agentMainButtonOnAction" prefHeight="30.0" prefWidth="104.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 0, 0, 0); -fx-background-color: #0090C1;" text="Manage Agents">
+                  <Button fx:id="agentMainButton" layoutX="14.0" layoutY="61.0" minWidth="120.0" mnemonicParsing="false" onAction="#agentMainButtonOnAction" prefHeight="30.0" prefWidth="104.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 0, 0, 0); -fx-background-color: #0090C1;" text="Agents">
                      <font>
                         <Font name="Poppins Medium" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="ownerMainButton" layoutX="32.0" layoutY="115.0" minWidth="120.0" mnemonicParsing="false" onAction="#ownerMainButtonOnAction" prefHeight="30.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 0, 0, 0); -fx-background-color: #0090C1;" text="Manage Owners">
+                  <Button fx:id="ownerMainButton" layoutX="14.0" layoutY="108.0" minWidth="120.0" mnemonicParsing="false" onAction="#ownerMainButtonOnAction" prefHeight="30.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 0, 0, 0); -fx-background-color: #0090C1;" text="Owners">
                      <font>
                         <Font name="Poppins Medium" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="propertyMainButton" layoutX="32.0" layoutY="221.0" minWidth="120.0" mnemonicParsing="false" onAction="#propertyMainButtonOnAction" prefHeight="30.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 0, 0, 0); -fx-background-color: #0090C1;" text="Manage Properties">
+                  <Button fx:id="propertyMainButton" layoutX="144.0" layoutY="61.0" minWidth="120.0" mnemonicParsing="false" onAction="#propertyMainButtonOnAction" prefHeight="30.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 0, 0, 0); -fx-background-color: #0090C1;" text="Properties">
                      <font>
                         <Font name="Poppins Medium" size="11.0" />
                      </font>
                   </Button>
-                  <Button fx:id="guestMainButton" layoutX="32.0" layoutY="168.0" minHeight="30.0" minWidth="120.0" mnemonicParsing="false" onAction="#guestMainButtonOnAction" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 0, 0, 0); -fx-background-color: #0090C1;" text="Manage Guests">
+                  <Button fx:id="guestMainButton" layoutX="14.0" layoutY="154.0" minHeight="30.0" minWidth="120.0" mnemonicParsing="false" onAction="#guestMainButtonOnAction" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 0, 0, 0); -fx-background-color: #0090C1;" text="Guests">
                      <font>
                         <Font name="Poppins Medium" size="12.0" />
                      </font>
                   </Button>
-                  <Line endX="106.0" layoutX="77.0" layoutY="44.0" startX="-76.0" />
-                  <Label contentDisplay="CENTER" layoutX="41.0" layoutY="9.0" prefHeight="35.0" prefWidth="103.0" text="Welcome" textFill="#1d3557">
+                  <Line endX="195.0" layoutX="77.0" layoutY="44.0" startX="-76.0" />
+                  <Label contentDisplay="CENTER" layoutX="57.0" layoutY="9.0" prefHeight="35.0" prefWidth="191.0" text="Welcome ..." textFill="#1d3557">
                      <font>
                         <Font name="Poppins Medium Italic" size="24.0" />
                      </font>
@@ -72,7 +72,12 @@
                         <Glow />
                      </effect>
                   </Label>
-                  <Button fx:id="vendorMainButton" layoutX="32.0" layoutY="274.0" minWidth="120.0" mnemonicParsing="false" onAction="#vendorMainButtonOnAction" prefHeight="30.0" prefWidth="104.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 0, 0, 0); -fx-background-color: #0090C1;" text="Manage Vendors">
+                  <Button fx:id="vendorMainButton" layoutX="144.0" layoutY="108.0" minWidth="120.0" mnemonicParsing="false" onAction="#vendorMainButtonOnAction" prefHeight="30.0" prefWidth="104.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 0, 0, 0); -fx-background-color: #0090C1;" text="Vendors">
+                     <font>
+                        <Font name="Poppins Medium" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="reservationMainButton" layoutX="144.0" layoutY="154.0" minWidth="120.0" mnemonicParsing="false" onAction="#reservationMainButtonOnAction" prefHeight="30.0" prefWidth="104.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 0, 0, 0); -fx-background-color: #0090C1;" text="Reservation">
                      <font>
                         <Font name="Poppins Medium" size="12.0" />
                      </font>
@@ -82,7 +87,7 @@
                   <DropShadow />
                </effect>
             </AnchorPane>
-            <ImageView fitHeight="284.0" fitWidth="207.0" layoutX="308.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 0, 0, 0);">
+            <ImageView fitHeight="284.0" fitWidth="207.0" layoutX="335.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 0, 0, 0);">
                <image>
                   <Image url="@../../images/Property.jpg" />
                </image>

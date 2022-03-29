@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group7.View.GuestView">
+   <top>
+      <AnchorPane prefHeight="38.0" prefWidth="600.0" style="-fx-background-color: lightgray;" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="backButton" layoutX="494.0" layoutY="7.0" mnemonicParsing="false" onAction="#backButtonOnAction" text="Back To Menu" />
+            <Label layoutX="14.0" layoutY="5.0" text="Guest Management">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </top>
+   <left>
+      <TableView fx:id="tableView" prefHeight="360.0" prefWidth="480.0" BorderPane.alignment="CENTER" />
+   </left>
+   <right>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="createGuestButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#createGuestButtonOnAction" prefHeight="25.0" prefWidth="93.0" text="Add Guest" />
+            <Button fx:id="modifyGuestButton" layoutX="14.0" layoutY="48.0" mnemonicParsing="false" onAction="#modifyGuestButtonOnAction" prefHeight="25.0" prefWidth="93.0" text="Modify Guest" />
+            <Button fx:id="deleteGuestButton" layoutX="14.0" layoutY="84.0" mnemonicParsing="false" onAction="#deleteGuestButtonOnAction" prefHeight="25.0" prefWidth="93.0" text="Delete Guest" />
+            <Label fx:id="statusMessageLabel" layoutX="12.0" layoutY="119.0" prefHeight="211.0" prefWidth="95.0" textAlignment="CENTER" textFill="#f22c2c" wrapText="true" />
+         </children>
+      </AnchorPane>
+   </right>
+</BorderPane>

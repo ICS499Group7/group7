@@ -109,6 +109,25 @@ public class PropertyModel {
         return rs;
     }
 
+    public String getVendorIdByPropertyId(String id) {
+        this.id = id;
+
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connectDB = connectNow.getConnection();
+
+        String query = "SELECT vendorId FROM vendor_contracts WHERE propertyId = '" + id + "'";
+        try {
+            ResultSet rs = connectDB.createStatement().executeQuery(query);
+            if (rs.next()) {
+                return rs.getString(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return "null";
+    }
+
     public boolean createProperty(String propertyName, String type, String rate, String addressID, String ownerID) { //returns a boolean value, adds a new user to the user_accounts
         this.propertyName = propertyName;
         this.type = type;

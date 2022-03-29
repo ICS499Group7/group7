@@ -72,7 +72,7 @@ public class OwnerModel {
         Connection connectDB = connectNow.getConnection();
 
         ResultSet rs = null;
-        String query = "SELECT o.company_name,o.phone,o.email FROM owner_accounts o WHERE o.id = '" + id + "'";
+        String query = "SELECT o.company_name,o.first_name, o.last_name,o.phone,o.email FROM owner_accounts o WHERE o.id = '" + id + "'";
         try {
             rs = connectDB.createStatement().executeQuery(query);
         } catch (SQLException e) {

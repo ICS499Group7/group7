@@ -33,21 +33,21 @@ public class VendorModel {
         }
         return rs;
     }
-    /*
-        public ResultSet getVendorsDataByID(String vendorID) { //Returns a Resultset list of all agents in Agents_accounts
-            DatabaseConnection connectNow = new DatabaseConnection();
-            Connection connectDB = connectNow.getConnection();
 
-            ResultSet rs = null;
-            String query = "SELECT * FROM owner_accounts WHERE id = " + ownerID;
-            try {
-                rs = connectDB.createStatement().executeQuery(query);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            return rs;
+    public ResultSet getVendorsDataByID(String id) { //Returns a Resultset list of all agents in Agents_accounts
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connectDB = connectNow.getConnection();
+
+        ResultSet rs = null;
+        String query = "SELECT v.company_name, v.phone, v.email FROM vendors v WHERE id = " + id;
+        try {
+            rs = connectDB.createStatement().executeQuery(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-    */
+        return rs;
+    }
+
     public String getAddressIDByVendor(String vendorID) {
         this.id = vendorID;
 

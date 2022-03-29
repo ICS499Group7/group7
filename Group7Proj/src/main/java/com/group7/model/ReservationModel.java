@@ -148,13 +148,13 @@ public class ReservationModel {
         return false;
     }
 
-    public boolean deleteProperty(String id) throws SQLException {
+    public boolean deleteReservation(String id) throws SQLException {
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
 
         String addrID = getAddressIDByProperty(id);
         String deleteAddressQuery = "DELETE FROM address WHERE id = " + addrID;
-        String deletePropertyQuery = "DELETE FROM properties WHERE id = " + id;
+        String deletePropertyQuery = "DELETE FROM reservations WHERE id = " + id;
 
         System.out.println(deletePropertyQuery);
         System.out.println(deleteAddressQuery);

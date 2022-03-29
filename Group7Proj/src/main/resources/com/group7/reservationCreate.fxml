@@ -23,6 +23,7 @@
       </AnchorPane>
    </top>
    <bottom>
+
       <AnchorPane prefHeight="363.0" prefWidth="289.0" BorderPane.alignment="CENTER">
          <children>
             <DatePicker fx:id="startDate" layoutX="138.0" layoutY="101.0" onAction="#triggerEndUpdate" />

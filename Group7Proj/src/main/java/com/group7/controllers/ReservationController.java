@@ -58,11 +58,17 @@ public class ReservationController implements Initializable {
     @FXML
     private Label propertyOwnerCompanyName;
     @FXML
+    private Label propertyOwnerName;
+    @FXML
     private Label propertyOwnerPhone;
     @FXML
     private Label propertyOwnerEmail;
     @FXML
-    private Label propertyVendorName;
+    private Label vendorName;
+    @FXML
+    private Label vendorPhone;
+    @FXML
+    private Label vendorEmail;
     @FXML
     private Label guestName;
     @FXML
@@ -95,9 +101,13 @@ public class ReservationController implements Initializable {
     String propertyTypeData;
     String propertyOwnerIdData;
     String propertyOwnerCompanyNameData;
+    String propertyOwnerNameData;
     String propertyOwnerPhoneData;
     String propertyOwnerEmailData;
-    String propertyVendorNameData;
+    String vendorIdData;
+    String vendorNameData;
+    String vendorPhoneData;
+    String vendorEmailData;
     String guestIdData;
     String guestNameData;
     String guestPhoneData;
@@ -138,13 +148,23 @@ public class ReservationController implements Initializable {
                 propertyTypeData = propRs.getString(2);
                 propertyOwnerIdData = propRs.getString(3);
                 propertyAddressData = propRs.getString(4) + ", " + propRs.getString(5) + ", " + propRs.getString(6) + ", " + propRs.getString(7);
+                vendorIdData = property.getVendorIdByPropertyId(propertyIdData);
             }
+
+            ResultSet vendorRs = vendor.getVendorsDataByID(vendorIdData);
+            if (vendorRs.next()) {
+                vendorNameData = vendorRs.getString(1);
+                vendorPhoneData = vendorRs.getString(2);
+                vendorEmailData = vendorRs.getString(3);
+            }
+
 
             ResultSet ownerRs = owner.getOwnerDataById(propertyOwnerIdData);
             if (ownerRs.next()){
                 propertyOwnerCompanyNameData = ownerRs.getString(1);
-                propertyOwnerPhoneData = ownerRs.getString(2);
-                propertyOwnerEmailData = ownerRs.getString(3);
+                propertyOwnerNameData = ownerRs.getString(2) + " " + ownerRs.getString(3);
+                propertyOwnerPhoneData = ownerRs.getString(4);
+                propertyOwnerEmailData = ownerRs.getString(5);
             }
 
             ResultSet guestRs = guest.getGuestDataByID(guestIdData);
@@ -174,7 +194,13 @@ public class ReservationController implements Initializable {
         propertyAddress.setText(propertyAddressData);
         propertyType.setText(propertyTypeData);
 
+        vendorName.setText(vendorNameData);
+        vendorPhone.setText(vendorPhoneData);
+        vendorEmail.setText(vendorEmailData);
+
+
         propertyOwnerCompanyName.setText(propertyOwnerCompanyNameData);
+        propertyOwnerName.setText(propertyOwnerNameData);
         propertyOwnerPhone.setText(propertyOwnerPhoneData);
         propertyOwnerEmail.setText(propertyOwnerEmailData);
 

@@ -20,7 +20,6 @@ import javafx.util.Callback;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.time.LocalDate;
-import java.time.Period;
 import java.util.ResourceBundle;
 
 import static java.time.temporal.ChronoUnit.DAYS;
@@ -28,8 +27,6 @@ import static java.time.temporal.ChronoUnit.DAYS;
 public class ReservationCreationController implements Initializable {
     @FXML
     private Button backButton;
-    @FXML
-    private Button reserveButton;
     @FXML
     private ComboBox propertyChoice;
     @FXML
@@ -134,10 +131,6 @@ public class ReservationCreationController implements Initializable {
             }
         };
         datePicker.setDayCellFactory(dayCellFactory);
-    }
-
-    public void triggerEndUpdate() {
-        //restrictDatePicker(endDate,LocalDate.parse(startDate.getValue().toString()).plusDays(1));
     }
 
     public void reserveButtonOnAction() {

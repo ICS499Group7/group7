@@ -71,7 +71,8 @@ public class ReservationView implements Initializable {
 
     public void createReservationButtonOnAction() {
         try{
-            Parent root = FXMLLoader.load(getClass().getResource("/com/group7/reservationCreate.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/group7/reservationCreate.fxml"));
+            Parent root = loader.load();
             Stage registerStage = new Stage();
             registerStage.initStyle(StageStyle.UNDECORATED);
             registerStage.setScene(new Scene(root, 600, 400));

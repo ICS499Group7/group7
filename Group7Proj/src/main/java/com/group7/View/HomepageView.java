@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -26,10 +27,26 @@ import java.util.ResourceBundle;
 public class HomepageView implements Initializable {
     @FXML
     private Button exitButton;
+    @FXML
+    private Label welcomeText;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        //Images
+        AgentModel agent = new AgentModel();
+
+        String name = agent.getAgentNameByUsername(LoginModel.username);
+
+        if (name.startsWith("!")) {
+            name = name.substring(1);
+
+            if (name.length() == 0) {
+                name = "Admin";
+            }
+
+        }
+
+
+        welcomeText.setText("Welcome " + name);
     }
 
     public void exitButtonOnAction(ActionEvent event) {
@@ -160,21 +177,20 @@ public class HomepageView implements Initializable {
     }
 
     public void loadModifyAgentForCurrentUser(){
-        ResultSet rs = new AgentModel().getAgents();
+        ResultSet rs = new AgentModel().getAgentDataByUsername(LoginModel.username);
         List<String> currentUser = new ArrayList<>();
+
         try {
-            while (rs.next()) {
-                ObservableList<String> row = FXCollections.observableArrayList();
-                for (int i=1; i<=rs.getMetaData().getColumnCount(); i++){
-                    row.add(rs.getString(i));
+
+            if(rs.next()) {
+                for (int i = 1; i < 6; i++) {
+                    currentUser.add(rs.getString(i));
                 }
-                if (rs.getString(4).equals(LoginModel.username)) {
-                    for(int i = 1; i < 6; i++ ) {
-                        currentUser.add(rs.getString(i));
-                    }
-                }
+            } else {
+                //db error
             }
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/group7/agentModifyForm.fxml"));
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/group7/agent/agentModifyForm.fxml"));
             Parent root = loader.load();
             AgentManageController modifyController = loader.getController();
             modifyController.passAgentInfo(currentUser.get(0), currentUser.get(1), currentUser.get(2),

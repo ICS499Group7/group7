@@ -1,34 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group7.controllers.ReservationCreationController">
-   <left>
-      <AnchorPane prefHeight="363.0" prefWidth="449.0" BorderPane.alignment="CENTER">
-         <children>
-            <DatePicker fx:id="startDate" layoutX="138.0" layoutY="101.0" onAction="#triggerEndUpdate" />
-            <DatePicker fx:id="endDate" layoutX="138.0" layoutY="141.0" />
-            <Label fx:id="statusLabel" layoutX="206.0" layoutY="228.0" text="Output" />
-            <Button fx:id="reserveButton" layoutX="199.0" layoutY="268.0" mnemonicParsing="false" onAction="#reserveButtonOnAction" text="reserve" />
-            <ChoiceBox fx:id="guestChoice" layoutX="150.0" layoutY="60.0" prefWidth="150.0" />
-            <Label layoutX="90.0" layoutY="29.0" text="Property" />
-            <Label layoutX="98.0" layoutY="64.0" text="Guest" />
-            <ComboBox fx:id="propertyChoice" layoutX="150.0" layoutY="25.0" onAction="#setPropertyOnAction" prefWidth="150.0" />
-            <Label layoutX="82.0" layoutY="105.0" text="Start Date" />
-            <Label layoutX="79.0" layoutY="145.0" text="End Date" />
-         </children>
-      </AnchorPane>
-   </left>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group7.controllers.ReservationCreationController">
    <top>
-      <AnchorPane prefHeight="37.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="61.0" prefWidth="300.0" style="-fx-background-color: lightgray;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="backButton" layoutX="534.0" layoutY="6.0" mnemonicParsing="false" onAction="#backButtonOnAction" text="Back" />
+            <Button fx:id="backButton" layoutX="257.0" layoutY="24.0" mnemonicParsing="false" onAction="#backButtonOnAction" style="-fx-background-color: #1d3557;" text="Cancel" textFill="WHITE" />
+            <Label layoutX="88.0" layoutY="10.0" prefHeight="52.0" prefWidth="149.0" text="Create Reservation">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </top>
-   <right>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
-   </right>
+   <bottom>
+
+      <AnchorPane prefHeight="363.0" prefWidth="289.0" BorderPane.alignment="CENTER">
+         <children>
+            <DatePicker fx:id="startDate" layoutX="138.0" layoutY="101.0"/>
+            <DatePicker fx:id="endDate" layoutX="138.0" layoutY="141.0" />
+            <Label fx:id="statusLabel" layoutX="141.0" layoutY="215.0" text="Output" />
+            <Button fx:id="reserveButton" layoutX="131.0" layoutY="266.0" mnemonicParsing="false" onAction="#reserveButtonOnAction" style="-fx-background-color: #1d3557;" text="Reserve" textFill="WHITE" />
+            <ChoiceBox fx:id="guestChoice" layoutX="138.0" layoutY="60.0" prefWidth="150.0" />
+            <ComboBox fx:id="propertyChoice" layoutX="138.0" layoutY="21.0" onAction="#setPropertyOnAction" prefWidth="150.0" />
+            <Label alignment="CENTER" layoutX="47.0" layoutY="21.0" prefHeight="25.0" prefWidth="91.0" style="-fx-background-color: lightgrey;" text="Property" textAlignment="CENTER" textOverrun="LEADING_ELLIPSIS">
+               <font>
+                  <Font name="Poppins Regular" size="12.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="47.0" layoutY="60.0" prefHeight="25.0" prefWidth="91.0" style="-fx-background-color: lightgrey;" text="Guest" textAlignment="CENTER" textOverrun="LEADING_ELLIPSIS">
+               <font>
+                  <Font name="Poppins Regular" size="12.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="47.0" layoutY="101.0" prefHeight="25.0" prefWidth="91.0" style="-fx-background-color: lightgrey;" text="Start Date" textAlignment="CENTER" textOverrun="LEADING_ELLIPSIS">
+               <font>
+                  <Font name="Poppins Regular" size="12.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="47.0" layoutY="141.0" prefHeight="25.0" prefWidth="91.0" style="-fx-background-color: lightgrey;" text="End Date" textAlignment="CENTER" textOverrun="LEADING_ELLIPSIS">
+               <font>
+                  <Font name="Poppins Regular" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </bottom>
 </BorderPane>

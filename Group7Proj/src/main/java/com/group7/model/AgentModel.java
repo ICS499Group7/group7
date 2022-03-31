@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
+import java.util.Locale;
 
 import com.group7.DatabaseConnection;
 
@@ -50,6 +51,38 @@ public class AgentModel { //Will control getting and setting data to the SQL ser
         return "null";
     }
 
+    public static String getAgentNameByUsername(String uName) { //Returns a String id
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connectDB = connectNow.getConnection();
+
+        ResultSet rs = null;
+        String query = "SELECT a.first_name FROM agent_accounts a WHERE a.username = '" + uName + "'";
+        try {
+            rs = connectDB.createStatement().executeQuery(query);
+            if (rs.next()) {
+                return rs.getString(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return "null";
+    }
+
+    public ResultSet getAgentDataByUsername(String uName) { //Returns a Resultset list of all agents in Agents_accounts
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connectDB = connectNow.getConnection();
+
+        ResultSet rs = null;
+        String query = "SELECT * FROM agent_accounts WHERE username = '" + uName + "'";
+        try {
+            rs = connectDB.createStatement().executeQuery(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rs;
+    }
+
     public ResultSet getAgentDataByID(String agentID) { //Returns a Resultset list of all agents in Agents_accounts
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
@@ -81,7 +114,7 @@ public class AgentModel { //Will control getting and setting data to the SQL ser
     public int addAgent(String firstName, String lastName, String username, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.username = username;
+        this.username = username.toLowerCase(Locale.ROOT);
         this.password = password;
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
@@ -104,7 +137,7 @@ public class AgentModel { //Will control getting and setting data to the SQL ser
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.username = username;
+        this.username = username.toLowerCase(Locale.ROOT);
         this.password = password;
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();

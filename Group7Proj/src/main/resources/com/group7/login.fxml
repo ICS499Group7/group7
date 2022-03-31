@@ -1,47 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="520.0" style="-fx-background-color: Gray;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group7.controllers.LoginController">
+   <top>
+      <AnchorPane prefHeight="40.0" prefWidth="520.0" style="-fx-background-color: #F5F5F5;" BorderPane.alignment="CENTER" />
+   </top>
    <bottom>
       <AnchorPane prefHeight="385.0" prefWidth="520.0" style="-fx-background-color: #ECECE7;" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="135.0" layoutY="74.0" prefHeight="19.0" prefWidth="66.0" text="Username">
+            <TextField fx:id="usernameTextField" alignment="CENTER" layoutX="182.0" layoutY="116.0" prefHeight="26.0" prefWidth="173.0" promptText="Username" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 0, 0, 0);">
+               <font>
+                  <Font name="Poppins Regular" size="16.0" />
+               </font></TextField>
+            <PasswordField fx:id="enterPasswordField" alignment="CENTER" layoutX="182.0" layoutY="180.0" prefHeight="26.0" prefWidth="173.0" promptText="Password" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 0, 0, 0);">
+               <font>
+                  <Font size="16.0" />
+               </font></PasswordField>
+            <Label fx:id="loginMessageLabel" alignment="CENTER" layoutX="141.0" layoutY="229.0" prefHeight="19.0" prefWidth="256.0" textFill="RED">
                <font>
                   <Font size="13.0" />
                </font>
             </Label>
-            <TextField fx:id="usernameTextField" layoutX="212.0" layoutY="71.0" prefHeight="26.0" prefWidth="173.0" promptText="Username" />
-            <Label layoutX="135.0" layoutY="109.0" prefHeight="19.0" prefWidth="63.0" text="Password">
+            <Text layoutX="184.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Property" wrappingWidth="152.13671875">
                <font>
-                  <Font size="13.0" />
+                  <Font name="Poppins Regular" size="36.0" />
                </font>
-            </Label>
-            <PasswordField fx:id="enterPasswordField" layoutX="211.0" layoutY="106.0" prefHeight="26.0" prefWidth="173.0" promptText="Password" />
-            <Button fx:id="loginButton" layoutX="143.0" layoutY="200.0" mnemonicParsing="false" onAction="#loginButtonOnAction" prefHeight="32.0" prefWidth="249.0" style="-fx-background-color: #E96151;" text="Login" textFill="WHITE" />
-            <Button fx:id="cancelButton" layoutX="143.0" layoutY="240.0" mnemonicParsing="false" onAction="#CancelButtonOnAction" prefHeight="32.0" prefWidth="249.0" style="-fx-background-color: #E96151;" text="Cancel" textFill="WHITE" />
-            <Label fx:id="loginMessageLabel" alignment="CENTER" layoutX="140.0" layoutY="157.0" prefHeight="19.0" prefWidth="256.0" textFill="RED">
+            </Text>
+            <Text fill="#e19231" layoutX="336.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="+">
                <font>
-                  <Font size="13.0" />
+                  <Font name="Poppins Bold" size="50.0" />
                </font>
-            </Label>
-            <Label layoutX="197.0" layoutY="14.0" text="Property+">
-               <font>
-                  <Font name="System Bold" size="24.0" />
-               </font>
-            </Label>
+            </Text>
+            <Button fx:id="loginButton" layoutX="144.0" layoutY="261.0" mnemonicParsing="false" onAction="#loginButtonOnAction" prefHeight="25.0" prefWidth="248.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 0, 0, 0); -fx-background-color: #1d3557;" text="Login" textFill="WHITE" />
+            <Button fx:id="cancelButton" layoutX="144.0" layoutY="304.0" mnemonicParsing="false" onAction="#CancelButtonOnAction" prefHeight="25.0" prefWidth="248.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 0, 0, 0); -fx-background-color: #1d3557;" text="Exit" textFill="WHITE" />
          </children>
       </AnchorPane>
    </bottom>
-   <top>
-      <AnchorPane prefHeight="40.0" prefWidth="520.0" BorderPane.alignment="CENTER" />
-   </top>
 </BorderPane>

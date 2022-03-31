@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group7.controllers.AgentManageController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group7.controllers.AgentManageController">
    <top>
       <AnchorPane prefHeight="61.0" prefWidth="300.0" style="-fx-background-color: lightgrey;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="cancelButton" layoutX="234.0" layoutY="18.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" text="Cancel" />
+            <Button fx:id="cancelButton" layoutX="234.0" layoutY="18.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" style="-fx-background-color: #1d3557;" text="Cancel" textFill="WHITE" />
             <Label layoutX="113.0" layoutY="17.0" text="Add Agent">
                <font>
                   <Font size="18.0" />
@@ -20,18 +24,38 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="35.0" layoutY="18.0" text="First Name" />
-            <TextField fx:id="firstName" layoutX="116.0" layoutY="14.0" promptText="First Name" />
-            <TextField fx:id="lastName" layoutX="116.0" layoutY="55.0" promptText="Last Name" />
-            <Label layoutX="35.0" layoutY="59.0" text="Last Name" />
-            <Label layoutX="35.0" layoutY="100.0" text="Username" />
-            <TextField fx:id="userName" layoutX="116.0" layoutY="96.0" promptText="User Name" />
-            <Label layoutX="35.0" layoutY="141.0" text="Password" />
-            <PasswordField fx:id="password" layoutX="116.0" layoutY="137.0" promptText="Password" />
-            <PasswordField fx:id="passwordConfirm" layoutX="116.0" layoutY="178.0" promptText="Re-Enter Password" />
-            <Label layoutX="11.0" layoutY="182.0" text="Re-Enter Password" />
-            <Button fx:id="submitAgentButton" layoutX="98.0" layoutY="349.0" mnemonicParsing="false" onAction="#submitAgentButtonOnAction" prefHeight="25.0" prefWidth="125.0" text="Submit Agent" />
-            <Label fx:id="statusMessageLabel" layoutX="10.0" layoutY="210.0" prefHeight="120.0" prefWidth="300.0" text=" " textFill="RED" wrapText="true" />
+            <TextField fx:id="firstName" alignment="CENTER" layoutX="139.0" layoutY="42.0" promptText="..." />
+            <TextField fx:id="lastName" alignment="CENTER" layoutX="139.0" layoutY="83.0" promptText="..." />
+            <TextField fx:id="userName" alignment="CENTER" layoutX="139.0" layoutY="124.0" promptText="..." />
+            <PasswordField fx:id="password" alignment="CENTER" layoutX="139.0" layoutY="165.0" promptText="..." />
+            <PasswordField fx:id="passwordConfirm" alignment="CENTER" layoutX="139.0" layoutY="206.0" promptText="..." />
+            <Button fx:id="submitAgentButton" layoutX="98.0" layoutY="349.0" mnemonicParsing="false" onAction="#submitAgentButtonOnAction" prefHeight="25.0" prefWidth="125.0" style="-fx-background-color: #1d3557; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 0, 0, 0);" text="Submit Agent" textFill="WHITE" />
+            <Label fx:id="statusMessageLabel" layoutX="38.0" layoutY="241.0" prefHeight="89.0" prefWidth="264.0" text=" " textFill="RED" wrapText="true" />
+            <Label alignment="CENTER" layoutX="34.0" layoutY="42.0" prefHeight="25.0" prefWidth="105.0" style="-fx-background-color: lightgrey;" text="First Name" textAlignment="CENTER" textOverrun="LEADING_ELLIPSIS">
+               <font>
+                  <Font name="Poppins Regular" size="12.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="35.0" layoutY="83.0" prefHeight="25.0" prefWidth="104.0" style="-fx-background-color: lightgrey;" text="Last Name" textAlignment="CENTER" textOverrun="LEADING_ELLIPSIS">
+               <font>
+                  <Font name="Poppins Regular" size="12.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="36.0" layoutY="124.0" prefHeight="25.0" prefWidth="103.0" style="-fx-background-color: lightgrey;" text="Username" textAlignment="CENTER" textOverrun="LEADING_ELLIPSIS">
+               <font>
+                  <Font name="Poppins Regular" size="12.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="36.0" layoutY="165.0" prefHeight="25.0" prefWidth="103.0" style="-fx-background-color: lightgrey;" text="Password" textAlignment="CENTER" textOverrun="LEADING_ELLIPSIS">
+               <font>
+                  <Font name="Poppins Regular" size="12.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="37.0" layoutY="206.0" prefHeight="25.0" prefWidth="102.0" style="-fx-background-color: lightgrey;" text="Re-Enter Password" textAlignment="CENTER" textOverrun="LEADING_ELLIPSIS">
+               <font>
+                  <Font name="Poppins Regular" size="12.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </center>

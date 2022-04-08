@@ -108,7 +108,7 @@ public class OwnerView implements Initializable {
                 Stage stage = (Stage) backButton.getScene().getWindow();
                 stage.close();
             } else {
-                statusMessageLabel.setText("Please Select an Owner to Modify from the Table and Try Again");
+                statusMessageLabel.setText("Please Select an Owner from the Table to Modify and Try Again");
             }
 
         } catch (Exception e) {
@@ -118,12 +118,23 @@ public class OwnerView implements Initializable {
     }
 
     public void deleteOwnerButtonOnAction(ActionEvent event) {
-        try {
-            if (owner.deleteOwner(getSelectedOwnerID()) && LoginModel.admin)
-                tableView.getItems().removeAll(tableView.getSelectionModel().getSelectedItem());
-        } catch (Exception e) {
-            e.printStackTrace();
-            e.getCause();
+        if (LoginModel.admin) {
+            if (tableView.getSelectionModel().getSelectedIndex() != -1) {
+                try {
+                    if (owner.deleteOwner(getSelectedOwnerID())) {
+                        tableView.getItems().removeAll(tableView.getSelectionModel().getSelectedItem());
+                        statusMessageLabel.setText("");
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    e.getCause();
+                }
+            } else {
+                statusMessageLabel.setText("Please Select an Owner from the Table to Delete and Try Again");
+            }
+        } else {
+            statusMessageLabel.setText("Please contact an administrator.  You must have administrative rights to delete an Owner");
+
         }
     }
 

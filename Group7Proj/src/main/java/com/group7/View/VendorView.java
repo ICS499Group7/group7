@@ -118,7 +118,7 @@ public class VendorView  implements Initializable {
                 Stage stage = (Stage) backButton.getScene().getWindow();
                 stage.close();
             } else {
-                statusMessageLabel.setText("Please Select an Vendor to Modify from the Table and Try Again");
+                statusMessageLabel.setText("Please Select a Vendor from the Table to Modify and Try Again");
             }
 
         } catch (Exception e) {
@@ -128,14 +128,22 @@ public class VendorView  implements Initializable {
     }
 
     public void deleteVendorButtonOnAction(ActionEvent event) {
-        try {
-            if (vendor.deleteVendor(getSelectedVendorID()) && LoginModel.admin) {
-
-                tableView.getItems().removeAll(tableView.getSelectionModel().getSelectedItem());
+        if (LoginModel.admin) {
+            if (tableView.getSelectionModel().getSelectedIndex() != -1) {
+                try {
+                    if (vendor.deleteVendor(getSelectedVendorID()) && LoginModel.admin) {
+                        tableView.getItems().removeAll(tableView.getSelectionModel().getSelectedItem());
+                        statusMessageLabel.setText("");
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    e.getCause();
+                }
+            } else {
+                statusMessageLabel.setText("Please Select a Vendor from the Table to Delete and Try Again");
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-            e.getCause();
+        } else {
+            statusMessageLabel.setText("Please contact an administrator.  You must have administrative rights to delete a Vendor");
         }
     }
 

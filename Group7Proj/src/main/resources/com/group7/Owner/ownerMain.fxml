@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group7.View.OwnerView">
    <left>
@@ -21,7 +18,10 @@
             <Button fx:id="createOwnerButton" layoutX="16.0" layoutY="14.0" mnemonicParsing="false" onAction="#createOwnerButtonOnAction" prefHeight="25.0" prefWidth="92.0" style="-fx-background-color: #0090C1; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 0, 0, 0);" text="Add Owner" />
             <Button fx:id="modifyOwnerButton" layoutX="16.0" layoutY="58.0" mnemonicParsing="false" onAction="#modifyOwnerButtonOnAction" style="-fx-background-color: #0090C1; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 0, 0, 0);" text="Modify Owner" />
             <Button fx:id="deleteOwnerButton" layoutX="16.0" layoutY="104.0" mnemonicParsing="false" onAction="#deleteOwnerButtonOnAction" prefHeight="25.0" prefWidth="91.0" style="-fx-background-color: #0090C1; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 0, 0, 0);" text="Delete Owner" />
-            <Label fx:id="statusMessageLabel" layoutX="12.0" layoutY="119.0" prefHeight="211.0" prefWidth="95.0" textAlignment="CENTER" textFill="#f22c2c" wrapText="true" />
+            <Label fx:id="statusMessageLabel" layoutX="5.0" layoutY="140.0" prefHeight="210.0" prefWidth="110.0" textAlignment="CENTER" textFill="#f22c2c" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
          </children>
       </AnchorPane>
    </right>

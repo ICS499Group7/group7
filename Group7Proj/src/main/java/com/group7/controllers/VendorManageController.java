@@ -15,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
@@ -55,7 +56,8 @@ public class VendorManageController implements Initializable {
     private ComboBox chooseProperty;
     @FXML
     private TableView tableViewContracts;
-
+    @FXML
+    private Label tableViewMessageLabel;
 
     private String vendorID;
     private String propertyID;
@@ -255,6 +257,7 @@ public class VendorManageController implements Initializable {
      *****************************************************************************/
     public void saveContractButtonOnAction(ActionEvent actionEvent) throws SQLException {
         addPropertyToVendor(vendorID, property.getPropertyIdByName(chooseProperty.getValue().toString()));
+        tableViewMessageLabel.setText("");
     }
 
     /*****************************************************************************
@@ -263,5 +266,12 @@ public class VendorManageController implements Initializable {
     public void deleteContractButtonOnAction(ActionEvent actionEvent) throws SQLException {
         boolean createUserQuery = new VendorModel().deleteVendorsContracts(vendorID, property.getPropertyIdByName(chooseProperty.getValue().toString()));
         loadTable();
+        tableViewMessageLabel.setText("");
+    }
+
+    public void displayMessage(MouseEvent mouseEvent) {
+        //if (tableView.getSelectionModel().getSelectedIndex() != -1)
+        tableViewContracts.getSelectionModel().clearSelection();
+        tableViewMessageLabel.setText("Table is for Viewing Existing Contracts Only.  Select Property for Management Above");
     }
 }

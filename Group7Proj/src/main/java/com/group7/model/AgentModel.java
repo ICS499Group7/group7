@@ -7,6 +7,8 @@ import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.Locale;
 
 import com.group7.DatabaseConnection;
+import org.mindrot.jbcrypt.BCrypt;
+
 
 public class AgentModel { //Will control getting and setting data to the SQL server
     private String id;
@@ -22,6 +24,8 @@ public class AgentModel { //Will control getting and setting data to the SQL ser
     public ResultSet getAgents() { //Returns a Resultset list of all agents in user_accounts
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
+
+        passwordHash("test123");
 
         ResultSet rs = null;
         String query = "SELECT * FROM agent_accounts";
@@ -157,4 +161,20 @@ public class AgentModel { //Will control getting and setting data to the SQL ser
         return 1;
     }
 
+    public void passwordHash(String password) {
+
+        String hashed = BCrypt.hashpw(password, BCrypt.gensalt(12));
+        // Check that an unencrypted password matches one that has
+        // previously been hashed
+        if (BCrypt.checkpw(password, hashed))
+            System.out.println("It matches: password = " + password + " hash = " + hashed);
+
+        else
+            System.out.println("It does not match");
+    }
+
+
+
 }
+
+

@@ -1,0 +1,3 @@
+dbName:group7
+dbUser:root
+dbPass:pass

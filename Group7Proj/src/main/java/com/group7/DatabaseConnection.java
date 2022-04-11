@@ -6,6 +6,15 @@ import java.sql.DriverManager;
 
 public class DatabaseConnection {
     public Connection databaseLink;
+    String dbName;
+    String dbUser;
+    String dbPass;
+
+    public void setConnection(String dbName, String dbUser, String dbPass) {
+        this.dbName = dbName;
+        this.dbUser = dbUser;
+        this.dbPass = dbName;
+    }
 
     public Connection getConnection() {
         String databaseName = "group7";

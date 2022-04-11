@@ -99,18 +99,14 @@ public class GuestView implements Initializable {
                 GuestManageController modifyController = loader.getController();
                 modifyController.passGuestInfo(id.get(0), id.get(1), id.get(2), id.get(3), id.get(4), id.get(5));
 
-                if (!id.get(3).startsWith("!") || LoginModel.admin) {
-                    Stage registerStage = new Stage();
-                    registerStage.initStyle(StageStyle.UNDECORATED);
-                    registerStage.setScene(new Scene(root, 350, 450));
-                    registerStage.show();
-                    Stage stage = (Stage) backButton.getScene().getWindow();
-                    stage.close();
-                } else {
-                    statusMessageLabel.setText("Please contact an Administrator.  You must have administrative rights to change account to an Administrators account");
-                }
+                Stage registerStage = new Stage();
+                registerStage.initStyle(StageStyle.UNDECORATED);
+                registerStage.setScene(new Scene(root, 350, 450));
+                registerStage.show();
+                Stage stage = (Stage) backButton.getScene().getWindow();
+                stage.close();
             } else {
-                statusMessageLabel.setText("Please Select an Agent to Modify from the Table and Try Again");
+                statusMessageLabel.setText("Please Select a Guest from the Table to Modify and Try Again");
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -120,22 +116,30 @@ public class GuestView implements Initializable {
 
     public void deleteGuestButtonOnAction(ActionEvent event) {
         if (LoginModel.admin)
-            try {
-                String items = tableView.getItems().get(tableView.getSelectionModel().getSelectedIndex()).toString();
-                items = items.substring(1, items.length() - 1);
-                List<String> id = Arrays.asList(items.split(",\\s*"));
-                if (guest.deleteGuest(id.get(0)))
-                    tableView.getItems().removeAll(tableView.getSelectionModel().getSelectedItem());
-            } catch (Exception e) {
-                e.printStackTrace();
-                e.getCause();
+            if (tableView.getSelectionModel().getSelectedIndex() != -1) {
+                try {
+                    if (guest.deleteGuest(getSelectedGuestID())) {
+                        tableView.getItems().removeAll(tableView.getSelectionModel().getSelectedItem());
+                        statusMessageLabel.setText("");
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    e.getCause();
+                }
+            } else {
+                statusMessageLabel.setText("Please Select a Guest from the Table to Delete and Try Again");
             }
         else {
             statusMessageLabel.setText("Please contact an administrator.  You must have administrative rights to delete a Guest");
-
         }
     }
 
+    public String getSelectedGuestID(){
+        String items = tableView.getItems().get(tableView.getSelectionModel().getSelectedIndex()).toString();
+        items = items.substring(1, items.length() - 1);
+        List<String> id = Arrays.asList(items.split(",\\s*"));
+        return id.get(0);
+    }
 
     public void homepage() {
         try {

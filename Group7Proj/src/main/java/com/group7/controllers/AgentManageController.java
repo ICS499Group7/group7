@@ -69,7 +69,7 @@ public class AgentManageController {
         if ((firstName.getText().isBlank() == false) && (lastName.getText().isBlank() == false) && (userName.getText().isBlank() == false) && (password.getText().isBlank() == false) && (passwordConfirm.getText().equals(password.getText()))) {
 
             if (!userName.getText().startsWith("!") || LoginModel.admin) {
-                LoginModel.username = userName.getText();
+                LoginModel.usernameFromLoginForm = userName.getText();
 //                if (checkPassword(this.password.getText())) {
                     if (modifyAgent()) {
                         if (LoginModel.admin) {

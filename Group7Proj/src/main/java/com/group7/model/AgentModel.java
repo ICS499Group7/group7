@@ -24,9 +24,6 @@ public class AgentModel { //Will control getting and setting data to the SQL ser
     public ResultSet getAgents() { //Returns a Resultset list of all agents in user_accounts
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
-
-        passwordHash("test123");
-
         ResultSet rs = null;
         String query = "SELECT * FROM agent_accounts";
         try {
@@ -120,10 +117,12 @@ public class AgentModel { //Will control getting and setting data to the SQL ser
         this.lastName = lastName;
         this.username = username.toLowerCase(Locale.ROOT);
         this.password = password;
+        String hash = hashPassword(password);
+
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
 
-        String addAgentQuery = "INSERT INTO agent_accounts (first_name,last_name,username,password) VALUES ('" + this.firstName + "','" + this.lastName + "','" + this.username + "','" + this.password + "')";
+        String addAgentQuery = "INSERT INTO agent_accounts (first_name,last_name,username,password) VALUES ('" + this.firstName + "','" + this.lastName + "','" + this.username + "','" + hash + "')";
 
         try {
             int queryResult = connectDB.createStatement().executeUpdate(addAgentQuery); //execute the above query
@@ -143,13 +142,15 @@ public class AgentModel { //Will control getting and setting data to the SQL ser
         this.lastName = lastName;
         this.username = username.toLowerCase(Locale.ROOT);
         this.password = password;
+        String hash = hashPassword(password);
+
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
 
-        String modifyAgentQuery = "UPDATE agent_accounts SET first_name = '" + this.firstName + "', last_name = '" + this.lastName + "', username = '" + this.username + "', password = '" + this.password + "' WHERE id = '" + this.id + "'";
+        String modifyAgentQuery = "UPDATE agent_accounts SET first_name = '" + this.firstName + "', last_name = '" + this.lastName + "', username = '" + this.username + "', password = '" + hash + "' WHERE id = '" + this.id + "'";
 
         try {
-            int queryResult = connectDB.createStatement().executeUpdate(modifyAgentQuery); //execute the above query
+            connectDB.createStatement().executeUpdate(modifyAgentQuery); //execute the above query
         } catch( SQLIntegrityConstraintViolationException constraintViolationException) {
             return 2; //The username must be unique
         }
@@ -161,19 +162,9 @@ public class AgentModel { //Will control getting and setting data to the SQL ser
         return 1;
     }
 
-    public void passwordHash(String password) {
-
-        String hashed = BCrypt.hashpw(password, BCrypt.gensalt(12));
-        // Check that an unencrypted password matches one that has
-        // previously been hashed
-        if (BCrypt.checkpw(password, hashed))
-            System.out.println("It matches: password = " + password + " hash = " + hashed);
-
-        else
-            System.out.println("It does not match");
+    public String hashPassword(String password) {
+        return BCrypt.hashpw(password, BCrypt.gensalt(12));
     }
-
-
 
 }
 

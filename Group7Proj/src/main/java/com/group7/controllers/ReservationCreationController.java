@@ -181,7 +181,7 @@ public class ReservationCreationController implements Initializable {
         String lName = guestChoice.getValue().toString().split(" ")[1];
         g = guest.getGuestIdByName(fName, lName);
 
-        a = AgentModel.getAgentIdByName(LoginModel.username);
+        a = AgentModel.getAgentIdByName(LoginModel.usernameFromLoginForm);
 
         System.out.println(p +" AND " +g);
 

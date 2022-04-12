@@ -3,7 +3,7 @@ CREATE TABLE agent_accounts (
   first_name varchar(45) NOT NULL,
   last_name varchar(45) NOT NULL,
   username varchar(45) NOT NULL,
-  password varchar(45) NOT NULL,
+  password varchar(60) NOT NULL,
   PRIMARY KEY (id),
   UNIQUE KEY username_UNIQUE (username)
 );
@@ -84,12 +84,13 @@ INSERT INTO guests (first_name,last_name,phone,email,dateOfBirth) VALUES ('Bree'
 
 TRUNCATE TABLE agent_accounts;
 ALTER TABLE agent_accounts AUTO_INCREMENT = 1;
-INSERT INTO agent_accounts (first_name,last_name,username,password) VALUES ('Dev_account','admin','!','1');
-INSERT INTO agent_accounts (first_name,last_name,username,password) VALUES ('Bob','Smith','smithb1!','PassWord10');
-INSERT INTO agent_accounts (first_name,last_name,username,password) VALUES ('Jill','Larson','larsonj1','PassWord11');
-INSERT INTO agent_accounts (first_name,last_name,username,password) VALUES ('Ann','Williams','williamsa1','PassWord12');
-INSERT INTO agent_accounts (first_name,last_name,username,password) VALUES ('Miles','Davis','davism1','PassWord13');
-INSERT INTO agent_accounts (first_name,last_name,username,password) VALUES ('Jack','Olson','olsonj1','PassWord14');
+INSERT INTO agent_accounts (first_name,last_name,username,password) VALUES ('Admin','Admin','!','$2a$12$NBgxUPz2SbeFiEEtIvZofO7MMtuqdEkU21A1GSV.n4HfGnEkwzJzS'); --Pizza123
+INSERT INTO agent_accounts (first_name,last_name,username,password) VALUES ('Bob','Smith','smithb1!','$2a$12$bIi139YPqjd66tgvg3s87O4uFl3Ui8cmiZx03gFlkH7dm1k2J8bDW'); --PassWord10
+INSERT INTO agent_accounts (first_name,last_name,username,password) VALUES ('Jill','Larson','larsonj1','$2a$12$iV9HkCLgLbvwQskbDrZIVOSKRo90UzJJAsCmBk3dFy1RNLGlckX9m'); --PassWord11
+INSERT INTO agent_accounts (first_name,last_name,username,password) VALUES ('Ann','Williams','williamsa1','$2a$12$vDPaamwuPwhtJVmP6PJKOu.z/h/..TywElG2A.cgfAxiWQnZBxUYW'); --PassWord12
+INSERT INTO agent_accounts (first_name,last_name,username,password) VALUES ('Miles','Davis','davism1','$2a$12$ocmoxq1juEBl7C3qGqL9AeMuZCqJ/qpSgeewqN2jAtkeptSEt6SAC'); --PassWord13
+INSERT INTO agent_accounts (first_name,last_name,username,password) VALUES ('Jack','Olson','olsonj1','$2a$12$Mngz0psxEY5xLZ8kEn7GB./MEje8XKLWsgYIqbOAnm0CDTjYGjItW'); --PassWord14
+
 
 
 TRUNCATE TABLE address;

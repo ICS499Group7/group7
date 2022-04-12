@@ -34,7 +34,7 @@ public class HomepageView implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         AgentModel agent = new AgentModel();
 
-        String name = agent.getAgentNameByUsername(LoginModel.username);
+        String name = agent.getAgentNameByUsername(LoginModel.usernameFromLoginForm);
 
         if (name.startsWith("!")) {
             name = name.substring(1);
@@ -177,7 +177,7 @@ public class HomepageView implements Initializable {
     }
 
     public void loadModifyAgentForCurrentUser(){
-        ResultSet rs = new AgentModel().getAgentDataByUsername(LoginModel.username);
+        ResultSet rs = new AgentModel().getAgentDataByUsername(LoginModel.usernameFromLoginForm);
         List<String> currentUser = new ArrayList<>();
 
         try {

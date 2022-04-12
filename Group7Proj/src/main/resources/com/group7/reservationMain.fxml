@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
@@ -40,6 +41,7 @@
             <Button fx:id="viewReservationButton" layoutX="18.0" layoutY="301.0" mnemonicParsing="false" onAction="#viewReservationButtonOnAction" prefHeight="25.0" prefWidth="153.0" style="-fx-background-color: #1d3557; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 0, 0, 0);" text="View Reservation" textFill="WHITE" />
                 <Button fx:id="filterButton" layoutX="39.0" layoutY="344.0" mnemonicParsing="false" onAction="#filterButtonOnAction" prefHeight="25.0" prefWidth="110.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 0, 0, 0); -fx-background-color: #1d3557;" text="Filter" textFill="WHITE" />
             <Button fx:id="createReservationButton" layoutX="18.0" layoutY="385.0" mnemonicParsing="false" onAction="#createReservationButtonOnAction" prefHeight="25.0" prefWidth="153.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 0, 0, 0); -fx-background-color: #1d3557;" text="Create Reservation" textFill="WHITE" />
+            <Button fx:id="deleteReservationButton" layoutX="18.0" layoutY="420.0" mnemonicParsing="false" onAction="#deleteReservationButtonOnAction" prefHeight="25.0" prefWidth="153.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 0, 0, 0); -fx-background-color: #1d3557;" text="Delete Reservation" textFill="WHITE" />
             </children>
         </AnchorPane>
     </right>

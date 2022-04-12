@@ -2,13 +2,7 @@ package com.group7.controllers;
 
 import com.group7.model.*;
 
-import com.group7.controllers.OwnerManageController;
-import com.group7.model.LoginModel;
 import com.group7.model.OwnerModel;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,19 +12,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.util.Callback;
-
-import javax.xml.transform.Result;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.List;
 import java.util.ResourceBundle;
 
 import static java.time.temporal.ChronoUnit.DAYS;

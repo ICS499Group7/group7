@@ -3,6 +3,7 @@ package com.group7.View;
 import com.group7.controllers.OwnerManageController;
 import com.group7.controllers.PropertyManageController;
 import com.group7.controllers.ReservationController;
+import com.group7.model.LoginModel;
 import com.group7.model.PropertyModel;
 import com.group7.model.ReservationModel;
 import javafx.beans.InvalidationListener;
@@ -153,6 +154,34 @@ public class ReservationView implements Initializable {
             e.printStackTrace();
             e.getCause();
         }
+    }
+
+    public void deleteReservationButtonOnAction(ActionEvent event) {
+        if (LoginModel.admin) {
+            if (tableView.getSelectionModel().getSelectedIndex() != -1) {
+                try {
+                    if (reservations.deleteReservation(getSelectedReservationID())) {
+                        tableView.getItems().removeAll(tableView.getSelectionModel().getSelectedItem());
+                        statusMessageLabel.setText("");
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    e.getCause();
+                }
+            } else {
+                statusMessageLabel.setText("Please Select a Reservation from the Table to Delete and Try Again");
+            }
+        } else {
+            statusMessageLabel.setText("Please contact an administrator.  You must have administrative rights to delete a Reservation");
+        }
+
+    }
+
+    public String getSelectedReservationID(){
+        String items = tableView.getItems().get(tableView.getSelectionModel().getSelectedIndex()).toString();
+        items = items.substring(1, items.length() - 1);
+        List<String> id = Arrays.asList(items.split(",\\s*"));
+        return id.get(0);
     }
 
     public void backButtonOnAction(ActionEvent event) throws IOException {

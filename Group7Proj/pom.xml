@@ -5,9 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com</groupId>
-    <artifactId>testProject</artifactId>
+    <artifactId>group7</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>testProject</name>
+    <name>group7</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -118,7 +118,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>com.testproject/com.group7.application.HelloApplication</mainClass>
+                            <mainClass>com.group7/com.group7.application.GUIStarter</mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
                             <jlinkImageName>app</jlinkImageName>
@@ -127,7 +127,7 @@
                             <noHeaderFiles>true</noHeaderFiles>
                             <archive>
                                 <manifest>
-                                    <mainClass>com.testproject/com.group7.application.HelloApplication</mainClass>
+                                    <mainClass>com.group7/com.group7.application.GUIStarter</mainClass>
                                 </manifest>
                             </archive>
                         </configuration>

@@ -56,7 +56,8 @@ public class OwnerManageController implements Initializable {
     }
 
     public void submitAddButtonOnAction(ActionEvent event) throws Exception {
-        if (1 == 1){
+        if ((companyName.getText().isBlank() == false) && (address.getText().isBlank() == false) && (zipCode.getText().isBlank() == false) && (firstName.getText().isBlank() == false) && (lastName.getText().isBlank() == false) && (phone.getText().isBlank() == false) &&
+                (email.getText().isBlank() == false)){
             addOwner();
             ownerMainScreen();
         } else {

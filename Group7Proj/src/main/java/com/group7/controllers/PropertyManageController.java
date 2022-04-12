@@ -46,7 +46,8 @@ public class PropertyManageController {
     }
 
     public void submitAddButtonOnAction(ActionEvent event) throws Exception {
-        if (1 == 1){
+        if ((propertyName.getText().isBlank() == false) && (address.getText().isBlank() == false) && (zipCode.getText().isBlank() == false) && (state.getText().isBlank() == false) && (city.getText().isBlank() == false) && (type.getText().isBlank() == false) &&
+                (rate.getText().isBlank() == false)){
             addProperty();
             propertyMainScreen();
         } else {

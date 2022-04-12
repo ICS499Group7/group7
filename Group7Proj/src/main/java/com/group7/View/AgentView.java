@@ -111,7 +111,7 @@ public class AgentView implements Initializable {
                     statusMessageLabel.setText("Please contact an Administrator.  You must have administrative rights to change account to an Administrators account");
                 }
             } else {
-                statusMessageLabel.setText("Please Select an Agent to Modify from the Table and Try Again");
+                statusMessageLabel.setText("Please Select an Agent from the Table to Modify and Try Again");
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -121,22 +121,30 @@ public class AgentView implements Initializable {
 
     public void deleteAgentButtonOnAction(ActionEvent event) {
         if (LoginModel.admin)
-            try {
-                String items = tableView.getItems().get(tableView.getSelectionModel().getSelectedIndex()).toString();
-                items = items.substring(1, items.length() - 1);
-                List<String> id = Arrays.asList(items.split(",\\s*"));
-                if (agent.deleteAgent(id.get(0)))
-                    tableView.getItems().removeAll(tableView.getSelectionModel().getSelectedItem());
-            } catch (Exception e) {
-                e.printStackTrace();
-                e.getCause();
+            if (tableView.getSelectionModel().getSelectedIndex() != -1) {
+                try {
+                    if (agent.deleteAgent(getSelectedAgentID())) {
+                        tableView.getItems().removeAll(tableView.getSelectionModel().getSelectedItem());
+                        statusMessageLabel.setText("");
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    e.getCause();
+                }
+            } else {
+                statusMessageLabel.setText("Please Select an Agent from the Table to Delete and Try Again");
             }
         else {
             statusMessageLabel.setText("Please contact an administrator.  You must have administrative rights to delete an Agent");
-
         }
     }
 
+    public String getSelectedAgentID(){
+        String items = tableView.getItems().get(tableView.getSelectionModel().getSelectedIndex()).toString();
+        items = items.substring(1, items.length() - 1);
+        List<String> id = Arrays.asList(items.split(",\\s*"));
+        return id.get(0);
+    }
 
     public void homepage() {
         try {

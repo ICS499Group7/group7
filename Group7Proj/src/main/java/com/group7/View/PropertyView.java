@@ -1,6 +1,7 @@
 package com.group7.View;
 
 import com.group7.controllers.PropertyManageController;
+import com.group7.model.LoginModel;
 import com.group7.model.PropertyModel;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
@@ -102,7 +103,7 @@ public class PropertyView implements Initializable {
                 stage.close();
             }
             else{
-                statusMessageLabel.setText("Please Select a Property to Modify from the Table and Try Again");
+                statusMessageLabel.setText("Please Select a Property from the Table to Modify and Try Again");
             }
 
 
@@ -114,13 +115,24 @@ public class PropertyView implements Initializable {
     }
 
     public void deletePropertyButtonOnAction(ActionEvent event) {
-        try {
-            if (property.deleteProperty(getSelectedPropertyID()))
-                tableView.getItems().removeAll(tableView.getSelectionModel().getSelectedItem());
-        } catch (Exception e) {
-            e.printStackTrace();
-            e.getCause();
+        if (LoginModel.admin) {
+            if (tableView.getSelectionModel().getSelectedIndex() != -1) {
+                try {
+                    if (property.deleteProperty(getSelectedPropertyID())) {
+                        tableView.getItems().removeAll(tableView.getSelectionModel().getSelectedItem());
+                        statusMessageLabel.setText("");
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    e.getCause();
+                }
+            } else {
+                statusMessageLabel.setText("Please Select a Property from the Table to Delete and Try Again");
+            }
+        } else {
+            statusMessageLabel.setText("Please contact an administrator.  You must have administrative rights to delete a Property");
         }
+
     }
 
     public String getSelectedPropertyID(){

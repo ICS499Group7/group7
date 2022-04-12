@@ -146,7 +146,7 @@ public class ReservationView implements Initializable {
                 Stage stage = (Stage) backButton.getScene().getWindow();
                 stage.close();
             } else {
-                statusMessageLabel.setText("Please Select an Owner to Modify from the Table and Try Again");
+                statusMessageLabel.setText("Please Select a Reservation from the Table to View and Try Again");
             }
 
         } catch (Exception e) {

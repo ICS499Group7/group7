@@ -36,14 +36,13 @@ public class AgentManageController {
     private String agentID;
 
 
-    public void passAgentInfo(String id, String fName, String lName, String userName, String password, String passwordConfirm){
+    public void passAgentInfo(String id, String fName, String lName, String userName){
         this.agentID = id;
         this.agentIDLabel.setText(id);
         this.firstName.setText(fName);
         this.lastName.setText(lName);
         this.userName.setText(userName);
-        this.password.setText(password);
-        this.passwordConfirm.setText(passwordConfirm);
+
     }
 
     public void submitAgentButtonOnAction(ActionEvent event) throws Exception {
@@ -70,7 +69,7 @@ public class AgentManageController {
 
             if (!userName.getText().startsWith("!") || LoginModel.admin) {
                 LoginModel.usernameFromLoginForm = userName.getText();
-//                if (checkPassword(this.password.getText())) {
+               if (checkPassword(this.password.getText())) {
                     if (modifyAgent()) {
                         if (LoginModel.admin) {
                             agentMainScreen();
@@ -78,9 +77,9 @@ public class AgentManageController {
                             homepageForAgent();
                         }
                     }
-//                } else {
-//                    statusMessageLabelModify.setText("Please try again, the password must have 8 characters and include at least 1 number, 1 upper case letter, and 1 lower case letter.");
-//                }
+                } else {
+                    statusMessageLabelModify.setText("Please try again, the password must have 8 characters and include at least 1 number, 1 upper case letter, and 1 lower case letter.");
+                }
             } else {
                 statusMessageLabelModify.setText("Please contact an Administrator.  You must have administrative rights to change account to an Administrators account");
             }

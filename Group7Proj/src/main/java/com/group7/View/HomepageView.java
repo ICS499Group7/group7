@@ -189,7 +189,7 @@ public class HomepageView implements Initializable {
             Parent root = loader.load();
             AgentManageController modifyController = loader.getController();
             modifyController.passAgentInfo(currentUser.get(0), currentUser.get(1), currentUser.get(2),
-                    currentUser.get(3), currentUser.get(4), currentUser.get(4));
+                    currentUser.get(3));
             Stage registerStage = new Stage();
             registerStage.initStyle(StageStyle.UNDECORATED);
             registerStage.setScene(new Scene(root, 350, 450));

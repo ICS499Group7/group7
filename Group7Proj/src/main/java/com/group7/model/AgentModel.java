@@ -8,6 +8,7 @@ import java.util.Locale;
 
 import com.group7.DatabaseConnection;
 import org.mindrot.jbcrypt.BCrypt;
+import com.group7.controllers.AgentManageController;
 
 
 public class AgentModel { //Will control getting and setting data to the SQL server
@@ -143,7 +144,9 @@ public class AgentModel { //Will control getting and setting data to the SQL ser
         this.username = username.toLowerCase(Locale.ROOT);
         this.password = password;
         String hash = hashPassword(password);
-
+        AgentManageController amc = new AgentManageController();
+        if (amc.checkPassword(this.password)) {
+        }
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
 
@@ -162,6 +165,9 @@ public class AgentModel { //Will control getting and setting data to the SQL ser
         return 1;
     }
 
+    /**
+     BCrypt function to convert password into a 240bit hash w/ salt
+     **/
     public String hashPassword(String password) {
         return BCrypt.hashpw(password, BCrypt.gensalt(12));
     }

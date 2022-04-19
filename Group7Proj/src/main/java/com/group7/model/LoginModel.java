@@ -18,6 +18,9 @@ public class LoginModel {
         admin = user.substring(0).equals("!");
     }
 
+    /**
+     BCrypt function to verify password from login form to the hash stored in the database
+     **/
     public static boolean verifyHash(String password, String hashed) {
         if (BCrypt.checkpw(password, hashed)) {
             System.out.println("It matches: password = " + password + " hash = " + hashed);

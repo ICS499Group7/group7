@@ -21,7 +21,6 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
 import javafx.scene.control.TableColumn.CellDataFeatures;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;

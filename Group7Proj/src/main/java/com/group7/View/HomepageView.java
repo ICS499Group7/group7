@@ -3,8 +3,6 @@ package com.group7.View;
 import com.group7.controllers.AgentManageController;
 import com.group7.model.AgentModel;
 import com.group7.model.LoginModel;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -15,7 +13,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
@@ -44,8 +41,6 @@ public class HomepageView implements Initializable {
             }
 
         }
-
-
         welcomeText.setText("Welcome " + name);
     }
 

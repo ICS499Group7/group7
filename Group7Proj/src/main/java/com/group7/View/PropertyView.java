@@ -20,7 +20,6 @@ import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;

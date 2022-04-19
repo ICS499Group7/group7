@@ -1,14 +1,7 @@
 package com.group7.controllers;
 
 import com.group7.model.*;
-
-import com.group7.controllers.OwnerManageController;
-import com.group7.model.LoginModel;
 import com.group7.model.OwnerModel;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,24 +9,20 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.util.Callback;
-
-import javax.xml.transform.Result;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.List;
 import java.util.ResourceBundle;
 
 import static java.time.temporal.ChronoUnit.DAYS;
+
+/*
+This class will display all of the relative information in a detailed screen for each particular reservation.
+ */
 
 public class ReservationController implements Initializable {
 
@@ -126,7 +115,9 @@ public class ReservationController implements Initializable {
     }
 
 
-
+/*
+This method queries all of the needed tables in the DB for the information regarding the reservation.
+ */
     public void fillData(){
         try {
             ResultSet resRs = reservations.getReservationDataById(reservationIdData);
@@ -182,6 +173,9 @@ public class ReservationController implements Initializable {
         displayData();
     }
 
+    /*
+    This method then displays all of the data into the labels of the UI
+     */
     public void displayData() {
         resId.setText("Reservation #" + reservationIdData);
         resValue.setText(resValueData);
@@ -212,14 +206,6 @@ public class ReservationController implements Initializable {
     }
 
     public void backButtonOnAction(ActionEvent event) throws IOException {
-        resView();
-    }
-
-    public void modifyButtonOnAction() {
-
-    }
-
-    public void resView() {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/com/group7/reservationMain.fxml"));
             Stage registerStage = new Stage();

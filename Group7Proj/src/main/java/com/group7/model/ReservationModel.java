@@ -1,7 +1,6 @@
 package com.group7.model;
 
 import com.group7.DatabaseConnection;
-import javafx.fxml.FXML;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

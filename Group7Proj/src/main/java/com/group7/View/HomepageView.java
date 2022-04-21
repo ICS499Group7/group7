@@ -3,8 +3,6 @@ package com.group7.View;
 import com.group7.controllers.AgentManageController;
 import com.group7.model.AgentModel;
 import com.group7.model.LoginModel;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -15,7 +13,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
@@ -34,7 +31,7 @@ public class HomepageView implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         AgentModel agent = new AgentModel();
 
-        String name = agent.getAgentNameByUsername(LoginModel.username);
+        String name = agent.getAgentNameByUsername(LoginModel.usernameFromLoginForm);
 
         if (name.startsWith("!")) {
             name = name.substring(1);
@@ -44,8 +41,6 @@ public class HomepageView implements Initializable {
             }
 
         }
-
-
         welcomeText.setText("Welcome " + name);
     }
 
@@ -177,7 +172,7 @@ public class HomepageView implements Initializable {
     }
 
     public void loadModifyAgentForCurrentUser(){
-        ResultSet rs = new AgentModel().getAgentDataByUsername(LoginModel.username);
+        ResultSet rs = new AgentModel().getAgentDataByUsername(LoginModel.usernameFromLoginForm);
         List<String> currentUser = new ArrayList<>();
 
         try {
@@ -194,7 +189,7 @@ public class HomepageView implements Initializable {
             Parent root = loader.load();
             AgentManageController modifyController = loader.getController();
             modifyController.passAgentInfo(currentUser.get(0), currentUser.get(1), currentUser.get(2),
-                    currentUser.get(3), currentUser.get(4), currentUser.get(4));
+                    currentUser.get(3));
             Stage registerStage = new Stage();
             registerStage.initStyle(StageStyle.UNDECORATED);
             registerStage.setScene(new Scene(root, 350, 450));

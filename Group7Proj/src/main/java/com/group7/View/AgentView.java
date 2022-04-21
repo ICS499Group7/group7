@@ -21,7 +21,6 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
 import javafx.scene.control.TableColumn.CellDataFeatures;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
@@ -98,7 +97,7 @@ public class AgentView implements Initializable {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/group7/Agent/agentModifyForm.fxml"));
                 Parent root = loader.load();
                 AgentManageController modifyController = loader.getController();
-                modifyController.passAgentInfo(id.get(0), id.get(1), id.get(2), id.get(3), id.get(4), id.get(4));
+                modifyController.passAgentInfo(id.get(0), id.get(1), id.get(2), id.get(3));
 
                 if (!id.get(3).startsWith("!") || LoginModel.admin) {
                     Stage registerStage = new Stage();

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
@@ -12,34 +13,8 @@
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Label>
-            <Label alignment="CENTER" layoutX="10.0" layoutY="14.0" prefHeight="25.0" prefWidth="91.0" style="-fx-background-color: lightgrey;" text="Property" textAlignment="CENTER" textOverrun="LEADING_ELLIPSIS">
-               <font>
-                  <Font name="Poppins Regular" size="12.0" />
-               </font>
-            </Label>
-            <ComboBox fx:id="filterPropertySelect" layoutX="10.0" layoutY="39.0" prefWidth="150.0" />
-            <TextField fx:id="filterField" layoutX="10.0" layoutY="72.0" />
-            <Label alignment="CENTER" layoutX="10.0" layoutY="108.0" prefHeight="25.0" prefWidth="91.0" style="-fx-background-color: lightgrey;" text="Guest" textAlignment="CENTER" textOverrun="LEADING_ELLIPSIS">
-               <font>
-                  <Font name="Poppins Regular" size="12.0" />
-               </font>
-            </Label>
-            <ComboBox fx:id="filterGuestSelect" layoutX="10.0" layoutY="133.0" prefWidth="150.0" />
-            <Label alignment="CENTER" layoutX="10.0" layoutY="171.0" prefHeight="25.0" prefWidth="91.0" style="-fx-background-color: lightgrey;" text="Start Date" textAlignment="CENTER" textOverrun="LEADING_ELLIPSIS">
-               <font>
-                  <Font name="Poppins Regular" size="12.0" />
-               </font>
-            </Label>
-            <DatePicker fx:id="filterStartDate" layoutX="10.0" layoutY="196.0" />
-            <Label alignment="CENTER" layoutX="10.0" layoutY="236.0" prefHeight="25.0" prefWidth="91.0" style="-fx-background-color: lightgrey;" text="End Date" textAlignment="CENTER" textOverrun="LEADING_ELLIPSIS">
-               <font>
-                  <Font name="Poppins Regular" size="12.0" />
-               </font>
-            </Label>
-            <DatePicker fx:id="filterEndDate" layoutX="10.0" layoutY="261.0" />
-            <Button fx:id="viewReservationButton" layoutX="18.0" layoutY="301.0" mnemonicParsing="false" onAction="#viewReservationButtonOnAction" prefHeight="25.0" prefWidth="153.0" style="-fx-background-color: #1d3557; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 0, 0, 0);" text="View Reservation" textFill="WHITE" />
-                <Button fx:id="filterButton" layoutX="39.0" layoutY="344.0" mnemonicParsing="false" onAction="#filterButtonOnAction" prefHeight="25.0" prefWidth="110.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 0, 0, 0); -fx-background-color: #1d3557;" text="Filter" textFill="WHITE" />
-            <Button fx:id="createReservationButton" layoutX="18.0" layoutY="385.0" mnemonicParsing="false" onAction="#createReservationButtonOnAction" prefHeight="25.0" prefWidth="153.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 0, 0, 0); -fx-background-color: #1d3557;" text="Create Reservation" textFill="WHITE" />
+            <Button fx:id="viewReservationButton" layoutX="19.0" layoutY="14.0" mnemonicParsing="false" onAction="#viewReservationButtonOnAction" prefHeight="25.0" prefWidth="153.0" style="-fx-background-color: #1d3557; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 0, 0, 0);" text="View Reservation" textFill="WHITE" />
+            <Button fx:id="createReservationButton" layoutX="18.0" layoutY="56.0" mnemonicParsing="false" onAction="#createReservationButtonOnAction" prefHeight="25.0" prefWidth="153.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 0, 0, 0); -fx-background-color: #1d3557;" text="Create Reservation" textFill="WHITE" />
             </children>
         </AnchorPane>
     </right>

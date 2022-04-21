@@ -16,7 +16,6 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
-
 import java.net.URL;
 import java.sql.ResultSet;
 import java.time.LocalDate;
@@ -24,6 +23,9 @@ import java.util.ResourceBundle;
 
 import static java.time.temporal.ChronoUnit.DAYS;
 
+/*
+Controls the creation of reservations on the Add Reservation page of the program.
+ */
 public class ReservationCreationController implements Initializable {
     @FXML
     private Button backButton;
@@ -51,7 +53,9 @@ public class ReservationCreationController implements Initializable {
     private String g;
     private String a;
 
-
+/*
+Runs when class is first entered.
+ */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -72,6 +76,9 @@ public class ReservationCreationController implements Initializable {
 
     }
 
+    /*
+    When a property is selected from the drop down, this method will trigger, setting the date restrictions based on current reservations in the system.
+     */
     public void setPropertyOnAction() {
         p = propertyChoice.getValue().toString();
         System.out.println(p);
@@ -97,9 +104,12 @@ public class ReservationCreationController implements Initializable {
         }
     }
 
-
-
-
+/*
+  This will take in both a datePicker object and a list of dates to block out.
+  All dates given in the list will be marked as red and unselectable.
+  All dates previous to today will also be highlighted yellow.
+  Returns void.
+ */
     public void restrictDatePicker(DatePicker datePicker,ObservableList<LocalDate> listItems) {
         final Callback<DatePicker, DateCell> dayCellFactory = new Callback<DatePicker, DateCell>(){
             @Override
@@ -133,6 +143,11 @@ public class ReservationCreationController implements Initializable {
         datePicker.setDayCellFactory(dayCellFactory);
     }
 
+    /*
+    Triggers when the reserve button is pressed.
+    It will get the start + end dates of the reservation, as well as the chosen property.
+    This method is used as a buffer, to first check if the selected dates are avaliable to reserve, and return an error message if they are not.
+     */
     public void reserveButtonOnAction() {
         sDate = startDate.getValue().toString();
         eDate = endDate.getValue().toString();
@@ -175,13 +190,18 @@ public class ReservationCreationController implements Initializable {
         }
     }
 
+    /*
+    If reservation is avaliable, this method is triggered.
+    It will get the current property + guest information, as well as the start + end date from the fields.
+    It will then call the model to create a new reservation entry, returning the success / fail message to the user.
+     */
     public void createReservation() {
         p = property.getPropertyIdByName(propertyChoice.getValue().toString());
         String fName = guestChoice.getValue().toString().split(" ")[0];
         String lName = guestChoice.getValue().toString().split(" ")[1];
         g = guest.getGuestIdByName(fName, lName);
 
-        a = AgentModel.getAgentIdByName(LoginModel.username);
+        a = AgentModel.getAgentIdByName(LoginModel.usernameFromLoginForm);
 
         System.out.println(p +" AND " +g);
 
@@ -202,6 +222,9 @@ public class ReservationCreationController implements Initializable {
 
     }
 
+    /*
+    modes the current screen back to the reservation main screen if the back button is pressed.
+     */
     public void backButtonOnAction() {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/com/group7/reservationMain.fxml"));

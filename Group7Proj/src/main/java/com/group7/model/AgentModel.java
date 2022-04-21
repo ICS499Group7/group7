@@ -7,6 +7,9 @@ import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.Locale;
 
 import com.group7.DatabaseConnection;
+import org.mindrot.jbcrypt.BCrypt;
+import com.group7.controllers.AgentManageController;
+
 
 public class AgentModel { //Will control getting and setting data to the SQL server
     private String id;
@@ -22,7 +25,6 @@ public class AgentModel { //Will control getting and setting data to the SQL ser
     public ResultSet getAgents() { //Returns a Resultset list of all agents in user_accounts
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
-
         ResultSet rs = null;
         String query = "SELECT * FROM agent_accounts";
         try {
@@ -116,10 +118,12 @@ public class AgentModel { //Will control getting and setting data to the SQL ser
         this.lastName = lastName;
         this.username = username.toLowerCase(Locale.ROOT);
         this.password = password;
+        String hash = hashPassword(password);
+
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
 
-        String addAgentQuery = "INSERT INTO agent_accounts (first_name,last_name,username,password) VALUES ('" + this.firstName + "','" + this.lastName + "','" + this.username + "','" + this.password + "')";
+        String addAgentQuery = "INSERT INTO agent_accounts (first_name,last_name,username,password) VALUES ('" + this.firstName + "','" + this.lastName + "','" + this.username + "','" + hash + "')";
 
         try {
             int queryResult = connectDB.createStatement().executeUpdate(addAgentQuery); //execute the above query
@@ -139,13 +143,17 @@ public class AgentModel { //Will control getting and setting data to the SQL ser
         this.lastName = lastName;
         this.username = username.toLowerCase(Locale.ROOT);
         this.password = password;
+        String hash = hashPassword(password);
+        AgentManageController amc = new AgentManageController();
+        if (amc.checkPassword(this.password)) {
+        }
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
 
-        String modifyAgentQuery = "UPDATE agent_accounts SET first_name = '" + this.firstName + "', last_name = '" + this.lastName + "', username = '" + this.username + "', password = '" + this.password + "' WHERE id = '" + this.id + "'";
+        String modifyAgentQuery = "UPDATE agent_accounts SET first_name = '" + this.firstName + "', last_name = '" + this.lastName + "', username = '" + this.username + "', password = '" + hash + "' WHERE id = '" + this.id + "'";
 
         try {
-            int queryResult = connectDB.createStatement().executeUpdate(modifyAgentQuery); //execute the above query
+            connectDB.createStatement().executeUpdate(modifyAgentQuery); //execute the above query
         } catch( SQLIntegrityConstraintViolationException constraintViolationException) {
             return 2; //The username must be unique
         }
@@ -157,4 +165,13 @@ public class AgentModel { //Will control getting and setting data to the SQL ser
         return 1;
     }
 
+    /**
+     BCrypt function to convert password into a 240bit hash w/ salt
+     **/
+    public String hashPassword(String password) {
+        return BCrypt.hashpw(password, BCrypt.gensalt(12));
+    }
+
 }
+
+

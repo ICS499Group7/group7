@@ -14,6 +14,7 @@ module com.group7 {
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
+    requires jbcrypt;
 
     opens com.group7 to javafx.fxml;
     exports com.group7;

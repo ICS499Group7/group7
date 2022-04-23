@@ -71,7 +71,7 @@ public class AgentModel { //Will control getting and setting data to the SQL ser
         return "null";
     }
 
-    public ResultSet getAgentDataByUsername(String uName) { //Returns a Resultset list of all agents in Agents_accounts
+    public static ResultSet getAgentDataByUsername(String uName) { //Returns a Resultset list of all agents in Agents_accounts
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
 

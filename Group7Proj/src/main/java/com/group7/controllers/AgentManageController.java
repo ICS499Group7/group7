@@ -34,6 +34,7 @@ public class AgentManageController {
     @FXML
     private PasswordField passwordConfirm;
     private String agentID;
+    private String passwrd;
 
 
     public void passAgentInfo(String id, String fName, String lName, String userName){
@@ -51,16 +52,14 @@ public class AgentManageController {
     }
 
     public void submitAgentButtonOnAction(ActionEvent event) throws Exception {
-        if ((firstName.getText().isBlank() == false) && (lastName.getText().isBlank() == false) && (userName.getText().isBlank() == false) && (password.getText().isBlank() == false) && (passwordConfirm.getText().equals(password.getText()))) {
+        if ((firstName.getText().isBlank() == false) && (lastName.getText().isBlank() == false) && (userName.getText().isBlank() == false)) {
 
             if (!userName.getText().startsWith("!") || LoginModel.admin) {
-                if (checkPassword(this.password.getText())) {
-                    if (saveAgent()){
-                        agentMainScreen();
-                    }
-                } else {
-                    statusMessageLabel.setText("Please try again, the password must have 8 characters and include at least 1 number, 1 upper case letter, and 1 lower case letter.");
+                passwrd = "Password123";
+                if (saveAgent()){
+                    agentMainScreen();
                 }
+
             } else {
                 statusMessageLabel.setText("Please contact an Administrator.  You must have administrative rights to add an Administrators account");
             }
@@ -75,6 +74,7 @@ public class AgentManageController {
             if (!userName.getText().startsWith("!") || LoginModel.admin) {
                 LoginModel.usernameFromLoginForm = userName.getText();
                if (checkPassword(this.password.getText())) {
+                   passwrd = password.getText();
                     if (modifyAgent()) {
                         if (LoginModel.admin) {
                             agentMainScreen();
@@ -104,7 +104,7 @@ public class AgentManageController {
     }
 
     public boolean saveAgent() {
-        int addAgentQuery = new AgentModel().addAgent(firstName.getText(),lastName.getText(),userName.getText(),password.getText());
+        int addAgentQuery = new AgentModel().addAgent(firstName.getText(),lastName.getText(),userName.getText(),passwrd);
         System.out.println("addAgentQuery = " + addAgentQuery);
         switch(addAgentQuery){
             case 0:
@@ -123,7 +123,7 @@ public class AgentManageController {
     }
 
     public boolean modifyAgent() {
-        int modifyAgentQuery = new AgentModel().modifyAgent(agentID, firstName.getText(),lastName.getText(),userName.getText(),password.getText());
+        int modifyAgentQuery = new AgentModel().modifyAgent(agentID, firstName.getText(),lastName.getText(),userName.getText(),passwrd);
         System.out.println("modifyAgentQuery = " + modifyAgentQuery);
         switch(modifyAgentQuery){
             case 0:

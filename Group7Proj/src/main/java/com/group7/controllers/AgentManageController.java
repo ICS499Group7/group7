@@ -43,6 +43,11 @@ public class AgentManageController {
         this.lastName.setText(lName);
         this.userName.setText(userName);
 
+        if(LoginModel.passwordFromLoginForm.equals("Password123")){
+            statusMessageLabelModify.setText("         Login Successful, please enter new password.\n" +
+                    "    You will continue to be prompted to change your \n       password until you choose a unique password");
+        }
+
     }
 
     public void submitAgentButtonOnAction(ActionEvent event) throws Exception {
@@ -86,6 +91,8 @@ public class AgentManageController {
         } else {
             statusMessageLabelModify.setText("There was an issue with the form. Please check Entries.");
         }
+
+        LoginModel.passwordFromLoginForm = this.password.getText();
     }
 
     public void cancelButtonOnAction(ActionEvent event) {

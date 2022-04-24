@@ -10,7 +10,7 @@ public class LoginModel {
 
     public static String usernameFromLoginForm;
     public static boolean admin;
-    private static String passwordFromLoginForm;
+    public static String passwordFromLoginForm;
 
     public LoginModel(String user, String pass) {
         usernameFromLoginForm = user;

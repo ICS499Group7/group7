@@ -35,6 +35,7 @@ public class AgentManageController {
     private PasswordField passwordConfirm;
     private String agentID;
     private String passwrd;
+    private boolean requirePass = false;
 
 
     public void passAgentInfo(String id, String fName, String lName, String userName){
@@ -48,7 +49,10 @@ public class AgentManageController {
             statusMessageLabelModify.setText("         Login Successful, please enter new password.\n" +
                     "    You will continue to be prompted to change your \n       password until you choose a unique password");
         }
+    }
 
+    public void setRequirePass() {
+        this.requirePass = true;
     }
 
     public void submitAgentButtonOnAction(ActionEvent event) throws Exception {
@@ -69,27 +73,33 @@ public class AgentManageController {
     }
 
     public void submitModifyButtonOnAction(ActionEvent event) throws Exception {
-        if ((firstName.getText().isBlank() == false) && (lastName.getText().isBlank() == false) && (userName.getText().isBlank() == false) && (password.getText().isBlank() == false) && (passwordConfirm.getText().equals(password.getText()))) {
 
-            if (!userName.getText().startsWith("!") || LoginModel.admin) {
-                LoginModel.usernameFromLoginForm = userName.getText();
-               if (checkPassword(this.password.getText())) {
-                   passwrd = password.getText();
-                    if (modifyAgent()) {
-                        if (LoginModel.admin) {
-                            agentMainScreen();
-                        } else {
-                            homepageForAgent();
+        if (requirePass && (password.getText().isBlank())){
+            statusMessageLabelModify.setText("Please set up a new password for your account.");
+        } else {
+            if ((!firstName.getText().isBlank()) && (!lastName.getText().isBlank()) && (!userName.getText().isBlank()) && (passwordConfirm.getText().equals(password.getText()))) {
+
+                if (!userName.getText().startsWith("!") || LoginModel.admin) {
+                    LoginModel.usernameFromLoginForm = userName.getText();
+                    if (checkPassword(this.password.getText()) || password.getText().isBlank()) {
+                        passwrd = password.getText();
+                        requirePass = false;
+                        if (modifyAgent()) {
+                            if (LoginModel.admin) {
+                                agentMainScreen();
+                            } else {
+                                homepageForAgent();
+                            }
                         }
+                    } else {
+                        statusMessageLabelModify.setText("Please try again, the password must have 8 characters and include at least 1 number, 1 upper case letter, and 1 lower case letter.");
                     }
                 } else {
-                    statusMessageLabelModify.setText("Please try again, the password must have 8 characters and include at least 1 number, 1 upper case letter, and 1 lower case letter.");
+                    statusMessageLabelModify.setText("Please contact an Administrator.  You must have administrative rights to change account to an Administrators account");
                 }
             } else {
-                statusMessageLabelModify.setText("Please contact an Administrator.  You must have administrative rights to change account to an Administrators account");
+                statusMessageLabelModify.setText("There was an issue with the form. Please check Entries.");
             }
-        } else {
-            statusMessageLabelModify.setText("There was an issue with the form. Please check Entries.");
         }
 
         LoginModel.passwordFromLoginForm = this.password.getText();

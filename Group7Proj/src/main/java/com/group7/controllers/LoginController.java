@@ -97,6 +97,7 @@ public class LoginController implements Initializable {
                 String uName = rs.getString(4);
 
                 modifyController.passAgentInfo(id, fName, lName, uName);
+                modifyController.setRequirePass();
             }
 
                 Stage registerStage = new Stage();

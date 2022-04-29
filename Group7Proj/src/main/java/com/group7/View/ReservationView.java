@@ -67,7 +67,7 @@ public class ReservationView implements Initializable {
             Parent root = loader.load();
             Stage registerStage = new Stage();
             registerStage.initStyle(StageStyle.UNDECORATED);
-            registerStage.setScene(new Scene(root, 600, 400));
+            registerStage.setScene(new Scene(root, 320, 450));
             registerStage.show();
         } catch (Exception e) {
             e.printStackTrace();

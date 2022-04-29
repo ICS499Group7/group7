@@ -1,39 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group7.View.ReservationView">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.group7.View.ReservationView">
     <right>
-        <AnchorPane prefHeight="561.0" prefWidth="188.0" BorderPane.alignment="CENTER">
+        <AnchorPane prefHeight="437.0" prefWidth="147.0" BorderPane.alignment="CENTER">
             <children>
-                <Label fx:id="statusMessageLabel" layoutX="5.0" layoutY="420.0" prefHeight="130.0" prefWidth="180.0" textAlignment="CENTER" textFill="#f22c2c" wrapText="true">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Label>
-            <Button fx:id="viewReservationButton" layoutX="19.0" layoutY="14.0" mnemonicParsing="false" onAction="#viewReservationButtonOnAction" prefHeight="25.0" prefWidth="153.0" style="-fx-background-color: #1d3557; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 0, 0, 0);" text="View Reservation" textFill="WHITE" />
-            <Button fx:id="createReservationButton" layoutX="18.0" layoutY="56.0" mnemonicParsing="false" onAction="#createReservationButtonOnAction" prefHeight="25.0" prefWidth="153.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 0, 0, 0); -fx-background-color: #1d3557;" text="Create Reservation" textFill="WHITE" />
+                <Label fx:id="statusMessageLabel" layoutX="48.0" layoutY="200.0" prefHeight="99.0" prefWidth="134.0" textAlignment="CENTER" textFill="#f22c2c" wrapText="true">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font></Label>
+                <Button fx:id="viewReservationButton" layoutX="55.0" layoutY="97.0" mnemonicParsing="false" onAction="#viewReservationButtonOnAction" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: #1d3557; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 0, 0, 0);" text="View Reservation" textFill="WHITE" />
+                <Button fx:id="createReservationButton" layoutX="55.0" layoutY="38.0" mnemonicParsing="false" onAction="#createReservationButtonOnAction" prefHeight="25.0" prefWidth="120.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 0, 0, 0); -fx-background-color: #1d3557;" text="Create Reservation" textFill="WHITE" />
             </children>
         </AnchorPane>
     </right>
     <top>
-        <AnchorPane prefHeight="39.0" prefWidth="800.0" style="-fx-background-color: lightgray;" BorderPane.alignment="CENTER">
-         <children>
-                <Button fx:id="backButton" layoutX="664.0" layoutY="7.0" mnemonicParsing="false" onAction="#backButtonOnAction" style="-fx-background-color: #1d3557; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 0, 0, 0);" text="Back To Menu" textFill="WHITE" />
-            <Label layoutX="287.0" layoutY="6.0" text="Reservation Management">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-         </children></AnchorPane>
+        <AnchorPane prefHeight="39.0" prefWidth="634.0" style="-fx-background-color: lightgray;" BorderPane.alignment="CENTER">
+            <children>
+                <Button fx:id="backButton" layoutX="485.0" layoutY="7.0" mnemonicParsing="false" onAction="#backButtonOnAction" style="-fx-background-color: #1d3557; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 0, 0, 0);" text="Back To Menu" textFill="WHITE" />
+                <Label layoutX="198.0" layoutY="6.0" text="Reservation Management">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Label>
+            </children>
+      </AnchorPane>
     </top>
-   <center>
+    <center>
         <AnchorPane prefHeight="400.0" prefWidth="600.0" BorderPane.alignment="CENTER">
             <children>
-                <TableView fx:id="tableView" layoutY="5.0" prefHeight="554.0" prefWidth="612.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 0, 0, 0);" stylesheets="@ViewCSS.css" tableMenuButtonVisible="true" />
+                <TableView fx:id="tableView" layoutX="43.0" layoutY="2.0" prefHeight="357.0" prefWidth="457.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 0, 0, 0);" stylesheets="@ViewCSS.css" tableMenuButtonVisible="true" />
             </children>
         </AnchorPane>
-   </center>
+    </center>
 </BorderPane>

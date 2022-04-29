@@ -22,6 +22,6 @@ Developed using Windows and ran in local environments.  Launch from your preferr
 #### Steps
 1. Add sqlFile.sql to MySQL workbench from the 'resources/sql' folder to install database. (Or your preferred way to run a database).
 2. By default, the local MySQL server should be running. (If not, run this command in the CMD - "net start mysql") 
-3. Either fork or download and load into your preferred IDE to run. 
+3. Either clone or download and load into your preferred IDE to run. 
 4. Look at the sqlFile.sql to see the passwords of the accounts. The admin account has full control over the program while the other accounts are limited. 
   

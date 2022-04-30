@@ -161,7 +161,7 @@ public class HomepageView implements Initializable {
             Parent root = FXMLLoader.load(getClass().getResource("/com/group7/reservationMain.fxml"));
             Stage registerStage = new Stage();
             registerStage.initStyle(StageStyle.UNDECORATED);
-            registerStage.setScene(new Scene(root, 800, 600));
+            registerStage.setScene(new Scene(root, 600, 400));
             registerStage.show();
         } catch (Exception e) {
             e.printStackTrace();

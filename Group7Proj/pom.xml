@@ -5,9 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com</groupId>
-    <artifactId>testProject</artifactId>
+    <artifactId>Group7Proj</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>testProject</name>
+    <name>Group7Proj</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

@@ -34,6 +34,8 @@ public class AgentManageController {
     @FXML
     private PasswordField passwordConfirm;
     private String agentID;
+    private String passwrd;
+    private boolean requirePass = false;
 
 
     public void passAgentInfo(String id, String fName, String lName, String userName){
@@ -43,19 +45,25 @@ public class AgentManageController {
         this.lastName.setText(lName);
         this.userName.setText(userName);
 
+        if(LoginModel.passwordFromLoginForm.equals("Password123")){
+            statusMessageLabelModify.setText("         Login Successful, please enter new password.\n" +
+                    "    You will continue to be prompted to change your \n       password until you choose a unique password");
+        }
+    }
+
+    public void setRequirePass() {
+        this.requirePass = true;
     }
 
     public void submitAgentButtonOnAction(ActionEvent event) throws Exception {
-        if ((firstName.getText().isBlank() == false) && (lastName.getText().isBlank() == false) && (userName.getText().isBlank() == false) && (password.getText().isBlank() == false) && (passwordConfirm.getText().equals(password.getText()))) {
+        if ((firstName.getText().isBlank() == false) && (lastName.getText().isBlank() == false) && (userName.getText().isBlank() == false)) {
 
             if (!userName.getText().startsWith("!") || LoginModel.admin) {
-                if (checkPassword(this.password.getText())) {
-                    if (saveAgent()){
-                        agentMainScreen();
-                    }
-                } else {
-                    statusMessageLabel.setText("Please try again, the password must have 8 characters and include at least 1 number, 1 upper case letter, and 1 lower case letter.");
+                passwrd = "Password123";
+                if (saveAgent()){
+                    agentMainScreen();
                 }
+
             } else {
                 statusMessageLabel.setText("Please contact an Administrator.  You must have administrative rights to add an Administrators account");
             }
@@ -65,27 +73,36 @@ public class AgentManageController {
     }
 
     public void submitModifyButtonOnAction(ActionEvent event) throws Exception {
-        if ((firstName.getText().isBlank() == false) && (lastName.getText().isBlank() == false) && (userName.getText().isBlank() == false) && (password.getText().isBlank() == false) && (passwordConfirm.getText().equals(password.getText()))) {
 
-            if (!userName.getText().startsWith("!") || LoginModel.admin) {
-                LoginModel.usernameFromLoginForm = userName.getText();
-               if (checkPassword(this.password.getText())) {
-                    if (modifyAgent()) {
-                        if (LoginModel.admin) {
-                            agentMainScreen();
-                        } else {
-                            homepageForAgent();
+        if (requirePass && (password.getText().isBlank())){
+            statusMessageLabelModify.setText("Please set up a new password for your account.");
+        } else {
+            if ((!firstName.getText().isBlank()) && (!lastName.getText().isBlank()) && (!userName.getText().isBlank()) && (passwordConfirm.getText().equals(password.getText()))) {
+
+                if (!userName.getText().startsWith("!") || LoginModel.admin) {
+                    LoginModel.usernameFromLoginForm = userName.getText();
+                    if (checkPassword(this.password.getText()) || password.getText().isBlank()) {
+                        passwrd = password.getText();
+                        requirePass = false;
+                        if (modifyAgent()) {
+                            if (LoginModel.admin) {
+                                agentMainScreen();
+                            } else {
+                                homepageForAgent();
+                            }
                         }
+                    } else {
+                        statusMessageLabelModify.setText("Please try again, the password must have 8 characters and include at least 1 number, 1 upper case letter, and 1 lower case letter.");
                     }
                 } else {
-                    statusMessageLabelModify.setText("Please try again, the password must have 8 characters and include at least 1 number, 1 upper case letter, and 1 lower case letter.");
+                    statusMessageLabelModify.setText("Please contact an Administrator.  You must have administrative rights to change account to an Administrators account");
                 }
             } else {
-                statusMessageLabelModify.setText("Please contact an Administrator.  You must have administrative rights to change account to an Administrators account");
+                statusMessageLabelModify.setText("There was an issue with the form. Please check Entries.");
             }
-        } else {
-            statusMessageLabelModify.setText("There was an issue with the form. Please check Entries.");
         }
+
+        LoginModel.passwordFromLoginForm = this.password.getText();
     }
 
     public void cancelButtonOnAction(ActionEvent event) {
@@ -97,7 +114,7 @@ public class AgentManageController {
     }
 
     public boolean saveAgent() {
-        int addAgentQuery = new AgentModel().addAgent(firstName.getText(),lastName.getText(),userName.getText(),password.getText());
+        int addAgentQuery = new AgentModel().addAgent(firstName.getText(),lastName.getText(),userName.getText(),passwrd);
         System.out.println("addAgentQuery = " + addAgentQuery);
         switch(addAgentQuery){
             case 0:
@@ -116,7 +133,7 @@ public class AgentManageController {
     }
 
     public boolean modifyAgent() {
-        int modifyAgentQuery = new AgentModel().modifyAgent(agentID, firstName.getText(),lastName.getText(),userName.getText(),password.getText());
+        int modifyAgentQuery = new AgentModel().modifyAgent(agentID, firstName.getText(),lastName.getText(),userName.getText(),passwrd);
         System.out.println("modifyAgentQuery = " + modifyAgentQuery);
         switch(modifyAgentQuery){
             case 0:

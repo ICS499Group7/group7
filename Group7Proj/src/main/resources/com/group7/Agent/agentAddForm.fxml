@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
@@ -23,10 +24,8 @@
             <TextField fx:id="firstName" alignment="CENTER" layoutX="139.0" layoutY="42.0" promptText="..." />
             <TextField fx:id="lastName" alignment="CENTER" layoutX="139.0" layoutY="83.0" promptText="..." />
             <TextField fx:id="userName" alignment="CENTER" layoutX="139.0" layoutY="124.0" promptText="..." />
-            <PasswordField fx:id="password" alignment="CENTER" layoutX="139.0" layoutY="165.0" promptText="..." />
-            <PasswordField fx:id="passwordConfirm" alignment="CENTER" layoutX="139.0" layoutY="206.0" promptText="..." />
             <Button fx:id="submitAgentButton" layoutX="98.0" layoutY="349.0" mnemonicParsing="false" onAction="#submitAgentButtonOnAction" prefHeight="25.0" prefWidth="125.0" style="-fx-background-color: #1d3557; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 0, 0, 0);" text="Submit Agent" textFill="WHITE" />
-            <Label fx:id="statusMessageLabel" layoutX="38.0" layoutY="241.0" prefHeight="89.0" prefWidth="264.0" text=" " textFill="RED" wrapText="true" />
+            <Label fx:id="statusMessageLabel" layoutX="29.0" layoutY="248.0" prefHeight="89.0" prefWidth="264.0" text=" " textFill="RED" wrapText="true" />
             <Label alignment="CENTER" layoutX="34.0" layoutY="42.0" prefHeight="25.0" prefWidth="105.0" style="-fx-background-color: lightgrey;" text="First Name" textAlignment="CENTER" textOverrun="LEADING_ELLIPSIS">
                <font>
                   <Font name="Poppins Regular" size="12.0" />
@@ -42,16 +41,8 @@
                   <Font name="Poppins Regular" size="12.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="36.0" layoutY="165.0" prefHeight="25.0" prefWidth="103.0" style="-fx-background-color: lightgrey;" text="Password" textAlignment="CENTER" textOverrun="LEADING_ELLIPSIS">
-               <font>
-                  <Font name="Poppins Regular" size="12.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER" layoutX="37.0" layoutY="206.0" prefHeight="25.0" prefWidth="102.0" style="-fx-background-color: lightgrey;" text="Re-Enter Password" textAlignment="CENTER" textOverrun="LEADING_ELLIPSIS">
-               <font>
-                  <Font name="Poppins Regular" size="12.0" />
-               </font>
-            </Label>
+            <Label layoutX="5.0" layoutY="155.0" prefHeight="58.0" prefWidth="307.0" text="The default password for new agents / admins will be &quot;Password123&quot;. " textAlignment="CENTER" wrapText="true" />
+            <Label layoutX="59.0" layoutY="207.0" prefHeight="70.0" prefWidth="198.0" text="The new agent / admin will be required to change this upon first login." textAlignment="CENTER" wrapText="true" />
          </children>
       </AnchorPane>
    </center>

@@ -109,7 +109,6 @@ public class ReservationView implements Initializable {
     }
 
     public void deleteReservationButtonOnAction(ActionEvent event) {
-        if (LoginModel.admin) {
             if (tableView.getSelectionModel().getSelectedIndex() != -1) {
                 try {
                     if (reservations.deleteReservation(getSelectedReservationID())) {
@@ -123,10 +122,6 @@ public class ReservationView implements Initializable {
             } else {
                 statusMessageLabel.setText("Please Select a Property from the Table to Delete and Try Again");
             }
-        } else {
-            statusMessageLabel.setText("Please contact an administrator.  You must have administrative rights to delete a Property");
-        }
-
     }
 
     public String getSelectedReservationID(){

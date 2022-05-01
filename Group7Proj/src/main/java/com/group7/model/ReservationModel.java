@@ -151,16 +151,12 @@ public class ReservationModel {
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
 
-        String addrID = getAddressIDByProperty(id);
-        String deleteAddressQuery = "DELETE FROM address WHERE id = " + addrID;
         String deletePropertyQuery = "DELETE FROM reservations WHERE id = " + id;
 
         System.out.println(deletePropertyQuery);
-        System.out.println(deleteAddressQuery);
 
-        int result2 = connectDB.createStatement().executeUpdate(deletePropertyQuery);
-        int result = connectDB.createStatement().executeUpdate(deleteAddressQuery);
-        if(result == 1 && result2 == 1)
+        int result = connectDB.createStatement().executeUpdate(deletePropertyQuery);
+        if(result == 1)
             return true;
         return false;
     }

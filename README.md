@@ -7,7 +7,8 @@ Made for ICS 499 at Metropolitan State University to better understand design pa
 <img src="Group7Proj/src/main/resources/images/Property.jpg" width="600" height="600">
 
 ## Release (Jar)
-############## \
+* [Download Jar](https://github.com/ICS499Group7/group7/releases/tag/release)
+
 The standalone jar will still require the database to be up and running.
 
 ## Installation Development Environment (Local)

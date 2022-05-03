@@ -49,9 +49,8 @@ public class GuestManageController {
     }
 
     public void submitGuestButtonOnAction(ActionEvent event) throws Exception {
-        dateOfBirth = dateOfBirthField.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        if ((firstName.getText().isBlank() == false) && (lastName.getText().isBlank() == false) && (phone.getText().isBlank() == false) && (email.getText().isBlank() == false) && (dateOfBirth.isBlank() == false)){
-
+        if ((firstName.getText().isBlank() == false) && (lastName.getText().isBlank() == false) && (phone.getText().isBlank() == false) && (email.getText().isBlank() == false)){
+            dateOfBirth = dateOfBirthField.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
             saveGuest();
             guestMainScreen();
 

@@ -25,7 +25,7 @@
             <TextField fx:id="lastName" alignment="CENTER" layoutX="139.0" layoutY="83.0" promptText="..." />
             <TextField fx:id="userName" alignment="CENTER" layoutX="139.0" layoutY="124.0" promptText="..." />
             <Button fx:id="submitAgentButton" layoutX="98.0" layoutY="349.0" mnemonicParsing="false" onAction="#submitAgentButtonOnAction" prefHeight="25.0" prefWidth="125.0" style="-fx-background-color: #1d3557; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 0, 0, 0);" text="Submit Agent" textFill="WHITE" />
-            <Label fx:id="statusMessageLabel" layoutX="29.0" layoutY="248.0" prefHeight="89.0" prefWidth="264.0" text=" " textFill="RED" wrapText="true" />
+            <Label fx:id="statusMessageLabel" layoutX="29.0" layoutY="268.0" prefHeight="69.0" prefWidth="264.0" text=" " textAlignment="CENTER" textFill="RED" wrapText="true" />
             <Label alignment="CENTER" layoutX="34.0" layoutY="42.0" prefHeight="25.0" prefWidth="105.0" style="-fx-background-color: lightgrey;" text="First Name" textAlignment="CENTER" textOverrun="LEADING_ELLIPSIS">
                <font>
                   <Font name="Poppins Regular" size="12.0" />

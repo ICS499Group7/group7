@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
@@ -26,7 +27,7 @@
             <PasswordField fx:id="password" alignment="CENTER" layoutX="137.0" layoutY="193.0" promptText="..." />
             <PasswordField fx:id="passwordConfirm" alignment="CENTER" layoutX="137.0" layoutY="234.0" promptText="..." />
             <Button fx:id="submitModifyButton" layoutX="97.0" layoutY="349.0" mnemonicParsing="false" onAction="#submitModifyButtonOnAction" prefHeight="25.0" prefWidth="125.0" style="-fx-background-color: #1d3557;" text="Submit Agent" textFill="WHITE" />
-            <Label fx:id="statusMessageLabelModify" layoutX="10.0" layoutY="266.0" prefHeight="74.0" prefWidth="300.0" text=" " textFill="RED" wrapText="true" />
+            <Label fx:id="statusMessageLabelModify" layoutX="10.0" layoutY="266.0" prefHeight="74.0" prefWidth="300.0" text=" " textAlignment="CENTER" textFill="RED" wrapText="true" />
             <Label fx:id="agentIDLabel" layoutX="204.0" layoutY="27.0" prefHeight="17.0" prefWidth="16.0" />
             <Label alignment="CENTER" layoutX="34.0" layoutY="70.0" prefHeight="25.0" prefWidth="103.0" style="-fx-background-color: lightgrey;" text="First Name" textAlignment="CENTER" textOverrun="LEADING_ELLIPSIS">
                <font>

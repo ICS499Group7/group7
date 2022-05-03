@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
@@ -30,7 +31,7 @@
             <TextField fx:id="state" alignment="CENTER" layoutX="338.0" layoutY="93.0" promptText="..." />
             <TextField fx:id="zipCode" alignment="CENTER" layoutX="338.0" layoutY="134.0" promptText="..." />
             <Button fx:id="submitAddButton" layoutX="188.0" layoutY="288.0" mnemonicParsing="false" onAction="#submitAddButtonOnAction" prefHeight="25.0" prefWidth="125.0" style="-fx-background-color: #1d3557; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 0, 0, 0);" text="Submit Owner" textFill="WHITE" />
-            <Label fx:id="statusMessageLabel" layoutX="234.0" layoutY="255.0" prefHeight="17.0" prefWidth="34.0" />
+            <Label fx:id="statusMessageLabel" layoutX="27.0" layoutY="238.0" prefHeight="34.0" prefWidth="459.0" textAlignment="CENTER" wrapText="true" />
             <Label alignment="CENTER" layoutX="9.0" layoutY="14.0" prefHeight="25.0" prefWidth="91.0" style="-fx-background-color: lightgrey;" text="Company" textAlignment="CENTER" textOverrun="LEADING_ELLIPSIS">
                <font>
                   <Font name="Poppins Regular" size="12.0" />

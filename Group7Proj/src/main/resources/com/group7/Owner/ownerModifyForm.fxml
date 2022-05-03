@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
@@ -30,7 +31,7 @@
             <TextField fx:id="state" alignment="CENTER" layoutX="342.0" layoutY="136.0" promptText="..." />
             <TextField fx:id="zipCode" alignment="CENTER" layoutX="342.0" layoutY="177.0" promptText="..." />
             <Button fx:id="submitModifyButton" layoutX="188.0" layoutY="288.0" mnemonicParsing="false" onAction="#submitModifyButtonOnAction" prefHeight="25.0" prefWidth="125.0" style="-fx-background-color: #1d3557; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 0, 0, 0);" text="Submit Owner" textFill="WHITE" />
-            <Label fx:id="statusMessageLabelModify" layoutX="239.0" layoutY="254.0" prefHeight="17.0" prefWidth="13.0" />
+            <Label fx:id="statusMessageLabelModify" layoutX="13.0" layoutY="227.0" prefHeight="44.0" prefWidth="477.0" textAlignment="CENTER" wrapText="true" />
             <Label fx:id="ownerIDLabel" layoutX="159.0" layoutY="18.0" prefHeight="17.0" prefWidth="13.0" />
             <Label alignment="CENTER" layoutX="251.0" layoutY="14.0" prefHeight="25.0" prefWidth="91.0" style="-fx-background-color: lightgrey;" text="Company" textAlignment="CENTER" textOverrun="LEADING_ELLIPSIS">
                <font>
